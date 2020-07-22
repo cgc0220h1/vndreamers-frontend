@@ -7,19 +7,26 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./form-login.component.scss']
 })
 export class FormLoginComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder
-              ) { }
   loginForm: FormGroup;
   maxDate = new Date();
   minDate = new Date(1900, 0, 1);
   email: string;
   password: string;
+  confirmpassword: string;
+  firstname: string;
+  lastname: string;
+  gender: number;
+  birthday: string;
+
+  // tslint:disable-next-line:typedef
+  signUpForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
+
   emailRegx = /^(([^<>+()\[\]\\.,;:\s@"-#$%&=]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
   passwordRegx = /^(?=.*[!@#$%^&*]+)[a-z0-9!@#$%^&*]{6,32}$/;
   firstnameRegx = /^[a-z]{3,32}$/i;
   lastnameRegx = /^[a-z]{3,32}$/i;
-  // tslint:disable-next-line:typedef
-  signUpForm: FormGroup;
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group(
@@ -43,7 +50,9 @@ export class FormLoginComponent implements OnInit {
     );
   }
   // tslint:disable-next-line:typedef
-  onSubmitSignIn() {}
+  onSubmitSignIn() {
+  }
+
   // tslint:disable-next-line:typedef
   onSubmitSignUp() {}
 
