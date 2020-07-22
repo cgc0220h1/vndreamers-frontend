@@ -10,6 +10,8 @@ export class FormLoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder
               ) { }
   loginForm: FormGroup;
+  maxDate = new Date();
+  minDate = new Date(1900, 0, 1);
   email: string;
   password: string;
   emailRegx = /^(([^<>+()\[\]\\.,;:\s@"-#$%&=]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
@@ -33,7 +35,8 @@ export class FormLoginComponent implements OnInit {
         password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(32), Validators.pattern(this.passwordRegx)]],
         // tslint:disable-next-line:max-line-length
         confirmPassword: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(32), Validators.pattern(this.passwordRegx)]],
-        gender: [null, [Validators.required]]
+        gender: [null, [Validators.required]],
+        birthday: [1, [Validators.required]]
       }
     );
   }

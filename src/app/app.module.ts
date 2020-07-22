@@ -11,14 +11,16 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {CustomMaterialModule} from './core/material.module';
 import {AppRoutingModule} from './core/app.routing.module';
 import {MatRadioModule} from '@angular/material/radio';
+import {MaterialModule} from './material.module';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormLoginComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,9 +32,9 @@ import {MatRadioModule} from '@angular/material/radio';
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
-    CustomMaterialModule,
     AppRoutingModule,
-    MatRadioModule
+    MatRadioModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

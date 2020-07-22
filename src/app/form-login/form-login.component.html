@@ -37,7 +37,7 @@
                <button mat-raised-button color="primary" type="submit" class="login-button">Sign In</button>
              </div>
              <div class="example-button-row">
-               <a mat-button routerLink="." color="warn">Forgot Password</a>
+               <a mat-button routerLink="forgot-password" color="warn">Forgot Password</a>
              </div>
            </form>
          </mat-card-content>
@@ -105,6 +105,15 @@
                  <mat-radio-button value="1">Male</mat-radio-button>
                  <mat-radio-button value="0">Female</mat-radio-button>
                </mat-radio-group>
+             </div>
+             <div class="row-control">
+               <mat-form-field>
+                 <label>
+                   <input [min]="minDate" [max] = maxDate matInput [matDatepicker]="myDatepicker" formControlName="birthday" placeholder="Birthday">
+                 </label>
+                 <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+                 <mat-datepicker #myDatepicker></mat-datepicker>
+               </mat-form-field>
              </div>
                <div class="example-button-row">
                  <button mat-raised-button color="primary" type="submit" class="login-button">Sign Up</button>
