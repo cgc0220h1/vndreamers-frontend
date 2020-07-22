@@ -16,7 +16,8 @@ export class FormLoginComponent implements OnInit {
   password: string;
   emailRegx = /^(([^<>+()\[\]\\.,;:\s@"-#$%&=]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
   passwordRegx = /^(?=.*[!@#$%^&*]+)[a-z0-9!@#$%^&*]{6,32}$/;
-  usernameRegx = /^[a-z]{6,32}$/i;
+  firstnameRegx = /^[a-z]{3,32}$/i;
+  lastnameRegx = /^[a-z]{3,32}$/i;
   // tslint:disable-next-line:typedef
   signUpForm: FormGroup;
 
@@ -30,7 +31,8 @@ export class FormLoginComponent implements OnInit {
     );
     this.signUpForm = this.formBuilder.group(
       {
-        username: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(32), Validators.pattern(this.usernameRegx)]],
+        firstname: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(32), Validators.pattern(this.firstnameRegx)]],
+        lastname: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(32), Validators.pattern(this.lastnameRegx)]],
         email: [null, [Validators.required, Validators.pattern(this.emailRegx)]],
         password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(32), Validators.pattern(this.passwordRegx)]],
         // tslint:disable-next-line:max-line-length

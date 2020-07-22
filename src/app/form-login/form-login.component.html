@@ -48,18 +48,38 @@
          <mat-card-content>
            <form novalidate [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUp()" class="sign-in-form">
              <div class="row-control">
-               <mat-form-field>
-                 <label>
-                   <input matInput placeholder="Username" formControlName="username" required type="text">
-                 </label>
-                 <mat-error *ngIf="signUpForm.controls.username.touched && signUpForm.controls.username.invalid">
-                   <span *ngIf="signUpForm.controls.username.errors.required">This field is mandatory.</span>
-                   <span *ngIf="signUpForm.controls.username.errors.minlength || signUpForm.controls.username.errors.maxlength">Length from 6 to 32 characters</span>
-                   <span *ngIf="(signUpForm.controls.username.errors.minlength || signUpForm.controls.username.errors.maxlength) && signUpForm.controls.username.errors.pattern">
-                    Only alphabet, digit and at least one of !@#$%^&*
-                  </span>
-                 </mat-error>
-               </mat-form-field>
+               <table class="example-full-width" cellspacing="0">
+                 <tr>
+                   <td>
+                     <mat-form-field class="example-full-width">
+                       <label>
+                         <input matInput placeholder="First Name" formControlName="firstname" required >
+                       </label>
+                       <mat-error *ngIf="signUpForm.controls.firstname.touched && signUpForm.controls.firstname.invalid">
+                         <span *ngIf="signUpForm.controls.firstname.errors.required">This field is mandatory.</span>
+                         <span *ngIf="signUpForm.controls.firstname.errors.minlength || signUpForm.controls.firstname.errors.maxlength">Length from 6 to 32 characters</span>
+                         <span *ngIf="(signUpForm.controls.firstname.errors.minlength || signUpForm.controls.firstname.errors.maxlength) && signUpForm.controls.firstname.errors.pattern">
+                           Only alphabet, digit and at least one of !@#$%^&*
+                         </span>
+                       </mat-error>
+                     </mat-form-field>
+                   </td>
+                   <td>
+                     <mat-form-field class="example-full-width">
+                       <label>
+                         <input matInput placeholder="Last Name" formControlName="lastname" required >
+                       </label>
+                       <mat-error *ngIf="signUpForm.controls.lastname.touched && signUpForm.controls.lastname.invalid">
+                         <span *ngIf="signUpForm.controls.lastname.errors.required">This field is mandatory.</span>
+                         <span *ngIf="signUpForm.controls.lastname.errors.minlength || signUpForm.controls.lastname.errors.maxlength">Length from 3 to 32 characters</span>
+                         <span *ngIf="(signUpForm.controls.lastname.errors.minlength || signUpForm.controls.lastname.errors.maxlength) && signUpForm.controls.lastname.errors.pattern">
+                           Only alphabet, digit and at least one of !@#$%^&*
+                         </span>
+                       </mat-error>
+                     </mat-form-field>
+                   </td>
+                 </tr>
+               </table>
              </div>
              <div class="row-control">
                <mat-form-field>
@@ -113,6 +133,10 @@
                  </label>
                  <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
                  <mat-datepicker #myDatepicker></mat-datepicker>
+                 <mat-eror *ngIf="signUpForm.controls.birthday.touched && signUpForm.controls.birthday.invalid">
+                   <span *ngIf="signUpForm.controls.email.errors.required">This field is mandatory.</span>
+                   <span *ngIf="signUpForm.controls.email.errors.pattern">This field is invalid</span>
+                 </mat-eror>
                </mat-form-field>
              </div>
                <div class="example-button-row">
