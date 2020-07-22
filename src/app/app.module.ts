@@ -11,29 +11,29 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { HomePageComponent } from './home-page/home-page.component';
 import {CustomMaterialModule} from './core/material.module';
 import {AppRoutingModule} from './core/app.routing.module';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormLoginComponent,
-    HomePageComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        MatCardModule,
-        MatTabsModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatButtonModule,
-        MatCheckboxModule,
-      CustomMaterialModule,
-      AppRoutingModule
-    ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatTabsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    CustomMaterialModule,
+    AppRoutingModule,
+    MatRadioModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

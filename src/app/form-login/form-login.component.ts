@@ -32,7 +32,8 @@ export class FormLoginComponent implements OnInit {
         email: [null, [Validators.required, Validators.pattern(this.emailRegx)]],
         password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(32), Validators.pattern(this.passwordRegx)]],
         // tslint:disable-next-line:max-line-length
-        confirmPassword: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(32), Validators.pattern(this.passwordRegx)]]
+        confirmPassword: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(32), Validators.pattern(this.passwordRegx)]],
+        gender: [null, [Validators.required]]
       }
     );
   }
