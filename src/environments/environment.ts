@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiSource: 'https://vndreamers-dev.herokuapp.com/'
+  apiSource: 'https://vndreamers-dev.herokuapp.com'
 };
 
 /*

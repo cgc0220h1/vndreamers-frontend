@@ -1,4 +1,8 @@
- <div class="example-container">
+<div class="alert alert-success" role="alert" *ngIf="isShowSuccess">
+  {{message}}
+</div>
+
+<div class="example-container">
    <mat-card class="mat-elevation-z12">
      <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
 <!--       Form sign in-->
@@ -136,10 +140,10 @@
                  </label>
                  <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
                  <mat-datepicker #birthday></mat-datepicker>
-                 <mat-eror *ngIf="signUpForm.controls.birthday.touched && signUpForm.controls.birthday.invalid">
-                   <span *ngIf="signUpForm.controls.email.errors.required">This field is mandatory.</span>
-                   <span *ngIf="signUpForm.controls.email.errors.pattern">This field is invalid</span>
-                 </mat-eror>
+<!--                 <mat-eror *ngIf="signUpForm.controls.birthday.touched && signUpForm.controls.birthday.invalid">-->
+<!--                   <span *ngIf="signUpForm.controls.email.errors.required">This field is mandatory.</span>-->
+<!--                   <span *ngIf="signUpForm.controls.email.errors.pattern">This field is invalid</span>-->
+<!--                 </mat-eror>-->
                </mat-form-field>
              </div>
                <div class="example-button-row">

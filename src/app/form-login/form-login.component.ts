@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {ApiService} from '../service/api.service';
-import {AlertService} from '../service/alert.service';
-import {first} from 'rxjs/operators';
+import {DatePipe} from '@angular/common';
+
 
 
 // tslint:disable-next-line:typedef
 function comparePassword(c: AbstractControl) {
+  new DatePipe('en').transform(this.birthday.value, 'dd/MM/yyyy');
   const v = c.value;
   return (v.password === v.confirmPassword) ? null : {
     passwordnotmatch: true
@@ -25,13 +26,13 @@ export class FormLoginComponent implements OnInit {
   minDate = new Date(1900, 0, 1);
 
   signUpForm: FormGroup;
-  loading = false;
-  submitted = false;
+  userId: number;
+  isShowSuccess = false;
+  message: string;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private apiService: ApiService,
-              private alertService: AlertService) { }
+              private apiService: ApiService) { }
 
   emailRegx = /^(([^<>+()\[\]\\.,;:\s@"-#$%&=]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
   passwordRegx = /^(?=.*[!@#$%^&*]+)[a-z0-9!@#$%^&*]{6,32}$/;
@@ -55,13 +56,10 @@ export class FormLoginComponent implements OnInit {
         confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(32),
           Validators.pattern(this.passwordRegx)]],
         gender: ['', [Validators.required]],
-        birthday: ['', [Validators.required]]
+        birthday: ['']
       }
     );
   }
-  // convenience getter for easy access to form fields
-  // tslint:disable-next-line:typedef
-  get f() { return this.signUpForm.controls; }
   // tslint:disable-next-line:typedef
   onSubmitSignIn() {
   }
@@ -69,26 +67,12 @@ export class FormLoginComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   onSubmitSignUp() {
-    this.submitted = true;
-    // reset alerts on submit
-    this.alertService.clear();
-    // stop here if form is invalid
-    if (this.signUpForm.invalid) {
-      return;
-    }
-    this.loading = true;
-    this.apiService.createUser(this.signUpForm.value)
-      .pipe(first())
-      .subscribe(
-        data => {
-          this.alertService.success('Registration successfully', true);
-          this.router.navigate(['/login']);
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
-        }
-      );
+    this.apiService.createUser(this.signUpForm.value).subscribe(result => {
+        this.isShowSuccess = true;
+        this.message = 'da them..............';
+        this.apiService.shouldRefresh.next('aaaaaaaaaaa');
+      }
+    );
   }
 
 }
