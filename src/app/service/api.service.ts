@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {IUser} from '../model/User';
 
-const apiUrl = environment.apiSource;
+const apiUrl = 'http://localhost:8080';
 @Injectable({
   providedIn: 'root'
 })

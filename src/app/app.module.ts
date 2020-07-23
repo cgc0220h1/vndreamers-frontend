@@ -36,7 +36,7 @@ import {HttpClientModule} from '@angular/common/http';
     AppRoutingModule,
     MatRadioModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
