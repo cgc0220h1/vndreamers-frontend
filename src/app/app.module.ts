@@ -15,12 +15,15 @@ import {AppRoutingModule} from './core/app.routing.module';
 import {MatRadioModule} from '@angular/material/radio';
 import {MaterialModule} from './material.module';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AlertComponent } from './alert/alert.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormLoginComponent,
     ForgotPasswordComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     MatCheckboxModule,
     AppRoutingModule,
     MatRadioModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
