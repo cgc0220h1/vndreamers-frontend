@@ -8,7 +8,7 @@ const apiUrl = 'http://localhost:8080';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class AuthService {
   shouldRefresh = new Subject<any>();
 
   constructor(private httpClient: HttpClient) {

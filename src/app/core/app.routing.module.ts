@@ -1,20 +1,20 @@
 import {RouterModule, Routes} from '@angular/router';
-import {FormLoginComponent} from '../form-login/form-login.component';
+import {FormLoginSignupComponent} from '../form-login/form-login-signup.component';
 import {NgModule} from '@angular/core';
 import {ForgotPasswordComponent} from '../forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
     path: 'register',
-    component: FormLoginComponent
+    component: FormLoginSignupComponent
   },
   {
     path: 'login',
-    component: FormLoginComponent
+    component: FormLoginSignupComponent
   },
   {
     path: '',
-    component: FormLoginComponent
+    component: FormLoginSignupComponent
   },
   {
     path: 'forgot-password',
