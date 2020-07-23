@@ -7,5 +7,5 @@ export interface IUser {
   confirmPassword: string;
   gender: number;
   birthday: string;
-  token: string;
+  token?: string;
 }
