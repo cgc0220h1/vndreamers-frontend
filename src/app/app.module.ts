@@ -15,12 +15,14 @@ import {AppRoutingModule} from './core/app.routing.module';
 import {MatRadioModule} from '@angular/material/radio';
 import {MaterialModule} from './material.module';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AlertComponent } from './alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormLoginComponent,
     ForgotPasswordComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
