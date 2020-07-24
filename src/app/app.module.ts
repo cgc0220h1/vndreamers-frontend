@@ -16,12 +16,14 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MaterialModule} from './material.module';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import {HttpClientModule} from '@angular/common/http';
+import {PostFormComponent} from './post-form/post-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormLoginComponent,
     ForgotPasswordComponent,
+    PostFormComponent
   ],
   imports: [
     BrowserModule,

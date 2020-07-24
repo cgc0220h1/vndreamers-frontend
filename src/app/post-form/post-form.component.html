@@ -1,0 +1,11 @@
+<div class="con">
+  <h2>Status</h2>
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <input type="hidden" formControlName="id">
+    <input type="hidden" formControlName="status">
+    <div class="form-group">
+      <textarea type="text" class="form-control" placeholder="Bạn đang nghĩ gì?" id="content" formControlName="content"></textarea>
+    </div>
+    <button class="btn btn-primary">Submit</button>
+  </form>
+</div>
