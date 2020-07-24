@@ -1,5 +1,5 @@
 .example-container {
-  top: 0;
+  top: auto;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -11,13 +11,19 @@
   background-size: cover;
   overflow: hidden;
 }
+
+input {
+  height: 28px;
+}
+
 mat-card {
-  width: 30%;
+  width: 60%;
   margin: 10% auto;
   border-radius: 8px;
 }
 mat-form-field, mat-checkbox {
   width: 80%;
+  height: 90px;
   display: block;
   margin: auto;
 }
