@@ -10,12 +10,12 @@ import {
   Validators
 } from '@angular/forms';
 import {Router} from '@angular/router';
-import {AuthService} from '../service/auth.service';
-import {IUser} from '../model/User';
-import {regex} from '../../assets/regex';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Observer} from 'rxjs';
+import {AuthService} from '../../service/auth.service';
+import {IUser} from '../../model/User';
+import {regex} from '../../../assets/regex';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {

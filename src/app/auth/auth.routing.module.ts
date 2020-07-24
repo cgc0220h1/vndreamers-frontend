@@ -1,18 +1,20 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
+import {FormLoginSignupComponent} from './form-login/form-login-signup.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule),
+    component: FormLoginSignupComponent
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
   declarations: []
 })
-export class AppRoutingModule {
+
+export class AuthRoutingModule {
 
 }
