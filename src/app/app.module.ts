@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormLoginComponent } from './form-login/form-login.component';
+import { FormLoginSignupComponent } from './form-login/form-login-signup.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -21,7 +21,7 @@ import {PostFormComponent} from './post-form/post-form.component';
 @NgModule({
   declarations: [
     AppComponent,
-    FormLoginComponent,
+    FormLoginSignupComponent,
     ForgotPasswordComponent,
     PostFormComponent
   ],
@@ -38,7 +38,7 @@ import {PostFormComponent} from './post-form/post-form.component';
     AppRoutingModule,
     MatRadioModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
