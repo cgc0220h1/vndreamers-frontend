@@ -14,43 +14,38 @@
                 <label>
                   <input matInput placeholder="Email" formControlName="email">
                 </label>
+                <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+                  <span *ngIf="loginForm.controls.email.errors.required">This field is mandatory.</span>
+                  <span *ngIf="loginForm.controls.email.errors.pattern">This field is invalid</span>
+                </mat-error>
               </mat-form-field>
-              <ng-container *ngIf="loginForm.touched && loginForm.invalid">
-                <mat-error *ngIf="loginForm.get('email').hasError('required')">
-                  Trường không được để trống
-                </mat-error>
-                <mat-error *ngIf="loginForm.get('email').hasError('email')">
-                  Email không đúng định dạng
-                </mat-error>
-              </ng-container>
             </div>
             <div class="row-control">
               <mat-form-field>
                 <label>
                   <input matInput placeholder="Password" formControlName="password" type="password">
                 </label>
+                <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+                  <span *ngIf="loginForm.controls.password.errors.required">This field is mandatory.</span>
+                  <span *ngIf="loginForm.controls.password.errors.minlength ||
+                  loginForm.controls.password.errors.maxlength">
+                    Length from 6 to 32 characters
+                  </span>
+                  <span *ngIf="(loginForm.controls.password.errors.minlength ||
+                  loginForm.controls.password.errors.maxlength) && loginForm.controls.password.errors.pattern">
+                            Only alphabet, digit and at least one of !@#$%^&*
+                  </span>
+                </mat-error>
               </mat-form-field>
-              <ng-container *ngIf="loginForm.touched && loginForm.invalid">
-                <mat-error *ngIf="loginForm.get('password').hasError('required')">Trường không được để trống</mat-error>
-                <mat-error *ngIf="loginForm.get('password').hasError('minlength') ||
-                  loginForm.get('password').hasError('maxlength')">
-                  Mật khẩu có độ dài từ
-                  {{loginForm.get('password').errors.minlength['requiredLength']}} đến
-                  {{loginForm.get('password').errors.maxlength['requiredLength']}} ký tự
-                </mat-error>
-                <mat-error *ngIf="loginForm.get('password').hasError('pattern')">
-                  Mật khẩu không đúng định dạng
-                </mat-error>
-              </ng-container>
             </div>
-            <!--            <div class="row-control">-->
-            <!--              <mat-checkbox class="example-margin">Remember Me!</mat-checkbox>-->
-            <!--            </div>-->
-            <div class="example-button-row">
-              <button mat-raised-button color="primary" type="submit" class="login-button">Đăng nhập</button>
+            <div class="row-control">
+              <mat-checkbox class="example-margin">Remember Me!</mat-checkbox>
             </div>
             <div class="example-button-row">
-              <a mat-button routerLink="forgot-password" color="warn">Quên mật khẩu</a>
+              <button mat-raised-button color="primary" type="submit" class="login-button">Sign In</button>
+            </div>
+            <div class="example-button-row">
+              <a mat-button routerLink="forgot-password" color="warn">Forgot Password</a>
             </div>
           </form>
         </mat-card-content>
@@ -68,42 +63,36 @@
                       <label>
                         <input matInput placeholder="First Name" formControlName="firstName">
                       </label>
+                      <mat-error *ngIf="signUpForm.controls.firstName.touched && signUpForm.controls.firstName.invalid">
+                        <span *ngIf="signUpForm.controls.firstName.errors.required">
+                          This field is mandatory.
+                        </span>
+                        <span *ngIf="signUpForm.controls.firstName.errors.minlength ||
+                        signUpForm.controls.firstName.errors.maxlength">
+                          Length from 6 to 32 characters
+                        </span>
+                        <span *ngIf="signUpForm.get('firstName').hasError('pattern')">
+                           Name only contain letters!
+                        </span>
+                      </mat-error>
                     </mat-form-field>
-                    <ng-container *ngIf="signUpForm.touched && signUpForm.invalid">
-                      <mat-error *ngIf="signUpForm.get('firstName').hasError('required')">
-                        Trường không được để trống
-                      </mat-error>
-                      <mat-error *ngIf="signUpForm.get('firstName').hasError('minlength') ||
-                          signUpForm.get('firstName').hasError('maxlength')">
-                        Tên có độ dài từ
-                        {{signUpForm.get('firstName').errors.minlength['requiredLength']}} đến
-                        {{signUpForm.get('firstName').errors.maxlength['requiredLength']}} ký tự
-                      </mat-error>
-                      <mat-error *ngIf="signUpForm.get('firstName').hasError('pattern')">
-                        Tên không được chứa ký tự đặc biệt
-                      </mat-error>
-                    </ng-container>
                   </td>
                   <td>
                     <mat-form-field class="example-full-width">
                       <label>
                         <input matInput placeholder="Last Name" formControlName="lastName">
                       </label>
+                      <mat-error *ngIf="signUpForm.controls.lastName.touched && signUpForm.controls.lastName.invalid">
+                        <span *ngIf="signUpForm.controls.lastName.errors.required">This field is mandatory.</span>
+                        <span
+                          *ngIf="signUpForm.controls.lastName.errors.minlength || signUpForm.controls.lastName.errors.maxlength">
+                          Length from 3 to 32 characters
+                        </span>
+                        <span *ngIf="signUpForm.get('lastName').hasError('pattern')">
+                           Name only contain letters!
+                        </span>
+                      </mat-error>
                     </mat-form-field>
-                    <ng-container *ngIf="signUpForm.touched && signUpForm.invalid">
-                      <mat-error *ngIf="signUpForm.get('lastName').hasError('required')">
-                        Trường không được để trống
-                      </mat-error>
-                      <mat-error *ngIf="signUpForm.get('lastName').hasError('minlength') ||
-                          signUpForm.get('lastName').hasError('maxlength')">
-                        Tên có độ dài từ
-                        {{signUpForm.get('lastName').errors.minlength['requiredLength']}} đến
-                        {{signUpForm.get('lastName').errors.maxlength['requiredLength']}} ký tự
-                      </mat-error>
-                      <mat-error *ngIf="signUpForm.get('lastName').hasError('pattern')">
-                        Tên không được chứa ký tự đặc biệt
-                      </mat-error>
-                    </ng-container>
                   </td>
                 </tr>
               </table>
@@ -113,55 +102,53 @@
                 <label>
                   <input matInput placeholder="Email" formControlName="email">
                 </label>
+                <mat-error *ngIf="signUpForm.invalid && signUpForm.touched">
+                  <span *ngIf="signUpForm.get('email').hasError('required')">
+                    This field is mandatory.
+                  </span>
+                  <span *ngIf="signUpForm.get('email').hasError('email')">
+                    Email is invalid!
+                  </span>
+                </mat-error>
               </mat-form-field>
-              <ng-container *ngIf="signUpForm.touched && signUpForm.invalid">
-                <mat-error *ngIf="signUpForm.get('email').hasError('required')">
-                  Trường không được để trống.
-                </mat-error>
-                <mat-error *ngIf="signUpForm.get('email').hasError('email')">
-                  Email không đúng định dạng
-                </mat-error>
-              </ng-container>
             </div>
-            <div class="row-control">
-              <fieldset formGroupName="pwGroup">
+            <div formGroupName="pwGroup">
+              <div class="row-control">
                 <mat-form-field>
                   <label>
                     <input matInput placeholder="Password" formControlName="password" type="password">
                   </label>
+                  <mat-error *ngIf="signUpForm.touched && signUpForm.get('pwGroup').invalid">
+                    <span *ngIf="signUpForm.get('pwGroup').get('password').hasError('required')">
+                      This field is mandatory.
+                    </span>
+                    <span
+                      *ngIf="signUpForm.get('pwGroup').get('password').hasError('minlength') ||
+                      signUpForm.get('pwGroup').get('password').hasError('maxlength')">
+                      Length from 6 to 32 characters
+                    </span>
+                    <span *ngIf="signUpForm.get('pwGroup').get('password').hasError('pattern')">
+                    Only alphabet, digit and at least one of !@#$%^&*
+                    </span>
+                  </mat-error>
                 </mat-form-field>
+              </div>
+              <div class="row-control">
                 <mat-form-field>
                   <label>
                     <input matInput placeholder="Confirm Password" formControlName="confirmPassword" type="password">
                   </label>
+                  <mat-error *ngIf="signUpForm.hasError('passwordNotMatch', 'pwGroup')">
+                    Password not match
+                  </mat-error>
                 </mat-form-field>
-              </fieldset>
-              <ng-container *ngIf="signUpForm.touched && signUpForm.invalid">
-                <mat-error *ngIf="signUpForm.get('pwGroup').get('password').hasError('required')">
-                  Trường không được để trống.
-                </mat-error>
-                <mat-error *ngIf="signUpForm.get('pwGroup').get('password').hasError('minlength') ||
-                          signUpForm.get('pwGroup').get('password').hasError('maxlength')">
-                  Mật khẩu có độ dài từ 6 đến 32 ký tự
-                </mat-error>
-                <mat-error *ngIf="signUpForm.get('pwGroup').get('password').hasError('pattern')">
-                  Mật khẩu phải chứa một chữ cái, một số và một ký tự đặc biệt
-                </mat-error>
-                <mat-error *ngIf="signUpForm.hasError('passWordNotMatch', 'pwGroup')">
-                  Mật khẩu không trùng nhau
-                </mat-error>
-              </ng-container>
+              </div>
             </div>
             <div class="row-control">
-              <mat-radio-group aria-label="Giới tính" formControlName="gender">
+              <mat-radio-group aria-label="Select an option" formControlName="gender">
                 <mat-radio-button value="1">Male</mat-radio-button>
                 <mat-radio-button value="0">Female</mat-radio-button>
               </mat-radio-group>
-              <ng-container *ngIf="signUpForm.touched && signUpForm.invalid">
-                <mat-error *ngIf="signUpForm.get('gender').hasError('required')">
-                  Vui lòng chọn giới tính của bạn
-                </mat-error>
-              </ng-container>
             </div>
             <div class="row-control">
               <mat-form-field>
@@ -171,15 +158,14 @@
                 </label>
                 <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
                 <mat-datepicker #birthday></mat-datepicker>
+                <!--                 <mat-eror *ngIf="signUpForm.controls.birthday.touched && signUpForm.controls.birthday.invalid">-->
+                <!--                   <span *ngIf="signUpForm.controls.email.errors.required">This field is mandatory.</span>-->
+                <!--                   <span *ngIf="signUpForm.controls.email.errors.pattern">This field is invalid</span>-->
+                <!--                 </mat-eror>-->
               </mat-form-field>
-              <ng-container *ngIf="signUpForm.touched && signUpForm.invalid">
-                <mat-error *ngIf="signUpForm.get('birthday').hasError('required') &&
-                signUpForm.touched">Vui lòng nhập ngày sinh
-                </mat-error>
-              </ng-container>
             </div>
             <div class="example-button-row">
-              <button mat-raised-button color="primary" type="submit" class="login-button">Đăng ký</button>
+              <button mat-raised-button color="primary" type="submit" class="login-button">Sign Up</button>
             </div>
           </form>
         </mat-card-content>
