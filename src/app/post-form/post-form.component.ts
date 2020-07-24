@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {PostService} from '../service/post.service';
 
 @Component({
   selector: 'app-post-form',
@@ -14,7 +15,7 @@ export class PostFormComponent implements OnInit {
     content: new FormControl('')
   });
 
-  constructor() { }
+  constructor(private postService: PostService) { }
 
   ngOnInit(): void {
   }
@@ -22,5 +23,10 @@ export class PostFormComponent implements OnInit {
   onSubmit(): void {
     this.postForm.value.status = 1;
     console.log(this.postForm.value);
+    this.postService.createPost(this.postForm.value).subscribe( result => {
+
+    }, error => {
+      console.log('error');
+    });
   }
 }
