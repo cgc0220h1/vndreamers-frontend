@@ -52,6 +52,7 @@ export class FormLoginSignupComponent implements OnInit {
     console.log(this.loginForm.value);
     this.authService.login(this.loginForm.value).subscribe(result => {
       console.log('ok');
+      window.localStorage.setItem('phi', 'token string');
     }, error => {
       console.log('error');
     });
