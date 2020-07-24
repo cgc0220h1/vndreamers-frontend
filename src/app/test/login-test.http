@@ -1,0 +1,22 @@
+POST https://vndreamers-dev.herokuapp.com/auth/login
+Content-Type: application/json
+
+
+{
+  "email": "devteam@vndreamers.com",
+  "password": "@dev1234"
+}
+
+###
+
+POST https://vndreamers-dev.herokuapp.com/api/posts
+Content-Type: application/json
+
+
+{
+  "image": "",
+  "content": "dummy_first_name",
+  "status": 1
+}
+
+
