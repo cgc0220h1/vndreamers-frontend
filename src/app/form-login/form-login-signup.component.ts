@@ -14,6 +14,8 @@ import {AuthService} from '../service/auth.service';
 import {IUser} from '../model/User';
 import {regex} from '../../assets/regex';
 import {ErrorStateMatcher} from '@angular/material/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Observer} from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -24,21 +26,37 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 @Component({
   selector: 'app-form-login',
   templateUrl: './form-login-signup.component.html',
-  styleUrls: ['./form-login-signup.component.scss']
+  styleUrls: ['./form-login-signup.component.scss'],
+  providers: [MatSnackBar]
 })
 export class FormLoginSignupComponent implements OnInit {
   loginForm: FormGroup;
   maxDate = new Date();
   minDate = new Date(1900, 0, 1);
-
   signUpForm: FormGroup;
   isShowSuccess = false;
   message: string;
   matcher: ErrorStateMatcher;
+  formObserver: Observer<any> = {
+    next: () => {
+      this.snackBar.open('Register Successful', '', {
+        duration: 2500
+      });
+      this.signUpForm.reset();
+    },
+    error: () => {
+      this.snackBar.open('Register Unsuccessful', '', {
+        duration: 2500
+      });
+    },
+    complete: () => {
+    }
+  };
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private snackBar: MatSnackBar) {
     this.matcher = new MyErrorStateMatcher();
   }
 
@@ -73,11 +91,7 @@ export class FormLoginSignupComponent implements OnInit {
     this.signUpForm.markAllAsTouched();
     if (this.signUpForm.valid) {
       const userRegistered = FormLoginSignupComponent.toUserRegistered(this.signUpForm);
-      this.authService.createUser(userRegistered).subscribe(result => {
-          this.authService.shouldRefresh.next(result);
-          this.signUpForm.reset();
-        }
-      );
+      this.authService.createUser(userRegistered).subscribe(this.formObserver);
     }
   }
 
