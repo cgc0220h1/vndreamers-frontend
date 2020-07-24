@@ -12,7 +12,7 @@
             <div class="row-control">
               <mat-form-field>
                 <label>
-                  <input matInput placeholder="Email" formControlName="email">
+                  <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
                 </label>
                 <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
                   <span *ngIf="loginForm.controls.email.errors.required">This field is mandatory.</span>
@@ -23,7 +23,8 @@
             <div class="row-control">
               <mat-form-field>
                 <label>
-                  <input matInput placeholder="Password" formControlName="password" type="password">
+                  <input matInput placeholder="Password" formControlName="password" type="password"
+                         [errorStateMatcher]="matcher">
                 </label>
                 <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
                   <span *ngIf="loginForm.controls.password.errors.required">This field is mandatory.</span>
@@ -38,15 +39,15 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="row-control">
-              <mat-checkbox class="example-margin">Remember Me!</mat-checkbox>
-            </div>
+            <!--            <div class="row-control">-->
+            <!--              <mat-checkbox class="example-margin">Remember Me!</mat-checkbox>-->
+            <!--            </div>-->
             <div class="example-button-row">
               <button mat-raised-button color="primary" type="submit" class="login-button">Sign In</button>
             </div>
-            <div class="example-button-row">
-              <a mat-button routerLink="forgot-password" color="warn">Forgot Password</a>
-            </div>
+            <!--            <div class="example-button-row">-->
+            <!--              <a mat-button routerLink="forgot-password" color="warn">Forgot Password</a>-->
+            <!--            </div>-->
           </form>
         </mat-card-content>
       </mat-tab>
@@ -54,14 +55,15 @@
       <!--       Form sign up-->
       <mat-tab label="Sign Up">
         <mat-card-content>
-          <form novalidate [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUp()" class="sign-in-form">
+          <form novalidate [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUp()" class="sign-in-form" mat>
             <div class="row-control">
               <table class="example-full-width">
                 <tr>
                   <td>
                     <mat-form-field class="example-full-width">
                       <label>
-                        <input matInput placeholder="First Name" formControlName="firstName">
+                        <input matInput placeholder="First Name" formControlName="firstName"
+                               [errorStateMatcher]="matcher">
                       </label>
                       <mat-error *ngIf="signUpForm.controls.firstName.touched && signUpForm.controls.firstName.invalid">
                         <span *ngIf="signUpForm.controls.firstName.errors.required">
@@ -80,7 +82,8 @@
                   <td>
                     <mat-form-field class="example-full-width">
                       <label>
-                        <input matInput placeholder="Last Name" formControlName="lastName">
+                        <input matInput placeholder="Last Name" formControlName="lastName"
+                               [errorStateMatcher]="matcher">
                       </label>
                       <mat-error *ngIf="signUpForm.controls.lastName.touched && signUpForm.controls.lastName.invalid">
                         <span *ngIf="signUpForm.controls.lastName.errors.required">This field is mandatory.</span>
@@ -100,7 +103,7 @@
             <div class="row-control">
               <mat-form-field>
                 <label>
-                  <input matInput placeholder="Email" formControlName="email">
+                  <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
                 </label>
                 <mat-error *ngIf="signUpForm.invalid && signUpForm.touched">
                   <span *ngIf="signUpForm.get('email').hasError('required')">
@@ -116,7 +119,8 @@
               <div class="row-control">
                 <mat-form-field>
                   <label>
-                    <input matInput placeholder="Password" formControlName="password" type="password">
+                    <input matInput placeholder="Password" formControlName="password" type="password"
+                           [errorStateMatcher]="matcher">
                   </label>
                   <mat-error *ngIf="signUpForm.touched && signUpForm.get('pwGroup').invalid">
                     <span *ngIf="signUpForm.get('pwGroup').get('password').hasError('required')">
@@ -136,7 +140,8 @@
               <div class="row-control">
                 <mat-form-field>
                   <label>
-                    <input matInput placeholder="Confirm Password" formControlName="confirmPassword" type="password">
+                    <input matInput placeholder="Confirm Password" formControlName="confirmPassword" type="password"
+                           [errorStateMatcher]="matcher">
                   </label>
                   <mat-error *ngIf="signUpForm.hasError('passwordNotMatch', 'pwGroup')">
                     Password not match
@@ -154,14 +159,15 @@
               <mat-form-field>
                 <label>
                   <input [min]="minDate" [max]=maxDate matInput [matDatepicker]="birthday" formControlName="birthday"
-                         placeholder="Birthday">
+                         [errorStateMatcher]="matcher" placeholder="Birthday">
                 </label>
                 <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
                 <mat-datepicker #birthday></mat-datepicker>
-                <!--                 <mat-eror *ngIf="signUpForm.controls.birthday.touched && signUpForm.controls.birthday.invalid">-->
-                <!--                   <span *ngIf="signUpForm.controls.email.errors.required">This field is mandatory.</span>-->
-                <!--                   <span *ngIf="signUpForm.controls.email.errors.pattern">This field is invalid</span>-->
-                <!--                 </mat-eror>-->
+                <mat-error *ngIf="signUpForm.touched && signUpForm.invalid">
+                  <span *ngIf="signUpForm.get('birthday').hasError('required')">
+                    This field is mandatory.
+                  </span>
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="example-button-row">

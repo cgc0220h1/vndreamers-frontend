@@ -1,9 +1,25 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormGroupDirective,
+  NgForm,
+  ValidationErrors,
+  Validators
+} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../service/auth.service';
 import {IUser} from '../model/User';
 import {regex} from '../../assets/regex';
+import {ErrorStateMatcher} from '@angular/material/core';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    return !!((control && control.touched && control.invalid));
+  }
+}
 
 @Component({
   selector: 'app-form-login',
@@ -18,10 +34,12 @@ export class FormLoginSignupComponent implements OnInit {
   signUpForm: FormGroup;
   isShowSuccess = false;
   message: string;
+  matcher: ErrorStateMatcher;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private authService: AuthService) {
+    this.matcher = new MyErrorStateMatcher();
   }
 
   private static toUserRegistered(signUpForm: FormGroup): IUser {
