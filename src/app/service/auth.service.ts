@@ -30,15 +30,11 @@ export class AuthService {
   }
 
   login(email, password): Observable<any> {
-
     return this.httpClient.post<any>(`${environment.apiSource}/auth/login`, {email, password})
       .pipe(map(iAccount => {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('access_token', iAccount.access_token);
         this.currentUserSubject.next(iAccount);
         return iAccount;
       }));
-
-    //  return this.httpClient.post<IUser>(apiUrl + '/auth/login', user);
   }
 }
