@@ -49,9 +49,16 @@ export class FormLoginSignupComponent implements OnInit {
   }
 
   onSubmitSignIn(): void {
+    console.log(this.loginForm.value);
+    this.authService.login(this.loginForm.value).subscribe(result => {
+      console.log('ok');
+    }, error => {
+      console.log('error');
+    });
   }
 
   onSubmitSignUp(): void {
+    console.log(this.signUpForm.value);
     this.signUpForm.markAllAsTouched();
     if (this.signUpForm.valid) {
       const userRegistered = FormLoginSignupComponent.toUserRegistered(this.signUpForm);

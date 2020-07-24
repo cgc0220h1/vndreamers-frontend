@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {IPost} from '../model/Post';
 
-const API_URL = 'http://localhost:8080/api/posts';
+const API_URL = 'https://vndreamers-dev.herokuapp.com/api/posts';
 
 @Injectable({
   providedIn: 'root'

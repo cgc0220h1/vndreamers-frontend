@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {IUser} from '../model/User';
 
-const apiUrl = 'http://localhost:8080';
+const apiUrl = 'https://vndreamers-dev.herokuapp.com';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,5 +16,8 @@ export class AuthService {
   }
   createUser(user: IUser): Observable<IUser> {
     return this.httpClient.post<IUser>(apiUrl + '/auth/register', user);
+  }
+  login(user: IUser): Observable<IUser> {
+    return this.httpClient.post<IUser>(apiUrl + '/auth/login', user);
   }
 }

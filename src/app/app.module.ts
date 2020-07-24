@@ -15,15 +15,20 @@ import {AppRoutingModule} from './core/app.routing.module';
 import {MatRadioModule} from '@angular/material/radio';
 import {MaterialModule} from './material.module';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {PostFormComponent} from './post-form/post-form.component';
+import {PersonalPageComponent} from './personal-page/personal-page.component';
+import {ListPostComponent} from './list-post/list-post.component';
+import {JwtInterceptor} from './jwt.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormLoginSignupComponent,
     ForgotPasswordComponent,
-    PostFormComponent
+    PostFormComponent,
+    PersonalPageComponent,
+    ListPostComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,13 @@ import {PostFormComponent} from './post-form/post-form.component';
     MaterialModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

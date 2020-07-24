@@ -10,9 +10,9 @@ import {PostService} from '../service/post.service';
 export class PostFormComponent implements OnInit {
 
   postForm: FormGroup = new FormGroup({
-    id: new FormControl(''),
     status: new FormControl(''),
-    content: new FormControl('')
+    content: new FormControl(''),
+    image: new FormControl('')
   });
 
   constructor(private postService: PostService) { }

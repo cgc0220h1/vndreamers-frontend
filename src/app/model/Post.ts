@@ -5,4 +5,6 @@ export interface IPost {
   image?: string;
   content: string;
   status: number;
+  timePost?: string;
+  user?: IUser;
 }

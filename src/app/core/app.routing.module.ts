@@ -3,6 +3,7 @@ import {FormLoginSignupComponent} from '../form-login/form-login-signup.componen
 import {NgModule} from '@angular/core';
 import {ForgotPasswordComponent} from '../forgot-password/forgot-password.component';
 import {PostFormComponent} from '../post-form/post-form.component';
+import {PersonalPageComponent} from '../personal-page/personal-page.component';
 
 const routes: Routes = [
   {
@@ -22,8 +23,8 @@ const routes: Routes = [
     component: ForgotPasswordComponent
   },
   {
-    path: 'user',
-    component: PostFormComponent
+    path: 'username',
+    component: PersonalPageComponent
   }
 ];
 @NgModule({
