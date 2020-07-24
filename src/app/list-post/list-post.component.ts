@@ -21,5 +21,12 @@ export class ListPostComponent implements OnInit {
     }, () => {
       console.log('complete');
     });
+    this.postService.shouldRefresh.subscribe(result => {
+      this.postService.getPosts().subscribe(results => {
+        this.posts = results;
+      }, error => {
+        this.posts = [];
+      });
+    });
   }
 }

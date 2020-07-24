@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {IPost} from '../model/Post';
 
 const API_URL = 'https://vndreamers-dev.herokuapp.com/api/posts';
@@ -9,6 +9,8 @@ const API_URL = 'https://vndreamers-dev.herokuapp.com/api/posts';
   providedIn: 'root'
 })
 export class PostService {
+
+  shouldRefresh = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 
