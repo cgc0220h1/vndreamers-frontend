@@ -74,11 +74,10 @@ export class FormLoginSignupComponent implements OnInit {
     if (this.signUpForm.valid) {
       const userRegistered = FormLoginSignupComponent.toUserRegistered(this.signUpForm);
       this.authService.createUser(userRegistered).subscribe(result => {
-          console.log(result);
           this.authService.shouldRefresh.next(result);
+          this.signUpForm.reset();
         }
       );
-      this.signUpForm.reset();
     }
   }
 

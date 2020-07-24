@@ -1,9 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormLoginSignupComponent } from './form-login/form-login-signup.component';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormLoginSignupComponent} from './form-login/form-login-signup.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -13,9 +13,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {AppRoutingModule} from './core/app.routing.module';
 import {MatRadioModule} from '@angular/material/radio';
-import {MaterialModule} from './material.module';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {HttpClientModule} from '@angular/common/http';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -29,16 +30,18 @@ import {HttpClientModule} from '@angular/common/http';
     MatCardModule,
     MatTabsModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
     AppRoutingModule,
     MatRadioModule,
-    MaterialModule,
     HttpClientModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
