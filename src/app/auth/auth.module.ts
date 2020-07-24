@@ -13,7 +13,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
-
 @NgModule({
   declarations: [
     ForgotPasswordComponent,
