@@ -1,4 +1,4 @@
-<form [formGroup]="profile">
+<form [formGroup]="profile" (ngSubmit)="updateProfile()">
   <div class="row">
     <div class="col-md-6 pr-1">
       <div class="form-group">
@@ -84,10 +84,12 @@
   </div>
   <div class="row">
     <div class="update ml-auto mr-auto">
-      <button type="submit" class="btn btn-primary btn-round">Cập nhật</button>
+      <button type="submit" mat-raised-button color="primary">Cập nhật</button>
     </div>
     <div class="update ml-auto mr-auto">
-      <button type="submit" (click)="dialogRef.close()" class="btn btn-primary btn-round">Đóng</button>
+      <button type="button" mat-raised-button color="warn" (click)="dialogRef.close(null)"
+              class="btn btn-primary btn-round">Đóng
+      </button>
     </div>
   </div>
 </form>

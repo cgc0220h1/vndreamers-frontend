@@ -20,6 +20,7 @@ import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {ShowProfileComponent} from './show-profile/show-profile.component';
 import {FlexModule} from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {MatIconModule} from '@angular/material/icon';
     NgbModule,
     SharedModule,
     FlexModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ]
 })
 export class UserProfileModule {

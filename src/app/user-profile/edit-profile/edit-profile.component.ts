@@ -37,4 +37,25 @@ export class EditProfileComponent implements OnInit {
     });
   }
 
+  updateProfile(): void {
+    this.profile.markAllAsTouched();
+    if (this.profile.valid) {
+      const userInfo = this.getUserInfoByForm();
+      this.dialogRef.close(userInfo);
+    }
+  }
+
+  private getUserInfoByForm(): Partial<IUser> {
+    return {
+      id: this.user.id,
+      first_name: this.profile.get('firstName').value,
+      last_name: this.profile.get('lastName').value,
+      email: this.profile.get('email').value,
+      birth_date: this.profile.get('birthDate').value,
+      username: this.profile.get('username').value,
+      address: this.profile.get('address').value,
+      phone: this.profile.get('phone').value,
+      about_me: this.profile.get('aboutMe').value
+    };
+  }
 }
