@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
-import {ROUTES} from '../user-profile-routing.module';
+import {ROUTES} from '../shared-routing.module';
 
 @Component({
   // moduleId: module.id,

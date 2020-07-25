@@ -12,12 +12,12 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {LayoutsComponent} from './layouts/layouts.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {NavbarComponent} from './navbar/navbar.component';
 import {UserComponent} from './user/user.component';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
-  declarations: [UserComponent, LayoutsComponent, NavbarComponent, UserComponent],
+  declarations: [UserComponent, LayoutsComponent, UserComponent],
   imports: [
     CommonModule,
     UserProfileRoutingModule,
@@ -30,7 +30,8 @@ import {UserComponent} from './user/user.component';
     MatRadioModule,
     MatDatepickerModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    SharedModule
   ]
 })
 export class UserProfileModule {
