@@ -33,6 +33,9 @@ export class LayoutsComponent implements OnInit {
       console.log(this.username);
       this.userService.getByUsername(this.username).subscribe(user => {
         this.user = user;
+        this.postService.getPostsOtherUser(this.user.id).subscribe(posts => {
+          this.posts = posts;
+        });
       });
     });
   }
