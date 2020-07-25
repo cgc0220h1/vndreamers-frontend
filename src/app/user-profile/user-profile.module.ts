@@ -10,14 +10,14 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {UserComponent} from './post/user.component';
 import {LayoutsComponent} from './layouts/layouts.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NavbarComponent} from './navbar/navbar.component';
+import {UserComponent} from './user/user.component';
 
 
 @NgModule({
-  declarations: [UserComponent, LayoutsComponent, NavbarComponent],
+  declarations: [UserComponent, LayoutsComponent, NavbarComponent, UserComponent],
   imports: [
     CommonModule,
     UserProfileRoutingModule,
