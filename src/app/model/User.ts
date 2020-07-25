@@ -9,4 +9,5 @@ export interface IUser {
   birth_date?: string;
   phone?: string;
   address?: string;
+  avatar?: string;
 }
