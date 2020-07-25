@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {PostService} from '../../service/post.service';
+import {IUser} from '../../model/User';
 
 @Component({
   selector: 'app-form-post',
@@ -13,6 +14,8 @@ export class FormPostComponent implements OnInit {
     content: new FormControl(''),
     image: new FormControl('')
   });
+
+  @Input() user: IUser;
 
   constructor(private postService: PostService) { }
 
