@@ -20,15 +20,17 @@ export class FormPostComponent implements OnInit {
   constructor(private postService: PostService) { }
 
   ngOnInit(): void {
+    this.postService.shouldRefresh.subscribe(result => {
+      this.postForm.reset();
+    });
   }
 
   onSubmit(): void {
     this.postForm.value.status = 1;
-    console.log(this.postForm.value);
     this.postService.createPost(this.postForm.value).subscribe( result => {
-      this.postService.shouldRefresh.next();
+      this.postService.shouldRefresh.next(result);
     }, error => {
-      console.log('error');
+      console.log('error create form');
     });
   }
 }
