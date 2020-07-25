@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IPost} from '../../model/Post';
 import {PostService} from '../../service/post.service';
-import {IUser} from "../../model/User";
-import {AuthService} from "../../service/auth.service";
+import {IUser} from '../../model/User';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
   selector: 'app-post-list',
@@ -12,12 +12,15 @@ import {AuthService} from "../../service/auth.service";
 export class PostListComponent implements OnInit {
 
   posts: IPost[];
-  user: IUser;
-  constructor(private postService: PostService, private authService: AuthService) { }
+  @Input() user: IUser;
+
+  constructor(private postService: PostService, private authService: AuthService) {
+  }
 
 
   ngOnInit(): void {
     this.postService.getPosts().subscribe(next => {
+      console.log(this.user);
       this.posts = next;
       console.log(next);
     }, error => {

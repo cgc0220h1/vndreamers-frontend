@@ -9,7 +9,7 @@
         </div>
         <div class="col-md-8">
           <app-form-post [user]="user"></app-form-post>
-          <app-post-list></app-post-list>
+          <app-post-list [user]="user"></app-post-list>
           <button mat-button (click)="openEditProfileDialog()">Edit Profile</button>
         </div>
       </div>
