@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {IUser} from '../model/User';
 import {map} from 'rxjs/operators';
 
@@ -25,6 +25,7 @@ export class AuthService {
     return this.httpClient.post<any>(`${environment.apiSource}/auth/login`, {email, password})
       .pipe(map(iAccount => {
         localStorage.setItem('access_token', iAccount.access_token);
+        localStorage.setItem('user', JSON.stringify(iAccount.user));
         return iAccount;
       }));
   }
