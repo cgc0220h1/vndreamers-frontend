@@ -19,10 +19,12 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {AuthRoutingModule} from './auth/auth.routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditProfileComponent } from './user-profile/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    EditProfileComponent,
   ],
   imports: [
     AuthModule,
