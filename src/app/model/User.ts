@@ -1,4 +1,8 @@
 export interface IUser {
+  about_me?: string;
+  address?: string;
+  phone?: string;
+  username?: string;
   id?: number;
   first_name: string;
   last_name: string;

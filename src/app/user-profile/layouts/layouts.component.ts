@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {EditProfileComponent} from '../edit-profile/edit-profile.component';
 
 @Component({
   selector: 'app-layouts',
@@ -7,13 +9,16 @@ import {Component, OnInit} from '@angular/core';
 })
 export class LayoutsComponent implements OnInit {
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
   }
 
   openEditProfileDialog(): void {
-    
+    this.dialog.open(EditProfileComponent, {
+      panelClass: 'custom-dialog',
+      hasBackdrop: false
+    });
   }
 }
