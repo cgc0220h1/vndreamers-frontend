@@ -18,6 +18,7 @@ import {RouterModule} from '@angular/router';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {AuthRoutingModule} from './auth/auth.routing.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {AuthRoutingModule} from './auth/auth.routing.module';
     MatRadioModule,
     MatDatepickerModule,
     AuthRoutingModule,
+    NgbModule,
   ],
   providers: [
     {

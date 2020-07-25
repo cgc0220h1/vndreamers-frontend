@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {UserProfileRoutingModule} from './user-profile-routing.module';
-import {WallComponent} from './wall/wall.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -12,10 +11,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {UserComponent} from './post/user.component';
+import {LayoutsComponent} from './layouts/layouts.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NavbarComponent} from './navbar/navbar.component';
 
 
 @NgModule({
-  declarations: [WallComponent, UserComponent],
+  declarations: [UserComponent, LayoutsComponent, NavbarComponent],
   imports: [
     CommonModule,
     UserProfileRoutingModule,
@@ -27,7 +29,8 @@ import {UserComponent} from './post/user.component';
     MatButtonModule,
     MatRadioModule,
     MatDatepickerModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ]
 })
 export class UserProfileModule {

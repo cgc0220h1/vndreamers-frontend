@@ -1,12 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  FormGroupDirective,
-  NgForm,
-  Validators
-} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -31,7 +24,8 @@ export class FormLoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private matSnackBar: MatSnackBar) {
     this.matcher = new MyErrorStateMatcher();
   }
 
@@ -51,9 +45,13 @@ export class FormLoginComponent implements OnInit {
   onSubmitSignIn(): void {
     console.log(this.loginForm.value);
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(result => {
+      this.router.navigateByUrl('/wall').then(r => console.log(r));
       console.log('ok');
     }, error => {
-      console.log('error');
+      this.matSnackBar.open(error.error.error, '', {
+        duration: 2500
+      });
+      console.log(error.error.error);
     });
   }
 }
