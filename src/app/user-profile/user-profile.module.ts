@@ -18,7 +18,7 @@ import {FormPostComponent} from './form-post/form-post.component';
 import {FriendListComponent} from './friend-list/friend-list.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {EditProfileComponent} from './edit-profile/edit-profile.component';
-import { ShowProfileComponent } from './show-profile/show-profile.component';
+import {ShowProfileComponent} from './show-profile/show-profile.component';
 
 
 @NgModule({
@@ -28,7 +28,8 @@ import { ShowProfileComponent } from './show-profile/show-profile.component';
     FormPostComponent,
     FriendListComponent,
     PostListComponent,
-    EditProfileComponent],
+    EditProfileComponent,
+    ShowProfileComponent],
   imports: [
     CommonModule,
     UserProfileRoutingModule,
