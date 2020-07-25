@@ -14,12 +14,21 @@ import {LayoutsComponent} from './layouts/layouts.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {UserComponent} from './user/user.component';
 import {SharedModule} from '../shared/shared.module';
+import {FormPostComponent} from './form-post/form-post.component';
+import {FriendListComponent} from './friend-list/friend-list.component';
+import {PostListComponent} from './post-list/post-list.component';
 import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import { ShowProfileComponent } from './show-profile/show-profile.component';
 
 
 @NgModule({
-  declarations: [UserComponent, LayoutsComponent, UserComponent, EditProfileComponent],
+  declarations: [UserComponent,
+    LayoutsComponent,
+    UserComponent,
+    FormPostComponent,
+    FriendListComponent,
+    PostListComponent,
+    EditProfileComponent],
   imports: [
     CommonModule,
     UserProfileRoutingModule,
