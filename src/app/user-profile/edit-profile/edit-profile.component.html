@@ -1,10 +1,10 @@
-<form>
+<form [formGroup]="profile">
   <div class="row">
     <div class="col-md-6 pr-1">
       <div class="form-group">
         <mat-form-field appearance="outline" fxFill>
           <mat-label>Tên của bạn</mat-label>
-          <input matInput type="text" placeholder="Tên" value="Đức">
+          <input matInput type="text" placeholder="Tên" formControlName="firstName">
         </mat-form-field>
       </div>
     </div>
@@ -12,7 +12,7 @@
       <div class="form-group">
         <mat-form-field appearance="outline" fxFill>
           <mat-label>Họ</mat-label>
-          <input matInput type="text" placeholder="Họ" value="Nguyễn">
+          <input matInput type="text" placeholder="Họ" formControlName="lastName">
         </mat-form-field>
       </div>
     </div>
@@ -24,7 +24,7 @@
         <mat-form-field appearance="outline" fxFill>
           <mat-label>Email</mat-label>
           <mat-icon matSuffix>email</mat-icon>
-          <input matInput disabled type="text" placeholder="Email" value="vanduc@gmail.com">
+          <input matInput disabled type="text" placeholder="Email" formControlName="email">
         </mat-form-field>
       </div>
     </div>
@@ -32,7 +32,8 @@
       <div class="form-group">
         <mat-form-field appearance="outline" fxFill>
           <mat-label>Ngày sinh</mat-label>
-          <input [min]="minDate" [max]="maxDate" [matDatepicker]="birthday" matInput type="text" placeholder="Ngày sinh">
+          <input [min]="minDate" [max]="maxDate" [matDatepicker]="birthday" matInput type="text"
+                 placeholder="Ngày sinh" formControlName="birthDate">
           <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
           <mat-datepicker #birthday></mat-datepicker>
         </mat-form-field>
@@ -42,7 +43,7 @@
       <div class="form-group">
         <mat-form-field appearance="outline" fxFill>
           <mat-label>Username</mat-label>
-          <input matInput type="text" placeholder="Company" value="Chet">
+          <input matInput type="text" placeholder="Username" formControlName="username">
         </mat-form-field>
       </div>
     </div>
@@ -53,7 +54,7 @@
       <div class="form-group">
         <mat-form-field appearance="outline" fxFill>
           <mat-label>Địa chỉ</mat-label>
-          <input matInput type="text" placeholder="Company" value="Chet">
+          <input matInput type="text" placeholder="Address" formControlName="address">
         </mat-form-field>
       </div>
     </div>
@@ -61,7 +62,7 @@
       <div class="form-group">
         <mat-form-field appearance="outline" fxFill>
           <mat-label>Số điện thoại</mat-label>
-          <input matInput type="text" placeholder="Company" value="Chet">
+          <input matInput type="text" placeholder="Phone" formControlName="phone">
         </mat-form-field>
       </div>
     </div>
@@ -71,7 +72,7 @@
       <div class="form-group">
         <mat-form-field appearance="outline" fxFill>
           <mat-label>Châm ngôn ưa thích</mat-label>
-          <textarea matInput type="text" placeholder="Company" value="Chet">
+          <textarea matInput type="text" placeholder="About me" formControlName="aboutMe">
           </textarea>
         </mat-form-field>
       </div>
