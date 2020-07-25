@@ -12,7 +12,6 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {LayoutsComponent} from './layouts/layouts.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {UserComponent} from './user/user.component';
 import {SharedModule} from '../shared/shared.module';
 import {FormPostComponent} from './form-post/form-post.component';
 import {FriendListComponent} from './friend-list/friend-list.component';
@@ -22,14 +21,14 @@ import {ShowProfileComponent} from './show-profile/show-profile.component';
 
 
 @NgModule({
-  declarations: [UserComponent,
+  declarations: [
     LayoutsComponent,
-    UserComponent,
     FormPostComponent,
     FriendListComponent,
     PostListComponent,
     EditProfileComponent,
-    ShowProfileComponent],
+    ShowProfileComponent
+  ],
   imports: [
     CommonModule,
     UserProfileRoutingModule,
