@@ -3,6 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {EditProfileComponent} from '../edit-profile/edit-profile.component';
 import {AuthService} from '../../service/auth.service';
 import {IUser} from '../../model/User';
+import {UserService} from '../../service/user.service';
 
 @Component({
   selector: 'app-layouts',
@@ -14,17 +15,18 @@ export class LayoutsComponent implements OnInit {
   user: IUser;
 
   constructor(private authService: AuthService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.authService.currentUserSubject.subscribe(response => {
-      this.user = response;
-      // console.log(this.user);
-    });
+    this.user = this.userService.getUserLoggedIn();
   }
 
   openEditProfileDialog(): void {
+    if (this.user === null) {
+      return;
+    }
     this.dialog.open(EditProfileComponent, {
       panelClass: 'custom-dialog',
       hasBackdrop: false,

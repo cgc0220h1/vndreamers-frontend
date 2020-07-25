@@ -27,6 +27,7 @@ export class EditProfileComponent implements OnInit {
         [Validators.pattern(regex.shortNameRegex), Validators.required]),
       lastName: new FormControl(this.user.last_name,
         [Validators.pattern(regex.shortNameRegex), Validators.required]),
+      email: [{value: this.user.email, disabled: true}],
       birthDate: new FormControl(this.user.birth_date, Validators.required),
       username: new FormControl(this.user.username,
         [Validators.pattern(regex.username), Validators.required]),
