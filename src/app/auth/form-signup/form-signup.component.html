@@ -1,0 +1,119 @@
+<form novalidate [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUp()" class="sign-in-form">
+  <div class="row-control">
+    <table class="example-full-width">
+      <tr>
+        <td>
+          <mat-form-field style="margin-left: 0">
+            <label>
+              <input matInput placeholder="First Name" formControlName="firstName"
+                     [errorStateMatcher]="matcher">
+            </label>
+            <mat-error *ngIf="signUpForm.controls.firstName.touched && signUpForm.controls.firstName.invalid">
+                        <span *ngIf="signUpForm.controls.firstName.errors.required">
+                          This field is mandatory.
+                        </span>
+              <span *ngIf="signUpForm.controls.firstName.errors.minlength ||
+                        signUpForm.controls.firstName.errors.maxlength">
+                          Length from 6 to 32 characters
+                        </span>
+              <span *ngIf="signUpForm.get('firstName').hasError('pattern')">
+                           Name only contain letters!
+                        </span>
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field style="margin-right: 0">
+            <label>
+              <input matInput placeholder="Last Name" formControlName="lastName"
+                     [errorStateMatcher]="matcher">
+            </label>
+            <mat-error *ngIf="signUpForm.controls.lastName.touched && signUpForm.controls.lastName.invalid">
+              <span *ngIf="signUpForm.controls.lastName.errors.required">This field is mandatory.</span>
+              <span
+                *ngIf="signUpForm.controls.lastName.errors.minlength || signUpForm.controls.lastName.errors.maxlength">
+                          Length from 3 to 32 characters
+                        </span>
+              <span *ngIf="signUpForm.get('lastName').hasError('pattern')">
+                           Name only contain letters!
+                        </span>
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="row-control">
+    <mat-form-field>
+      <label>
+        <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+      </label>
+      <mat-error *ngIf="signUpForm.invalid && signUpForm.touched">
+                  <span *ngIf="signUpForm.get('email').hasError('required')">
+                    This field is mandatory.
+                  </span>
+        <span *ngIf="signUpForm.get('email').hasError('email')">
+                    Email is invalid!
+                  </span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div formGroupName="pwGroup">
+    <div class="row-control">
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="Password" formControlName="password" type="password"
+                 [errorStateMatcher]="matcher">
+        </label>
+        <mat-error *ngIf="signUpForm.touched && signUpForm.get('pwGroup').invalid">
+                    <span *ngIf="signUpForm.get('pwGroup').get('password').hasError('required')">
+                      This field is mandatory.
+                    </span>
+          <span
+            *ngIf="signUpForm.get('pwGroup').get('password').hasError('minlength') ||
+                      signUpForm.get('pwGroup').get('password').hasError('maxlength')">
+                      Length from 6 to 32 characters
+                    </span>
+          <span *ngIf="signUpForm.get('pwGroup').get('password').hasError('pattern')">
+                    Only alphabet, digit and at least one of !@#$%^&*
+                    </span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row-control">
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="Confirm Password" formControlName="confirmPassword" type="password"
+                 [errorStateMatcher]="matcher">
+        </label>
+        <mat-error *ngIf="signUpForm.hasError('passwordNotMatch', 'pwGroup')">
+          Password not match
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row-control">
+    <mat-radio-group aria-label="Select an option" formControlName="gender">
+      <mat-radio-button value="1">Male</mat-radio-button>
+      <mat-radio-button value="0">Female</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div class="row-control">
+    <mat-form-field>
+      <label>
+        <input [min]="minDate" [max]=maxDate matInput [matDatepicker]="birthday" formControlName="birthday"
+               [errorStateMatcher]="matcher" placeholder="Birthday">
+      </label>
+      <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
+      <mat-datepicker #birthday></mat-datepicker>
+      <mat-error *ngIf="signUpForm.touched && signUpForm.invalid">
+                  <span *ngIf="signUpForm.get('birthday').hasError('required')">
+                    This field is mandatory.
+                  </span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="example-button-row">
+    <button mat-raised-button color="primary" type="submit" class="login-button">Sign Up</button>
+  </div>
+</form>

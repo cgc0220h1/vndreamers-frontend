@@ -1,0 +1,41 @@
+<form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmitSignIn()" class="sign-in-form">
+  <div class="row-control">
+    <mat-form-field>
+      <label>
+        <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+      </label>
+      <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+        <span *ngIf="loginForm.controls.email.errors.required">This field is mandatory.</span>
+        <span *ngIf="loginForm.controls.email.errors.pattern">This field is invalid</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="row-control">
+    <mat-form-field>
+      <label>
+        <input matInput placeholder="Password" formControlName="password" type="password"
+               [errorStateMatcher]="matcher">
+      </label>
+      <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+        <span *ngIf="loginForm.controls.password.errors.required">This field is mandatory.</span>
+        <span *ngIf="loginForm.controls.password.errors.minlength ||
+                  loginForm.controls.password.errors.maxlength">
+                    Length from 6 to 32 characters
+                  </span>
+        <span *ngIf="(loginForm.controls.password.errors.minlength ||
+                  loginForm.controls.password.errors.maxlength) && loginForm.controls.password.errors.pattern">
+                            Only alphabet, digit and at least one of !@#$%^&*
+                  </span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <!--            <div class="row-control">-->
+  <!--              <mat-checkbox class="example-margin">Remember Me!</mat-checkbox>-->
+  <!--            </div>-->
+  <div class="example-button-row">
+    <button mat-raised-button color="primary" type="submit" class="login-button">Sign In</button>
+  </div>
+  <!--            <div class="example-button-row">-->
+  <!--              <a mat-button routerLink="forgot-password" color="warn">Forgot Password</a>-->
+  <!--            </div>-->
+</form>

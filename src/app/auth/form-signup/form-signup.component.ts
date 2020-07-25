@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ErrorStateMatcher} from '@angular/material/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -7,15 +8,13 @@ import {
   FormGroupDirective,
   NgForm,
   ValidationErrors,
-  Validators
+  Validators,
 } from '@angular/forms';
-import {Router} from '@angular/router';
-import {ErrorStateMatcher} from '@angular/material/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {Observer} from 'rxjs';
-import {AuthService} from '../../service/auth.service';
 import {IUser} from '../../model/User';
 import {regex} from '../../../assets/regex';
+import {AuthService} from '../../service/auth.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Observer} from 'rxjs';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -24,19 +23,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-form-login',
-  templateUrl: './form-login-signup.component.html',
-  styleUrls: ['./form-login-signup.component.scss'],
+  selector: 'app-form-signup',
+  templateUrl: './form-signup.component.html',
+  styleUrls: ['./form-signup.component.scss'],
   providers: [MatSnackBar]
 })
-export class FormLoginSignupComponent implements OnInit {
-  loginForm: FormGroup;
+export class FormSignupComponent implements OnInit {
+  matcher: ErrorStateMatcher;
+  signUpForm: FormGroup;
   maxDate = new Date();
   minDate = new Date(1900, 0, 1);
-  signUpForm: FormGroup;
-  isShowSuccess = false;
-  message: string;
-  matcher: ErrorStateMatcher;
   formObserver: Observer<any> = {
     next: () => {
       this.snackBar.open('Register Successful', '', {
@@ -54,7 +50,6 @@ export class FormLoginSignupComponent implements OnInit {
   };
 
   constructor(private formBuilder: FormBuilder,
-              private router: Router,
               private authService: AuthService,
               private snackBar: MatSnackBar) {
     this.matcher = new MyErrorStateMatcher();
@@ -80,29 +75,6 @@ export class FormLoginSignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initLoginForm();
-    this.initSignupForm();
-  }
-
-  onSubmitSignIn(): void {
-    console.log(this.loginForm.value);
-    this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(result => {
-      console.log('ok');
-    }, error => {
-      console.log('error');
-    });
-  }
-
-  onSubmitSignUp(): void {
-    console.log(this.signUpForm.value);
-    this.signUpForm.markAllAsTouched();
-    if (this.signUpForm.valid) {
-      const userRegistered = FormLoginSignupComponent.toUserRegistered(this.signUpForm);
-      this.authService.createUser(userRegistered).subscribe(this.formObserver);
-    }
-  }
-
-  private initSignupForm(): void {
     this.signUpForm = this.formBuilder.group(
       {
         firstName: ['', [Validators.required,
@@ -120,24 +92,19 @@ export class FormLoginSignupComponent implements OnInit {
             Validators.maxLength(32),
             Validators.pattern(regex.passwordRegx)]],
           confirmPassword: [''],
-        }, {validators: FormLoginSignupComponent.comparePassword}),
+        }, {validators: FormSignupComponent.comparePassword}),
         gender: ['', [Validators.required]],
         birthday: ['', [Validators.required]]
       }
     );
   }
 
-  private initLoginForm(): void {
-    this.loginForm = this.formBuilder.group(
-      {
-        email: ['', [Validators.required,
-          Validators.email]],
-        password: ['', [Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(32),
-          Validators.pattern(regex.passwordRegx)]],
-      }
-    );
+  onSubmitSignUp(): void {
+    console.log(this.signUpForm.value);
+    this.signUpForm.markAllAsTouched();
+    if (this.signUpForm.valid) {
+      const userRegistered = FormSignupComponent.toUserRegistered(this.signUpForm);
+      this.authService.createUser(userRegistered).subscribe(this.formObserver);
+    }
   }
-
 }

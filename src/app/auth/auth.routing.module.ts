@@ -1,11 +1,11 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {FormLoginSignupComponent} from './form-login/form-login-signup.component';
+import {LayoutsComponent} from './layouts/layouts.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: FormLoginSignupComponent
+    component: LayoutsComponent
   },
 ];
 
