@@ -14,10 +14,11 @@ import {LayoutsComponent} from './layouts/layouts.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {UserComponent} from './user/user.component';
 import {SharedModule} from '../shared/shared.module';
+import {EditProfileComponent} from './edit-profile/edit-profile.component';
 
 
 @NgModule({
-  declarations: [UserComponent, LayoutsComponent, UserComponent],
+  declarations: [UserComponent, LayoutsComponent, UserComponent, EditProfileComponent],
   imports: [
     CommonModule,
     UserProfileRoutingModule,
