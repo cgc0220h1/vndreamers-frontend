@@ -5,24 +5,16 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {IUser} from '../model/User';
 import {map} from 'rxjs/operators';
 
-const apiUrl = 'https://vndreamers-dev.herokuapp.com';
+const apiUrl = environment.apiSource;
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  shouldRefresh = new Subject<any>();
 
-  private currentUserSubject: BehaviorSubject<IUser>;
-  public currentUser: Observable<IUser>;
+  public currentUserSubject = new BehaviorSubject<IUser>(null);
 
   constructor(private httpClient: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<IUser>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
-  }
-
-  public get currentUserValue(): IUser {
-    return this.currentUserSubject.value;
   }
 
   createUser(user: IUser): Observable<IUser> {
@@ -33,7 +25,6 @@ export class AuthService {
     return this.httpClient.post<any>(`${environment.apiSource}/auth/login`, {email, password})
       .pipe(map(iAccount => {
         localStorage.setItem('access_token', iAccount.access_token);
-        this.currentUserSubject.next(iAccount);
         return iAccount;
       }));
   }

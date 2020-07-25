@@ -5,6 +5,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {AuthService} from '../../service/auth.service';
 import {regex} from '../../../assets/regex';
+import {IUser} from '../../model/User';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -21,6 +22,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class FormLoginComponent implements OnInit {
   loginForm: FormGroup;
   matcher: ErrorStateMatcher;
+  response: {
+    user: IUser,
+    access_token: string
+  };
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -43,15 +48,14 @@ export class FormLoginComponent implements OnInit {
   }
 
   onSubmitSignIn(): void {
-    console.log(this.loginForm.value);
-    this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(result => {
+    this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(response => {
+      this.authService.currentUserSubject.next(response.user);
+      // this.authService.shouldRefresh.next(response.user);
       this.router.navigateByUrl('/wall').then(r => console.log(r));
-      console.log('ok');
     }, error => {
       this.matSnackBar.open(error.error.error, '', {
         duration: 2500
       });
-      console.log(error.error.error);
     });
   }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {IPost} from '../../model/Post';
 import {PostService} from '../../service/post.service';
+import {IUser} from "../../model/User";
+import {AuthService} from "../../service/auth.service";
 
 @Component({
   selector: 'app-post-list',
@@ -10,12 +12,14 @@ import {PostService} from '../../service/post.service';
 export class PostListComponent implements OnInit {
 
   posts: IPost[];
-  constructor(private postService: PostService) { }
+  user: IUser;
+  constructor(private postService: PostService, private authService: AuthService) { }
 
 
   ngOnInit(): void {
     this.postService.getPosts().subscribe(next => {
       this.posts = next;
+      console.log(next);
     }, error => {
       console.log(error);
     }, () => {
@@ -29,5 +33,6 @@ export class PostListComponent implements OnInit {
       });
     });
   }
+
 
 }
