@@ -2,8 +2,11 @@ import {Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {IUser} from '../model/User';
+import {environment} from '../../environments/environment';
 
-const API_URL = 'localhost:8080/api/users';
+// const API_URL = 'localhost:8080/api/users';
+
+const apiUrl = environment.apiSource;
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +19,7 @@ export class UserService {
   }
 
   getByUsername(username: string): Observable<IUser> {
-    return this.http.get<IUser>(`${API_URL}/${username}`);
+    return this.http.get<IUser>(`${apiUrl}/api/users/${username}`);
   }
 
 }
