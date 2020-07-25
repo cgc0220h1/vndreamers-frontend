@@ -31,9 +31,9 @@ export class EditProfileComponent implements OnInit {
       birthDate: new FormControl(this.user.birth_date, Validators.required),
       username: new FormControl(this.user.username,
         [Validators.pattern(regex.username), Validators.required]),
-      phone: new FormControl(this.user.phone),
+      phone: new FormControl(this.user.phone, Validators.pattern(regex.phone)),
       address: new FormControl(this.user.address),
-      aboutMe: new FormControl(this.user.about_me)
+      aboutMe: new FormControl(this.user.about_me, Validators.maxLength(255))
     });
   }
 
