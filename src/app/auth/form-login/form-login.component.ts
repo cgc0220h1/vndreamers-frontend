@@ -50,6 +50,9 @@ export class FormLoginComponent implements OnInit {
   }
 
   onSubmitSignIn(): void {
+    this.matSnackBar.open('Vui lòng đợi giây lát', '', {
+      duration: 2500
+    });
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(response => {
       this.authService.currentUserSubject.next(response.user);
       this.username = response.user.username;

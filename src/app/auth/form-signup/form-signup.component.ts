@@ -35,13 +35,13 @@ export class FormSignupComponent implements OnInit {
   minDate = new Date(1900, 0, 1);
   formObserver: Observer<any> = {
     next: () => {
-      this.snackBar.open('Register Successful', '', {
+      this.snackBar.open('Đăng ký thành công', '', {
         duration: 2500
       });
       this.signUpForm.reset();
     },
     error: () => {
-      this.snackBar.open('Register Unsuccessful', '', {
+      this.snackBar.open('Đăng ký không thành công', '', {
         duration: 2500
       });
     },
@@ -79,11 +79,11 @@ export class FormSignupComponent implements OnInit {
       {
         firstName: ['', [Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(32),
+          Validators.maxLength(16),
           Validators.pattern(regex.shortNameRegex)]],
         lastName: ['', [Validators.required,
           Validators.minLength(3),
-          Validators.maxLength(32),
+          Validators.maxLength(16),
           Validators.pattern(regex.shortNameRegex)]],
         email: ['', [Validators.required, Validators.email]],
         pwGroup: this.formBuilder.group({

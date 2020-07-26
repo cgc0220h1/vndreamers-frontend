@@ -5,8 +5,8 @@
         <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
       </label>
       <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
-        <span *ngIf="loginForm.controls.email.errors.required">This field is mandatory.</span>
-        <span *ngIf="loginForm.controls.email.errors.pattern">This field is invalid</span>
+        <span *ngIf="loginForm.controls.email.errors.required">Vui lòng cung cấp Email</span>
+        <span *ngIf="loginForm.controls.email.errors.pattern">Email không hợp lệ</span>
       </mat-error>
     </mat-form-field>
   </div>
@@ -17,14 +17,14 @@
                [errorStateMatcher]="matcher">
       </label>
       <mat-error *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
-        <span *ngIf="loginForm.controls.password.errors.required">This field is mandatory.</span>
+        <span *ngIf="loginForm.controls.password.errors.required">Vui lòng cung cấp mật khẩu</span>
         <span *ngIf="loginForm.controls.password.errors.minlength ||
                   loginForm.controls.password.errors.maxlength">
-                    Length from 6 to 32 characters
+                    Mật khẩu không hợp lệ!
                   </span>
         <span *ngIf="(loginForm.controls.password.errors.minlength ||
                   loginForm.controls.password.errors.maxlength) && loginForm.controls.password.errors.pattern">
-                            Only alphabet, digit and at least one of !@#$%^&*
+          Mật khẩu không hợp lệ!
                   </span>
       </mat-error>
     </mat-form-field>
