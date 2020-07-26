@@ -9,29 +9,54 @@
         <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
       </a>
       <p class="description">
-        {{user.first_name}} {{user.last_name}}
+        {{user.username}}
       </p>
-    </div>
-    <p class="description text-center">
-      {{user.description}}
-    </p>
-  </div>
-  <div class="card-footer">
-    <hr>
-    <div class="button-container">
-      <div class="row">
-        <div class="col-lg-3 col-md-6 col-6 ml-auto">
-          <h5>Email: {{user.email}}</h5>
-        </div>
-        <br>
-        <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-          <h5>Gender: {{user.gender}}</h5>
-        </div>
-        <br>
-        <div class="col-lg-3 mr-auto">
-          <h5>BirthDay: {{user.birth_date}}</h5>
+      <hr>
+      <div class="card-footer">
+        <!--    <hr>-->
+        <div class="button-container">
+          <div class="row">
+            <mat-label>Email: {{user.email}}</mat-label>
+          </div>
+          <div class="row">
+            <mat-label>Gender: {{user.gender}}</mat-label>
+          </div>
+          <div class="row">
+            <mat-label>Phone: {{user.phone}}</mat-label>
+          </div>
+          <div class="row">
+            <mat-label>Birthday: {{user.birth_date}}</mat-label>
+          </div>
+          <div class="row">
+            <mat-label>Address: {{user.address}}</mat-label>
+          </div>
         </div>
       </div>
     </div>
   </div>
+<!--  <div class="card-footer">-->
+<!--&lt;!&ndash;    <hr>&ndash;&gt;-->
+<!--    <div class="button-container">-->
+<!--      <div class="row">-->
+<!--        <mat-label>Email: {{user.email}}</mat-label>-->
+<!--        <mat-icon matPrefix></mat-icon>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <mat-label>Gender: {{user.gender}}</mat-label>-->
+<!--        <mat-icon matPrefix></mat-icon>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <mat-label>Phone: {{user.phone}}</mat-label>-->
+<!--        <mat-icon matPrefix></mat-icon>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <mat-label>Birthday: {{user.birth_date}}</mat-label>-->
+<!--        <mat-icon matPrefix></mat-icon>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        <mat-label>Address: {{user.address}}</mat-label>-->
+<!--        <mat-icon matPrefix></mat-icon>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
 </div>

@@ -18,6 +18,7 @@ import {FriendListComponent} from './friend-list/friend-list.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {ShowProfileComponent} from './show-profile/show-profile.component';
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -29,21 +30,22 @@ import {ShowProfileComponent} from './show-profile/show-profile.component';
     EditProfileComponent,
     ShowProfileComponent
   ],
-  imports: [
-    CommonModule,
-    UserProfileRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatTabsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    FormsModule,
-    NgbModule,
-    SharedModule
-  ]
+    imports: [
+        CommonModule,
+        UserProfileRoutingModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatTabsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatRadioModule,
+        MatDatepickerModule,
+        FormsModule,
+        NgbModule,
+        SharedModule,
+        MatIconModule
+    ]
 })
 export class UserProfileModule {
 }
