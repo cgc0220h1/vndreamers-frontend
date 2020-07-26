@@ -6,6 +6,7 @@ import {DeleteDialogComponent} from '../../dialog/delete-dialog/delete-dialog.co
 import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {PostService} from '../../../service/post.service';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-post-single',
@@ -14,6 +15,7 @@ import {PostService} from '../../../service/post.service';
 })
 export class PostSingleComponent implements OnInit {
   comment: IComment[];
+  postIdToGetComment = new Subject();
 
   @Input()
   postData: IPost;
@@ -23,6 +25,9 @@ export class PostSingleComponent implements OnInit {
 
   @Output()
   deletePostEvent = new EventEmitter();
+
+  @Output()
+  getCommentEvent = new EventEmitter();
 
   constructor(private dialog: MatDialog,
               private snackBar: MatSnackBar,
@@ -57,7 +62,7 @@ export class PostSingleComponent implements OnInit {
   }
 
   getComment(postId: number): void {
-
+    this.postIdToGetComment.next(postId);
   }
 
   updateCommentList(comment: IComment): void {

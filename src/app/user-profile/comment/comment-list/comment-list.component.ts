@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IComment} from '../../../model/comment';
 import {PostService} from '../../../service/post.service';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-comment-list',
@@ -11,16 +12,16 @@ export class CommentListComponent implements OnInit {
   commentList: IComment[] = [];
 
   @Input()
-  postId: number;
+  postId: Subject<number>;
 
   constructor(private postService: PostService) {
   }
 
   ngOnInit(): void {
-    this.postService.getCommentsByPost(this.postId).subscribe(next => {
-      this.commentList = next;
-      console.log(next);
-      console.log(this.commentList);
+    this.postId.subscribe(postId => {
+      this.postService.getCommentsByPost(postId).subscribe(response => {
+        this.commentList = response;
+      });
     });
   }
 }
