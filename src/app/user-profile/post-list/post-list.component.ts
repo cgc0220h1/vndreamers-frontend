@@ -11,7 +11,7 @@ import {AuthService} from '../../service/auth.service';
 })
 export class PostListComponent implements OnInit {
 
-  posts: IPost[];
+  @Input() posts: IPost[];
   @Input() user: IUser;
 
   constructor(private postService: PostService, private authService: AuthService) {
@@ -26,9 +26,26 @@ export class PostListComponent implements OnInit {
     }, () => {
       console.log('complete');
     });
+
     this.postService.shouldRefresh.subscribe(result => {
-      this.posts.unshift(result);
+      if (result !== null) {
+        this.posts.unshift(result);
+      }
     });
+
   }
 
+  deletePost(id: number): void {
+    if (confirm('Bạn có muốn xóa dòng trạng thái này không?')) {
+      this.postService.deletePost(id).subscribe(result => {
+        for (let i = 0; i < this.posts.length; i++){
+          if (this.posts[i].id === result.id){
+            this.posts.splice(i, 1);
+          }
+        }
+      }, error => {
+        console.log('delele error');
+      });
+    }
+  }
 }

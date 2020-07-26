@@ -5,6 +5,9 @@ import {AuthService} from '../../service/auth.service';
 import {IUser} from '../../model/User';
 import {UserService} from '../../service/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {ActivatedRoute} from '@angular/router';
+import {PostService} from '../../service/post.service';
+import {IPost} from '../../model/Post';
 
 @Component({
   selector: 'app-layouts',
@@ -15,15 +18,29 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class LayoutsComponent implements OnInit {
 
   user: IUser;
+  username: string;
+  posts: IPost[];
 
   constructor(private authService: AuthService,
-              public dialog: MatDialog,
+              private activatedRoute: ActivatedRoute,
+              private postService: PostService,
               private userService: UserService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              public dialog: MatDialog
+  ) {
   }
 
   ngOnInit(): void {
     this.user = this.userService.getUserLoggedIn();
+    this.activatedRoute.params.subscribe(params => {
+      this.username = params.username;
+      this.userService.getByUsername(this.username).subscribe(user => {
+        this.user = user;
+        this.postService.getPostsOtherUser(this.user.id).subscribe(posts => {
+          this.posts = posts;
+        });
+      });
+    });
   }
 
   openEditProfileDialog(): void {
