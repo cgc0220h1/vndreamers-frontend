@@ -1,66 +1,57 @@
 <div class="card card-user">
-  <div class="card-header">
-    <h3 class="card-title" style="text-align: center">Tạo Bài Viết</h3>
-  </div>
-  <hr>
   <div class="card-body">
     <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
       <input type="hidden" formControlName="status">
       <div class="row">
         <div class="col-md-1 pr-1">
-          <div class="form-group">
-            <div>
-              <img style="width: 50px; height: 50px;border-radius: 50px" src="{{ user.avatar }}}" alt="">
-
-            </div>
-          </div>
+          <img style="width: 50px; height: 50px;border-radius: 50px;" src="{{ user.avatar }}}" alt="">
         </div>
-        <div class="col-md-11 px-10">
+        <div class="col-md-3 pr-1">
+          <span style="font-weight: bold;">{{ user.first_name }} {{ user.last_name }}</span>
+        </div>
+        <div class="col-md-8 px-10">
           <div class="form-group">
-            <span style="font-weight: bold">{{ user.first_name }}</span><span style="font-weight: bold"> {{ user.last_name }}</span><br>
-            <select class=""
-                    style="background-color: #f4f3ef; border-radius: 5px; font-size: 13px; border: white solid 1px"
-                    name="" id="">
-              <option value="">Chỉ Mình Tôi</option>
-              <option value="">Với Bạn Bè</option>
-              <option value="">Công Khai</option>
-            </select>
+            <mat-form-field appearance="outline" style="float: right">
+              <mat-label>Tuỳ chọn</mat-label>
+              <mat-select>
+                <mat-option value="">Chỉ Mình Tôi</mat-option>
+                <mat-option value="">Với Bạn Bè</mat-option>
+                <mat-option value="">Công Khai</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class="col-md-12 pl-1">
           <div class="form-group">
-                <textarea formControlName="content" style="height: 200px; border: none; font-size: 20px;" type="text" class="form-control"
+                <textarea formControlName="content" style="height: 60px; border: none; font-size: 20px;" type="text"
+                          class="form-control"
                           placeholder="Bạn đang nghĩ gì"></textarea>
           </div>
         </div>
       </div>
-      <div>
-        <!--            Hien thi anh-->
-      </div>
+      <hr>
+      <!--            Hien thi anh-->
       <div class="row">
-        <div class="col-md-12">
-          <div class="form-group row"
-               style="border: 1px solid #DDDDDD; width: 100%; margin: 0 auto; font-weight: bold; border-radius: 4px; height: 50px;line-height: 50px">
-            <div class="col-md-5"><p>Thêm vào bài viết</p></div>
-            <div class="col-md-7" style="font-size: 25px">
-              <a href="#" style="margin-left: 40px"><i class="fa fa-video-camera" style="color: blueviolet"></i></a>
-              <a href="#" style="margin-left: 40px"><i class="fa fa-picture-o" style="color: lightgreen"></i></a>
-              <a href="#" style="margin-left: 40px"><i class="fa fa-tags" style="color: blue"></i></a>
-              <a href="#" style="margin-left: 40px"><i class="fa fa-map-marker" style="color: orangered"></i></a>
-              <span href="#" style="margin-left: 40px"><i class="fa fa-heart" style="color: palevioletred"><input
+        <div class="col-md-6" style="display: flex; justify-content: center; font-size: 25px;">
+          <div class="form-group row">
+              <span href="#" style="text-align: center"><i class="fa fa-picture-o" style="color: lightgreen"><input
                 type="file" formControlName="image"></i></span>
-              <a href="#" style="margin-left: 40px"><i class="fa fa-cog" style="color: gray"></i></a>
-            </div>
+            <span class="status-interaction-text">Ảnh</span>
+          </div>
+        </div>
+        <div class="col-md-6" style="display: flex; justify-content: center; font-size: 25px;">
+          <div class="form-group row">
+              <span href="#"><i class="fa fa-video-camera" style="color: #9368E9"><input
+                type="file"></i></span>
+            <span class="status-interaction-text">Video</span>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="update ml-auto mr-auto">
-          <button type="submit" style="width: 750px; font-size: 16px" class="btn btn-primary btn-round">Đăng
-          </button>
-        </div>
+        <button mat-raised-button color="primary" type="submit" class="post-status-button">Đăng</button>
       </div>
     </form>
   </div>

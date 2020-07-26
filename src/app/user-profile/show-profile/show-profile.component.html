@@ -12,26 +12,27 @@
         {{user.username}}
       </p>
       <hr>
-      <div class="card-footer">
-        <!--    <hr>-->
-        <div class="button-container">
-          <div class="row">
-            <mat-label>Email: {{user.email}}</mat-label>
-          </div>
-          <div class="row">
-            <mat-label>Gender: {{user.gender}}</mat-label>
-          </div>
-          <div class="row">
-            <mat-label>Phone: {{user.phone}}</mat-label>
-          </div>
-          <div class="row">
-            <mat-label>Birthday: {{user.birth_date}}</mat-label>
-          </div>
-          <div class="row">
-            <mat-label>Address: {{user.address}}</mat-label>
-          </div>
-        </div>
-      </div>
+      <button mat-raised-button color="primary" (click)="openEditProfileDialog()">Cập nhật thông tin</button>
+      <!--      <div class="card-footer">-->
+<!--        &lt;!&ndash;    <hr>&ndash;&gt;-->
+<!--        <div class="button-container">-->
+<!--          <div class="row">-->
+<!--            <mat-label>Email: {{user.email}}</mat-label>-->
+<!--          </div>-->
+<!--          <div class="row">-->
+<!--            <mat-label>Gender: {{user.gender}}</mat-label>-->
+<!--          </div>-->
+<!--          <div class="row">-->
+<!--            <mat-label>Phone: {{user.phone}}</mat-label>-->
+<!--          </div>-->
+<!--          <div class="row">-->
+<!--            <mat-label>Birthday: {{user.birth_date}}</mat-label>-->
+<!--          </div>-->
+<!--          <div class="row">-->
+<!--            <mat-label>Address: {{user.address}}</mat-label>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
   </div>
 <!--  <div class="card-footer">-->

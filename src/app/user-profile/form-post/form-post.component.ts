@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {PostService} from '../../service/post.service';
 import {IUser} from '../../model/User';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-form-post',
@@ -17,7 +18,9 @@ export class FormPostComponent implements OnInit {
 
   @Input() user: IUser;
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService,
+              private snackBar: MatSnackBar) {
+  }
 
   ngOnInit(): void {
     this.postService.shouldRefresh.subscribe(result => {
@@ -27,10 +30,16 @@ export class FormPostComponent implements OnInit {
 
   onSubmit(): void {
     this.postForm.value.status = 1;
-    this.postService.createPost(this.postForm.value).subscribe( result => {
+    this.postService.createPost(this.postForm.value).subscribe(result => {
+      this.snackBar.open('Post bài thành công', '', {
+        duration: 2500
+      });
       this.postService.shouldRefresh.next(result);
     }, error => {
-      console.log('error create form');
+      this.snackBar.open('Post bài không thành công', '', {
+        duration: 2500
+      });
+      console.log(error);
     });
   }
 }

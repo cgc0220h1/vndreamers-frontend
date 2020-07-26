@@ -21,6 +21,10 @@ import {ShowProfileComponent} from './show-profile/show-profile.component';
 import {FlexModule} from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSelectModule} from '@angular/material/select';
+import { DeleteDialogComponent } from './dialog/delete-dialog/delete-dialog.component';
+import { CommentSingleComponent } from './comment/comment-single/comment-single.component';
+import { CommentFormComponent } from './comment/comment-form/comment-form.component';
 
 
 @NgModule({
@@ -30,26 +34,30 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     FriendListComponent,
     PostListComponent,
     EditProfileComponent,
-    ShowProfileComponent
+    ShowProfileComponent,
+    DeleteDialogComponent,
+    CommentSingleComponent,
+    CommentFormComponent
   ],
-  imports: [
-    CommonModule,
-    UserProfileRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatTabsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    FormsModule,
-    NgbModule,
-    SharedModule,
-    FlexModule,
-    MatIconModule,
-    MatSnackBarModule
-  ]
+    imports: [
+        CommonModule,
+        UserProfileRoutingModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatTabsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatRadioModule,
+        MatDatepickerModule,
+        FormsModule,
+        NgbModule,
+        SharedModule,
+        FlexModule,
+        MatIconModule,
+        MatSnackBarModule,
+        MatSelectModule
+    ]
 })
 export class UserProfileModule {
 }

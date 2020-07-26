@@ -2,7 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {IPost} from '../../model/Post';
 import {PostService} from '../../service/post.service';
 import {IUser} from '../../model/User';
-import {AuthService} from '../../service/auth.service';
+import {MatDialog} from '@angular/material/dialog';
+import {DeleteDialogComponent} from '../dialog/delete-dialog/delete-dialog.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-post-list',
@@ -14,7 +16,9 @@ export class PostListComponent implements OnInit {
   @Input() posts: IPost[];
   @Input() user: IUser;
 
-  constructor(private postService: PostService, private authService: AuthService) {
+  constructor(private postService: PostService,
+              private dialog: MatDialog,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -36,16 +40,30 @@ export class PostListComponent implements OnInit {
   }
 
   deletePost(id: number): void {
-    if (confirm('Bạn có muốn xóa dòng trạng thái này không?')) {
-      this.postService.deletePost(id).subscribe(result => {
-        for (let i = 0; i < this.posts.length; i++){
-          if (this.posts[i].id === result.id){
-            this.posts.splice(i, 1);
+    const dialogRef = this.dialog.open(DeleteDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'cancel') {
+        this.snackBar.open('Huỷ xoá trạng thái', '', {
+          duration: 2500
+        });
+      }
+      if (result === 'delete') {
+        this.postService.deletePost(id).subscribe(response => {
+          this.snackBar.open('Xoá trạng thái thành công', '', {
+            duration: 2500
+          });
+          for (let i = 0; i < this.posts.length; i++) {
+            if (this.posts[i].id === response.id) {
+              this.posts.splice(i, 1);
+            }
           }
-        }
-      }, error => {
-        console.log('delele error');
-      });
-    }
+        }, error => {
+          this.snackBar.open('Xoá trạng thái không thành công', '', {
+            duration: 2500
+          });
+          console.log(error);
+        });
+      }
+    });
   }
 }

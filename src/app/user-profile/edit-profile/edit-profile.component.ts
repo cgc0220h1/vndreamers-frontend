@@ -3,7 +3,7 @@ import {IUser} from '../../model/User';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {regex} from '../../../assets/regex';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {LayoutsComponent} from '../layouts/layouts.component';
+import {ShowProfileComponent} from '../show-profile/show-profile.component';
 
 @Component({
   selector: 'app-edit-profile',
@@ -15,10 +15,11 @@ export class EditProfileComponent implements OnInit {
   profile: FormGroup;
   maxDate = new Date();
   minDate = new Date(1900, 0, 1);
+
   // hide = true;
 
   constructor(private formBuilder: FormBuilder,
-              public dialogRef: MatDialogRef<LayoutsComponent>,
+              public dialogRef: MatDialogRef<ShowProfileComponent>,
               @Inject(MAT_DIALOG_DATA) public user: IUser) {
   }
 
@@ -40,7 +41,9 @@ export class EditProfileComponent implements OnInit {
 
   updateProfile(): void {
     this.profile.markAllAsTouched();
-    if (this.profile.valid) {
+    if (this.profile.pristine) {
+      this.dialogRef.close(null);
+    } else if (this.profile.valid) {
       const userInfo = this.getUserInfoByForm();
       this.dialogRef.close(userInfo);
     }
