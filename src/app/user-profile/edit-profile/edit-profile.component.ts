@@ -15,6 +15,7 @@ export class EditProfileComponent implements OnInit {
   profile: FormGroup;
   maxDate = new Date();
   minDate = new Date(1900, 0, 1);
+  // hide = true;
 
   constructor(private formBuilder: FormBuilder,
               public dialogRef: MatDialogRef<LayoutsComponent>,
