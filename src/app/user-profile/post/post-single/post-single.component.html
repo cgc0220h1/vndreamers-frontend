@@ -1,0 +1,66 @@
+<div class="card-body">
+  <div class="row">
+    <div class="col-md-1 pr-1">
+      <div class="form-group">
+        <div>
+          <img style="width: 50px; height: 50px;border-radius: 50px" src="{{userData.avatar}}" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-10 px-10">
+      <div class="form-group">
+        <span style="font-weight: bold">{{ userData.first_name }}</span><span
+        style="font-weight: bold"> {{ userData.last_name }}</span><br>
+        <span>{{ postData.createDate}}</span>
+      </div>
+    </div>
+    <div class="col-md-1 px-10">
+      <button mat-mini-fab color="warn" (click)="deletePost(postData.id)">
+        <mat-icon>delete_outline</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 pl-1">
+      <div class="form-group">
+        <p style="margin-left: 10px; font-size: 20px; font-weight: bold">{{ postData.content }}</p>
+      </div>
+    </div>
+  </div>
+  <!--Hiển thị số lượng like-->
+  <p>
+    <a href="#"><span style="color: #1b1e21; font-size: 15px">10 người thích</span></a>
+  </p>
+  <hr>
+  <!--Nút like va comment-->
+  <div class="row">
+    <div class="col-md-6" style="display: flex; justify-content: center; font-size: 25px;">
+      <div class="form-group row">
+        <button mat-mini-fab color="primary">
+          <mat-icon>thumb_up_alt</mat-icon>
+        </button>
+        <span class="status-interaction-text">Thích</span>
+      </div>
+    </div>
+    <div class="col-md-6" style="display: flex; justify-content: center; font-size: 25px;">
+      <div class="form-group row">
+        <button mat-mini-fab color="accent" (click)="getComment(postData.id)">
+          <mat-icon>mode_comment</mat-icon>
+        </button>
+        <span class="status-interaction-text">Bình luận</span>
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<app-comment-form [postId]="postData.id" [userLoggedIn]="userData"
+                  (commentSubmitted)="updateCommentList($event)"></app-comment-form>
+
+<!--  <ng-container *ngIf="commentList.length !== 0">-->
+<!--    <ng-container *ngFor="let comment of commentList">-->
+<!--      <app-comment-single [comment]="comment"></app-comment-single>-->
+<!--    </ng-container>-->
+<!--  </ng-container>-->
+
+<!--Component form bình luận-->

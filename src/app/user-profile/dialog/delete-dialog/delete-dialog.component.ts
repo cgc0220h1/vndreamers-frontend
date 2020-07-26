@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from '@angular/material/dialog';
-import {PostListComponent} from '../../post-list/post-list.component';
+import {PostSingleComponent} from '../../post/post-single/post-single.component';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -9,7 +9,7 @@ import {PostListComponent} from '../../post-list/post-list.component';
 })
 export class DeleteDialogComponent implements OnInit {
 
-  constructor(public matDialogRef: MatDialogRef<PostListComponent>) {
+  constructor(public matDialogRef: MatDialogRef<PostSingleComponent>) {
   }
 
   ngOnInit(): void {

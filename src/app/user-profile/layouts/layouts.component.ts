@@ -24,10 +24,7 @@ export class LayoutsComponent implements OnInit {
   constructor(private authService: AuthService,
               private activatedRoute: ActivatedRoute,
               private postService: PostService,
-              private userService: UserService,
-              private snackBar: MatSnackBar,
-              public dialog: MatDialog
-  ) {
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
