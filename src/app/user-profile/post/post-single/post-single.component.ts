@@ -14,8 +14,9 @@ import {Subject} from 'rxjs';
   styleUrls: ['./post-single.component.scss']
 })
 export class PostSingleComponent implements OnInit {
-  comment: IComment[];
+  commentList: IComment[] = [];
   postIdToGetComment = new Subject();
+  toggleCommentList = false;
 
   @Input()
   postData: IPost;
@@ -25,9 +26,6 @@ export class PostSingleComponent implements OnInit {
 
   @Output()
   deletePostEvent = new EventEmitter();
-
-  @Output()
-  getCommentEvent = new EventEmitter();
 
   constructor(private dialog: MatDialog,
               private snackBar: MatSnackBar,
@@ -62,10 +60,18 @@ export class PostSingleComponent implements OnInit {
   }
 
   getComment(postId: number): void {
-    this.postIdToGetComment.next(postId);
+    if (this.toggleCommentList) {
+      this.toggleCommentList = false;
+      this.commentList = [];
+    } else {
+      this.toggleCommentList = true;
+      this.postService.getCommentsByPost(postId).subscribe(response => {
+        this.commentList = response;
+      });
+    }
   }
 
   updateCommentList(comment: IComment): void {
-
+    this.commentList.push(comment);
   }
 }

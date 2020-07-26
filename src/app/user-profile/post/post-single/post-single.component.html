@@ -54,7 +54,7 @@
   <hr>
 </div>
 
-<app-comment-list [postId]="postIdToGetComment"></app-comment-list>
+<app-comment-list [commentOfPost]="commentList"></app-comment-list>
 
 <app-comment-form [postId]="postData.id" [userLoggedIn]="userData"
                   (commentSubmitted)="updateCommentList($event)"></app-comment-form>

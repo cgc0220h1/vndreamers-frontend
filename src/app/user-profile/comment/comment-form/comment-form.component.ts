@@ -28,7 +28,7 @@ export class CommentFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  doComment(content: string): void {
+  submitComment(content: string): void {
     if (content !== null && content !== '') {
       this.comment = {
         content
