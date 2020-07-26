@@ -22,6 +22,7 @@ import {FlexModule} from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
+import { DeleteDialogComponent } from './dialog/delete-dialog/delete-dialog.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {MatSelectModule} from '@angular/material/select';
     FriendListComponent,
     PostListComponent,
     EditProfileComponent,
-    ShowProfileComponent
+    ShowProfileComponent,
+    DeleteDialogComponent
   ],
     imports: [
         CommonModule,
