@@ -10,4 +10,6 @@ export interface IUser {
   phone?: string;
   address?: string;
   avatar?: string;
+  about_me?: string;
+  username?: string;
 }

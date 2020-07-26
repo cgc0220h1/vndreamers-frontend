@@ -18,6 +18,9 @@ import {FriendListComponent} from './friend-list/friend-list.component';
 import {PostListComponent} from './post-list/post-list.component';
 import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {ShowProfileComponent} from './show-profile/show-profile.component';
+import {FlexModule} from '@angular/flex-layout';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -42,7 +45,10 @@ import {ShowProfileComponent} from './show-profile/show-profile.component';
     MatDatepickerModule,
     FormsModule,
     NgbModule,
-    SharedModule
+    SharedModule,
+    FlexModule,
+    MatIconModule,
+    MatSnackBarModule
   ]
 })
 export class UserProfileModule {

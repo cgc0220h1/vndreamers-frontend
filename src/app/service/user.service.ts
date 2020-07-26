@@ -1,25 +1,33 @@
 import {Injectable} from '@angular/core';
+import {IUser} from '../model/User';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {IUser} from '../model/User';
 import {environment} from '../../environments/environment';
 
-// const API_URL = 'localhost:8080/api/users';
-
-const apiUrl = environment.apiSource;
+const apiSource = environment.apiSource;
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private user: IUser;
 
   shouldRefresh = new Subject<any>();
 
-  constructor(private http: HttpClient) {
+  constructor(private httpClient: HttpClient) {
+  }
+
+  getUserLoggedIn(): IUser {
+    const dataLocalStorage = localStorage.getItem('user');
+    this.user = JSON.parse(dataLocalStorage);
+    return this.user;
+  }
+
+  updateUser(user: IUser): Observable<IUser> {
+    return this.httpClient.put((apiSource + '/api/users'), user);
   }
 
   getByUsername(username: string): Observable<IUser> {
-    return this.http.get<IUser>(`${apiUrl}/api/users/${username}`);
+    return this.httpClient.get<IUser>(`${apiSource}/api/users/${username}`);
   }
-
 }
