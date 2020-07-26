@@ -8,8 +8,9 @@
           <app-friend-list></app-friend-list>
         </div>
         <div class="col-md-8">
-          <app-form-post [user]="user"></app-form-post>
-          <app-post-list [user]="user" [posts]="posts"></app-post-list>
+          <app-post-form [user]="user"></app-post-form>
+<!--          <app-form-post-old [user]="user"></app-form-post-old>-->
+          <app-post-list [posts]="posts" [user]="user"></app-post-list>
         </div>
       </div>
     </div>

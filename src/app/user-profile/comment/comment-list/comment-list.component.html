@@ -1,0 +1,5 @@
+<ng-container *ngIf="commentOfPost.length !== 0">
+  <ng-container *ngFor="let comment of commentOfPost">
+    <app-comment-single [comment]="comment"></app-comment-single>
+  </ng-container>
+</ng-container>

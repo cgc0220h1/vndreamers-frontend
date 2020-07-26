@@ -1,10 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
-import {EditProfileComponent} from '../edit-profile/edit-profile.component';
 import {AuthService} from '../../service/auth.service';
 import {IUser} from '../../model/User';
 import {UserService} from '../../service/user.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {ActivatedRoute} from '@angular/router';
 import {PostService} from '../../service/post.service';
 import {IPost} from '../../model/Post';
@@ -24,10 +21,7 @@ export class LayoutsComponent implements OnInit {
   constructor(private authService: AuthService,
               private activatedRoute: ActivatedRoute,
               private postService: PostService,
-              private userService: UserService,
-              private snackBar: MatSnackBar,
-              public dialog: MatDialog
-  ) {
+              private userService: UserService) {
   }
 
   ngOnInit(): void {

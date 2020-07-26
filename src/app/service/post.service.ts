@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {IPost} from '../model/Post';
 import {environment} from '../../environments/environment';
+import {IComment} from '../model/comment';
 
 // const API_URL = 'http://localhost:8080/api/posts';
 
@@ -39,6 +40,14 @@ export class PostService {
   }
 
   updatePost(post: IPost): Observable<IPost> {
-    return this.http.put<IPost>(`${apiUrl}/api/post/${post.id}`, post);
+    return this.http.put<IPost>(`${apiUrl}/api/posts/${post.id}`, post);
+  }
+
+  submitComment(comment: IComment, postId: number): Observable<IComment> {
+    return this.http.post<IComment>(`${apiUrl}/api/posts/${postId}/comments`, comment);
+  }
+
+  getCommentsByPost(postId: number): Observable<IComment[]> {
+    return this.http.get<IComment[]>(`${apiUrl}/api/posts/${postId}/comments`);
   }
 }

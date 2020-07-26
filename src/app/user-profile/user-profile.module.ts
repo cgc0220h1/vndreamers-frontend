@@ -13,10 +13,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {LayoutsComponent} from './layouts/layouts.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from '../shared/shared.module';
-import {FormPostComponent} from './form-post/form-post.component';
 import {FriendListComponent} from './friend-list/friend-list.component';
-import {PostListComponent} from './post-list/post-list.component';
-import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {ShowProfileComponent} from './show-profile/show-profile.component';
 import {FlexModule} from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
@@ -25,19 +22,26 @@ import {MatSelectModule} from '@angular/material/select';
 import { DeleteDialogComponent } from './dialog/delete-dialog/delete-dialog.component';
 import { CommentSingleComponent } from './comment/comment-single/comment-single.component';
 import { CommentFormComponent } from './comment/comment-form/comment-form.component';
+import { PostSingleComponent } from './post/post-single/post-single.component';
+import {PostListComponent} from './post/post-list/post-list.component';
+import { EditProfileDialogComponent } from './dialog/edit-profile-dialog/edit-profile-dialog.component';
+import { PostFormComponent } from './post/post-form/post-form.component';
+import { CommentListComponent } from './comment/comment-list/comment-list.component';
 
 
 @NgModule({
   declarations: [
     LayoutsComponent,
-    FormPostComponent,
     FriendListComponent,
-    PostListComponent,
-    EditProfileComponent,
     ShowProfileComponent,
     DeleteDialogComponent,
     CommentSingleComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    PostSingleComponent,
+    PostListComponent,
+    EditProfileDialogComponent,
+    PostFormComponent,
+    CommentListComponent
   ],
     imports: [
         CommonModule,
