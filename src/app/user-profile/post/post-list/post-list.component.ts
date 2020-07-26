@@ -12,6 +12,7 @@ export class PostListComponent implements OnInit {
 
   @Input() posts: IPost[];
   @Input() user: IUser;
+  @Input() userLoggedIn: IUser;
 
   constructor(private postService: PostService) {
   }

@@ -17,6 +17,7 @@ export class LayoutsComponent implements OnInit {
   user: IUser;
   username: string;
   posts: IPost[];
+  userLoggedIn: IUser;
 
   constructor(private authService: AuthService,
               private activatedRoute: ActivatedRoute,
@@ -26,6 +27,7 @@ export class LayoutsComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.getUserLoggedIn();
+    this.userLoggedIn = this.userService.getUserLoggedIn();
     this.activatedRoute.params.subscribe(params => {
       this.username = params.username;
       this.userService.getByUsername(this.username).subscribe(user => {
