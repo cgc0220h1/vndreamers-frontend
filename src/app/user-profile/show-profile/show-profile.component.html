@@ -6,16 +6,14 @@
     <div class="author">
       <a href="#">
         <img class="avatar border-gray" src="assets/img/mike.jpg" alt="...">
-        <h5 class="card-title">Chet Faker</h5>
+        <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
       </a>
       <p class="description">
-        @chetfaker
+        {{user.first_name}} {{user.last_name}}
       </p>
     </div>
     <p class="description text-center">
-      "I like the way you work it
-      <br> No diggity
-      <br> I wanna bag it up"
+      {{user.description}}
     </p>
   </div>
   <div class="card-footer">
@@ -23,22 +21,15 @@
     <div class="button-container">
       <div class="row">
         <div class="col-lg-3 col-md-6 col-6 ml-auto">
-          <h5>12
-            <br>
-            <small>Files</small>
-          </h5>
+          <h5>Email: {{user.email}}</h5>
         </div>
+        <br>
         <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-          <h5>2GB
-            <br>
-            <small>Used</small>
-          </h5>
+          <h5>Gender: {{user.gender}}</h5>
         </div>
+        <br>
         <div class="col-lg-3 mr-auto">
-          <h5>24,6$
-            <br>
-            <small>Spent</small>
-          </h5>
+          <h5>BirthDay: {{user.birth_date}}</h5>
         </div>
       </div>
     </div>

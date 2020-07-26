@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {IUser} from '../../model/User';
+import {AuthService} from '../../service/auth.service';
 
 @Component({
   selector: 'app-show-profile',
@@ -6,8 +8,11 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./show-profile.component.scss']
 })
 export class ShowProfileComponent implements OnInit {
+  @Input() user: IUser;
 
-  constructor() { }
+
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit(): void {
   }
