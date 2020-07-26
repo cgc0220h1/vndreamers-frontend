@@ -11,6 +11,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class CommentFormComponent implements OnInit {
   comment: IComment;
+  commentContent = '';
 
   @Input()
   userLoggedIn: IUser;
@@ -28,22 +29,26 @@ export class CommentFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submitComment(content: string): void {
-    if (content !== null && content !== '') {
+  submitComment(): void {
+    if (this.commentContent !== null && this.commentContent !== '') {
       this.comment = {
-        content
+        content: this.commentContent
       };
       this.postService.submitComment(this.comment, this.postId).subscribe(next => {
         console.log(next);
-        this.snackBar.open('Đăng comment thành công', '', {
+        this.snackBar.open('Đăng bình luận thành công', '', {
           duration: 2500
         });
         this.commentSubmitted.emit(next);
       }, error => {
         console.log(error);
-        this.snackBar.open('Đăng comment không thành công', '', {
+        this.snackBar.open('Đăng bình luận không thành công', '', {
           duration: 2500
         });
+      });
+    } else {
+      this.snackBar.open('Bình luận không được để trống!', '', {
+        duration: 1000
       });
     }
   }

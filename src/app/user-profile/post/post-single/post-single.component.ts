@@ -67,6 +67,11 @@ export class PostSingleComponent implements OnInit {
       this.toggleCommentList = true;
       this.postService.getCommentsByPost(postId).subscribe(response => {
         this.commentList = response;
+        if (this.commentList.length === 0) {
+          this.snackBar.open('Bài viết không có bình luận', '', {
+            duration: 2500
+          });
+        }
       });
     }
   }
