@@ -10,12 +10,15 @@
             </div>
           </div>
         </div>
-        <div class="col-md-11 px-10">
+        <div class="col-md-10 px-10">
           <div class="form-group">
             <span style="font-weight: bold">{{ user.first_name }}</span><span
             style="font-weight: bold"> {{ user.last_name }}</span><br>
             <span>{{ post.createDate}}</span>
           </div>
+        </div>
+        <div class="col-md-1 px-10">
+          <button (click)="deletePost(post.id)">...</button>
         </div>
       </div>
       <div class="row">

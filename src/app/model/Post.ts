@@ -1,5 +1,4 @@
 import {IUser} from './User';
-import {Time} from './time';
 
 export interface IPost {
   id?: number;

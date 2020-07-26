@@ -26,9 +26,30 @@ export class PostListComponent implements OnInit {
     }, () => {
       console.log('complete');
     });
+
     this.postService.shouldRefresh.subscribe(result => {
-      this.posts.unshift(result);
+      if (result !== null) {
+        this.posts.unshift(result);
+      }
     });
+
   }
 
+  deletePost(id: number): void {
+    if (confirm('Bạn có muốn xóa dòng trạng thái này không?')) {
+      this.postService.deletePost(id).subscribe(result => {
+        this.postService.getPosts().subscribe(next => {
+          this.posts = next;
+          this.posts.reverse();
+        }, error => {
+          console.log(error);
+        }, () => {
+          console.log('complete');
+        });
+        this.postService.shouldRefresh.next();
+      }, error => {
+        console.log('delele error');
+      });
+    }
+  }
 }
