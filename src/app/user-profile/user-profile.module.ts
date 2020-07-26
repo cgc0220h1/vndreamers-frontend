@@ -26,6 +26,7 @@ import { PostSingleComponent } from './post/post-single/post-single.component';
 import {PostListComponent} from './post/post-list/post-list.component';
 import { EditProfileDialogComponent } from './dialog/edit-profile-dialog/edit-profile-dialog.component';
 import { PostFormComponent } from './post/post-form/post-form.component';
+import { CommentListComponent } from './comment/comment-list/comment-list.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { PostFormComponent } from './post/post-form/post-form.component';
     PostSingleComponent,
     PostListComponent,
     EditProfileDialogComponent,
-    PostFormComponent
+    PostFormComponent,
+    CommentListComponent
   ],
     imports: [
         CommonModule,

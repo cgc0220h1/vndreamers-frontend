@@ -46,4 +46,8 @@ export class PostService {
   submitComment(comment: IComment, postId: number): Observable<IComment> {
     return this.http.post<IComment>(`${apiUrl}/api/posts/${postId}/comments`, comment);
   }
+
+  getCommentsByPost(postId: number): Observable<IComment[]> {
+    return this.http.get<IComment[]>(`${apiUrl}/api/posts/${postId}/comments`);
+  }
 }
