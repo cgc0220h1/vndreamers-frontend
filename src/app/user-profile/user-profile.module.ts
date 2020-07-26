@@ -13,7 +13,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {LayoutsComponent} from './layouts/layouts.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from '../shared/shared.module';
-import {FormPostComponent} from './form-post/form-post.component';
 import {FriendListComponent} from './friend-list/friend-list.component';
 import {ShowProfileComponent} from './show-profile/show-profile.component';
 import {FlexModule} from '@angular/flex-layout';
@@ -26,12 +25,12 @@ import { CommentFormComponent } from './comment/comment-form/comment-form.compon
 import { PostSingleComponent } from './post/post-single/post-single.component';
 import {PostListComponent} from './post/post-list/post-list.component';
 import { EditProfileDialogComponent } from './dialog/edit-profile-dialog/edit-profile-dialog.component';
+import { PostFormComponent } from './post/post-form/post-form.component';
 
 
 @NgModule({
   declarations: [
     LayoutsComponent,
-    FormPostComponent,
     FriendListComponent,
     ShowProfileComponent,
     DeleteDialogComponent,
@@ -39,7 +38,8 @@ import { EditProfileDialogComponent } from './dialog/edit-profile-dialog/edit-pr
     CommentFormComponent,
     PostSingleComponent,
     PostListComponent,
-    EditProfileDialogComponent
+    EditProfileDialogComponent,
+    PostFormComponent
   ],
     imports: [
         CommonModule,

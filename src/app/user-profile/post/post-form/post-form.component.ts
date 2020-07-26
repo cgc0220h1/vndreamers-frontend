@@ -1,15 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {PostService} from '../../service/post.service';
-import {IUser} from '../../model/User';
+import {IUser} from '../../../model/User';
+import {PostService} from '../../../service/post.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-form-post',
-  templateUrl: './form-post.component.html',
-  styleUrls: ['./form-post.component.scss']
+  selector: 'app-post-form',
+  templateUrl: './post-form.component.html',
+  styleUrls: ['./post-form.component.scss']
 })
-export class FormPostComponent implements OnInit {
+export class PostFormComponent implements OnInit {
   postForm: FormGroup = new FormGroup({
     status: new FormControl(''),
     content: new FormControl(''),
