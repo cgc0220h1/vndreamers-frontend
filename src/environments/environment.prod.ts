@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiSource: 'https://vndreamers-backend.herokuapp.com/'
+  apiSource: 'https://vndreamers-backend.herokuapp.com'
 };

@@ -1,0 +1,46 @@
+.content {
+  background: url("https://images.unsplash.com/photo-1516166328576-82e16a127024?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80") no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+}
+
+.logo-page {
+  display: flex;
+  justify-content: center;
+  color: white;
+  height: 10vh;
+}
+
+h1 {
+  margin-top: 160px;
+  font-weight: bolder;
+}
+
+.main-container {
+  top: auto;
+  margin: 0;
+  padding: 0;
+  //width: 2000px;
+  height: 80vh;
+  width: auto;
+  display: flex;
+  //background-color: #f4f3ef;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+mat-card {
+  width: 40%;
+  margin: auto;
+  border-radius: 8px;
+}
+
+mat-card-content {
+  margin-top: 20px;
+}
+
+.example-full-width {
+  width: 80%;
+  margin: auto;
+}

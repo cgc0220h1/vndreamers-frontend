@@ -1,0 +1,21 @@
+POST https://vndreamers-dev.herokuapp.com/auth/login
+Content-Type: application/json
+
+
+{
+  "email": "devteam@vndreamers.com",
+  "password": "@dev1234"
+}
+
+###
+
+POST https://vndreamers-dev.herokuapp.com/api/posts
+Content-Type: application/json
+Authorization: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXZ0ZWFtIiwiaWF0IjoxNTk1NTc0MjQ4LCJleHAiOjE1OTU1NzQzMzR9.1yEY9I1ktaaUr3Uy6UBppvIxxGCblQ-9fE1e6rswzSAegJpzJ1e_MVfL2m8QBAfpXK4QCu0dN5gmFNbhzFLWIg"
+{
+  "image": "",
+  "content": "dummy_first_name",
+  "status": 1
+}
+
+

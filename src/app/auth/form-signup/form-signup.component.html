@@ -1,0 +1,121 @@
+<form novalidate [formGroup]="signUpForm" (ngSubmit)="onSubmitSignUp()" class="sign-in-form">
+  <div class="row-control">
+    <table class="example-full-width">
+      <tr>
+        <td>
+          <mat-form-field style="margin-left: 0">
+            <label>
+              <input matInput placeholder="Tên của bạn" formControlName="firstName"
+                     [errorStateMatcher]="matcher">
+            </label>
+            <mat-error *ngIf="signUpForm.controls.firstName.touched && signUpForm.controls.firstName.invalid">
+                        <span *ngIf="signUpForm.controls.firstName.errors.required">
+                          Vui lòng nhập tên của bạn.
+                        </span>
+              <span *ngIf="signUpForm.controls.firstName.errors.minlength ||
+                        signUpForm.controls.firstName.errors.maxlength">
+                          Độ dài từ 3 đến 16 ký tự.
+                        </span>
+              <span *ngIf="signUpForm.get('firstName').hasError('pattern')">
+                          Tên chỉ chứa ký tự!
+                        </span>
+            </mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field style="margin-right: 0">
+            <label>
+              <input matInput placeholder="Họ" formControlName="lastName"
+                     [errorStateMatcher]="matcher">
+            </label>
+            <mat-error *ngIf="signUpForm.controls.lastName.touched && signUpForm.controls.lastName.invalid">
+              <span *ngIf="signUpForm.controls.lastName.errors.required">
+                Vui lòng nhập Họ của bạn.
+              </span>
+              <span
+                *ngIf="signUpForm.controls.lastName.errors.minlength || signUpForm.controls.lastName.errors.maxlength">
+                          Độ dài từ 3 đến 16 ký tự
+                        </span>
+              <span *ngIf="signUpForm.get('lastName').hasError('pattern')">
+                           Họ chỉ chứa ký tự
+                        </span>
+            </mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="row-control">
+    <mat-form-field>
+      <label>
+        <input matInput placeholder="Email" formControlName="email" [errorStateMatcher]="matcher">
+      </label>
+      <mat-error *ngIf="signUpForm.invalid && signUpForm.touched">
+                  <span *ngIf="signUpForm.get('email').hasError('required')">
+                    Vui lòng nhập Email.
+                  </span>
+        <span *ngIf="signUpForm.get('email').hasError('email')">
+                    Email không hợp lệ!
+                  </span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div formGroupName="pwGroup">
+    <div class="row-control">
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="Mật khẩu" formControlName="password" type="password"
+                 [errorStateMatcher]="matcher">
+        </label>
+        <mat-error *ngIf="signUpForm.touched && signUpForm.get('pwGroup').invalid">
+                    <span *ngIf="signUpForm.get('pwGroup').get('password').hasError('required')">
+                      Vui lòng nhập mật khẩu.
+                    </span>
+          <span
+            *ngIf="signUpForm.get('pwGroup').get('password').hasError('minlength') ||
+                      signUpForm.get('pwGroup').get('password').hasError('maxlength')">
+                      Độ dài mật khẩu từ 6 đến 32 ký tự
+                    </span>
+          <span *ngIf="signUpForm.get('pwGroup').get('password').hasError('pattern')">
+                    Mật khẩu phải chứa ít nhất 1 số, 1 ký tự và 1 ký tự sau !@#$%^&*
+                    </span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row-control">
+      <mat-form-field>
+        <label>
+          <input matInput placeholder="Xác nhận mật khẩu" formControlName="confirmPassword" type="password"
+                 [errorStateMatcher]="matcher">
+        </label>
+        <mat-error *ngIf="signUpForm.hasError('passwordNotMatch', 'pwGroup')">
+          Mật khẩu không khớp
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row-control">
+    <mat-radio-group aria-label="Select an option" formControlName="gender">
+      <mat-radio-button value="1">Nam</mat-radio-button>
+      <mat-radio-button value="0">Nữ</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div class="row-control">
+    <mat-form-field>
+      <label>
+        <input [min]="minDate" [max]=maxDate matInput [matDatepicker]="birthday" formControlName="birthday"
+               [errorStateMatcher]="matcher" placeholder="Ngày sinh">
+      </label>
+      <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
+      <mat-datepicker #birthday></mat-datepicker>
+      <mat-error *ngIf="signUpForm.touched && signUpForm.invalid">
+                  <span *ngIf="signUpForm.get('birthday').hasError('required')">
+                    Vui lòng cung cấp ngày sinh của bạn.
+                  </span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="example-button-row">
+    <button mat-raised-button color="primary" type="submit" class="login-button">Đăng ký</button>
+  </div>
+</form>

@@ -1,0 +1,60 @@
+<ng-container *ngIf="currentUser.id === userRequest.id">
+  <div class="card card-user">
+    <div class="card-body">
+      <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+        <input type="hidden" formControlName="status">
+        <div class="row">
+          <div class="col-md-1 pr-1">
+            <img style="width: 50px; height: 50px;border-radius: 50px;" src="{{currentUser.avatar}}" alt="">
+          </div>
+          <div class="col-md-3 pr-1">
+            <span style="font-weight: bold;">{{ currentUser.first_name }} {{ currentUser.last_name }}</span>
+          </div>
+          <div class="col-md-8 px-10">
+            <div class="form-group">
+              <mat-form-field appearance="outline" style="float: right">
+                <mat-label>Tuỳ chọn</mat-label>
+                <mat-select>
+                  <mat-option value="">Chỉ Mình Tôi</mat-option>
+                  <mat-option value="">Với Bạn Bè</mat-option>
+                  <mat-option value="">Công Khai</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 pl-1">
+            <div class="form-group">
+                <textarea formControlName="content" style="height: 60px; border: none; font-size: 20px;" type="text"
+                          class="form-control"
+                          placeholder="Bạn đang nghĩ gì"></textarea>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <!--            Hien thi anh-->
+        <div class="row">
+          <div class="col-md-6" style="display: flex; justify-content: center; font-size: 25px;">
+            <div class="form-group row">
+              <span href="#" style="text-align: center"><i class="fa fa-picture-o" style="color: lightgreen"><input
+                type="file" formControlName="image"></i></span>
+              <span class="status-interaction-text">Ảnh</span>
+            </div>
+          </div>
+          <div class="col-md-6" style="display: flex; justify-content: center; font-size: 25px;">
+            <div class="form-group row">
+              <span href="#"><i class="fa fa-video-camera" style="color: #9368E9"><input
+                type="file"></i></span>
+              <span class="status-interaction-text">Video</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <button mat-raised-button color="primary" type="submit" class="post-status-button">Đăng</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>

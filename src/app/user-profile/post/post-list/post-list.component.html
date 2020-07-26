@@ -1,0 +1,3 @@
+<div class="card card-user" *ngFor="let post of posts">
+  <app-post-single [postData]="post" [otherUser]="userRequest" [userLogged]="currentUser" (deletePostEvent)="removePost($event)"></app-post-single>
+</div>

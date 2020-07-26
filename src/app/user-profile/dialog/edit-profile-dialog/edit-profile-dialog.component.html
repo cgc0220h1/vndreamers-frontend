@@ -1,0 +1,159 @@
+<form [formGroup]="profile" (ngSubmit)="updateProfile()">
+  <div class="row">
+    <div class="col-md-6 pr-1">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Tên của bạn</mat-label>
+          <input required matInput type="text" placeholder="Tên" formControlName="firstName">
+        </mat-form-field>
+        <ng-container *ngIf="profile.touched && profile.invalid">
+          <mat-error *ngIf="profile.get('firstName').hasError('required')">
+            Tên không được để trống.
+          </mat-error>
+          <mat-error *ngIf="profile.get('firstName').hasError('pattern')">
+            Tên chỉ chứa chữ có độ dài từ 3 đến 32 ký tự!
+          </mat-error>
+        </ng-container>
+      </div>
+    </div>
+    <div class="col-md-6 pl-1">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Họ</mat-label>
+          <input required matInput type="text" placeholder="Họ" formControlName="lastName">
+          <ng-container *ngIf="profile.touched && profile.invalid">
+            <mat-error *ngIf="profile.get('lastName').hasError('required')">
+              Tên không được để trống.
+            </mat-error>
+            <mat-error *ngIf="profile.get('lastName').hasError('pattern')">
+              Tên chỉ chứa chữ có độ dài từ 3 đến 32 ký tự!
+            </mat-error>
+          </ng-container>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5 pr-1">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Email</mat-label>
+          <mat-icon matSuffix>email</mat-icon>
+          <input matInput disabled="disabled" type="text" placeholder="Email" formControlName="email">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-3 px-1">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Ngày sinh</mat-label>
+          <input required [min]="minDate" [max]="maxDate" [matDatepicker]="birthday" matInput type="text"
+                 placeholder="Ngày sinh" formControlName="birthDate">
+          <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
+          <mat-datepicker #birthday></mat-datepicker>
+          <ng-container *ngIf="profile.touched && profile.invalid">
+            <mat-error *ngIf="profile.get('birthDate').hasError('required')">
+              Ngày sinh không được để trống.
+            </mat-error>
+          </ng-container>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-4 pl-1">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Username</mat-label>
+          <mat-icon matSuffix>supervised_user_circle</mat-icon>
+          <input required matInput type="text" placeholder="Username" formControlName="username">
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <!--  <div class="row">-->
+  <!--    <div class="col-md-6">-->
+  <!--      <div class="form-group">-->
+  <!--        <mat-form-field appearance="outline" fxFill>-->
+  <!--          <mat-label>Mật khẩu</mat-label>-->
+  <!--          <input [type]="hide ? 'password' : 'text'" matInput placeholder="Address" formControlName="password">-->
+  <!--          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"-->
+  <!--                  [attr.aria-pressed]="hide">-->
+  <!--            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>-->
+  <!--          </button>-->
+  <!--          <ng-container *ngIf="profile.touched && profile.invalid">-->
+  <!--            <mat-error *ngIf="profile.get('phone').hasError('pattern')">-->
+  <!--              Số điện thoại không đúng-->
+  <!--            </mat-error>-->
+  <!--          </ng-container>-->
+  <!--        </mat-form-field>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div class="col-md-6">-->
+  <!--      <div class="form-group">-->
+  <!--        <mat-form-field appearance="outline" fxFill>-->
+  <!--          <mat-label>Xác nhận mật khẩu</mat-label>-->
+  <!--          <input [type]="hide ? 'password' : 'text'" matInput placeholder="Address" formControlName="confirmPassword">-->
+  <!--          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"-->
+  <!--                  [attr.aria-pressed]="hide">-->
+  <!--            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>-->
+  <!--          </button>-->
+  <!--        </mat-form-field>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Địa chỉ</mat-label>
+          <mat-icon matSuffix>home</mat-icon>
+          <input matInput type="text" placeholder="Address" formControlName="address">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Số điện thoại</mat-label>
+          <mat-icon matSuffix>phone_android</mat-icon>
+          <input matInput type="text" placeholder="Phone" formControlName="phone">
+        </mat-form-field>
+        <ng-container *ngIf="profile.touched && profile.invalid">
+          <mat-error *ngIf="profile.get('phone').hasError('pattern')">
+            Số điện thoại không đúng
+          </mat-error>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Châm ngôn ưa thích</mat-label>
+          <mat-icon matSuffix>format_quote</mat-icon>
+          <textarea rows="5" maxlength="255" style="resize: none" #input matInput type="text" placeholder="About me"
+                    formControlName="aboutMe">
+          </textarea>
+          <mat-hint>Tối đa 255 ký tự</mat-hint>
+          <mat-hint align="end">{{input.value?.length || 0}}/255</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="update ml-auto mr-auto">
+      <button type="submit" mat-raised-button color="primary">Cập nhật</button>
+    </div>
+    <div class="update ml-auto mr-auto">
+      <button type="button" mat-raised-button color="warn" (click)="dialogRef.close(null)"
+              class="btn btn-primary btn-round">Đóng
+      </button>
+    </div>
+  </div>
+</form>
+

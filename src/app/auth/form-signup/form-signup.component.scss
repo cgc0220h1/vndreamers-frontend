@@ -1,0 +1,43 @@
+input {
+  height: 28px;
+}
+
+mat-form-field, mat-checkbox {
+  width: 80%;
+  height: 80px;
+  display: block;
+  margin: auto;
+}
+
+.login-button {
+  display: block;
+  width: 80%;
+  margin: 20px auto;
+  border-radius: 5px;
+}
+
+a {
+  display: block;
+}
+mat-checkbox {
+  margin-top:10px;
+}
+mat-radio-button {
+  margin-left: 30px;
+}
+mat-radio-group {
+  margin-left: 100px;
+}
+
+.example-full-width {
+  width: 80%;
+  margin: auto;
+}
+
+td {
+  padding-right: 1px;
+}
+
+table {
+  border-spacing: 0;
+}
