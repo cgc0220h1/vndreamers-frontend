@@ -21,6 +21,7 @@ import {ShowProfileComponent} from './show-profile/show-profile.component';
 import {FlexModule} from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -32,24 +33,25 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     EditProfileComponent,
     ShowProfileComponent
   ],
-  imports: [
-    CommonModule,
-    UserProfileRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatTabsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    FormsModule,
-    NgbModule,
-    SharedModule,
-    FlexModule,
-    MatIconModule,
-    MatSnackBarModule
-  ]
+    imports: [
+        CommonModule,
+        UserProfileRoutingModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatTabsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatRadioModule,
+        MatDatepickerModule,
+        FormsModule,
+        NgbModule,
+        SharedModule,
+        FlexModule,
+        MatIconModule,
+        MatSnackBarModule,
+        MatSelectModule
+    ]
 })
 export class UserProfileModule {
 }
