@@ -15,6 +15,7 @@ export class EditProfileComponent implements OnInit {
   profile: FormGroup;
   maxDate = new Date();
   minDate = new Date(1900, 0, 1);
+
   // hide = true;
 
   constructor(private formBuilder: FormBuilder,
@@ -40,7 +41,9 @@ export class EditProfileComponent implements OnInit {
 
   updateProfile(): void {
     this.profile.markAllAsTouched();
-    if (this.profile.valid) {
+    if (this.profile.pristine) {
+      this.dialogRef.close(null);
+    } else if (this.profile.valid) {
       const userInfo = this.getUserInfoByForm();
       this.dialogRef.close(userInfo);
     }
