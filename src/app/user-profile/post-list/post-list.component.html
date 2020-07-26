@@ -5,7 +5,7 @@
         <div class="col-md-1 pr-1">
           <div class="form-group">
             <div>
-              <img style="width: 50px; height: 50px;border-radius: 50px" src="{{ user.avatar }}}" alt="">
+              <img style="width: 50px; height: 50px;border-radius: 50px" src="{{user.avatar}}" alt="">
             </div>
           </div>
         </div>
@@ -51,7 +51,7 @@
         </div>
         <div class="col-md-6" style="display: flex; justify-content: center; font-size: 25px;">
           <div class="form-group row">
-            <button mat-mini-fab color="accent">
+            <button mat-mini-fab color="accent" (click)="getComment(post.id)">
               <mat-icon>mode_comment</mat-icon>
             </button>
             <span class="status-interaction-text">Bình luận</span>
@@ -62,8 +62,13 @@
     </form>
   </div>
 
-  <app-comment-single></app-comment-single>
+  <app-comment-form [postId]="post.id" [userLoggedIn]="user" (commentSubmitted)="updateCommentList($event)"></app-comment-form>
+
+  <!--  <ng-container *ngIf="commentList.length !== 0">-->
+  <!--    <ng-container *ngFor="let comment of commentList">-->
+  <!--      <app-comment-single [comment]="comment"></app-comment-single>-->
+  <!--    </ng-container>-->
+  <!--  </ng-container>-->
 
   <!--Component form bình luận-->
-  <app-comment-form></app-comment-form>
 </div>

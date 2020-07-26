@@ -1,0 +1,3 @@
+###
+GET http://vndreamers-dev.herokuapp.com/api/posts/23/comments
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXZ0ZWFtIiwiaWF0IjoxNTk1NzcxMjM1LCJleHAiOjE1OTU3NzEzMjF9.S7L-JXlhgjWgRwQnakpBYlwXCpyrG11qXfXb-vT4_OudRQwylWAl2HydwiKHYgLgWh58PS3Z3GKzIItWCFcE0g

@@ -5,6 +5,7 @@ import {IUser} from '../../model/User';
 import {MatDialog} from '@angular/material/dialog';
 import {DeleteDialogComponent} from '../dialog/delete-dialog/delete-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {IComment} from '../../model/comment';
 
 @Component({
   selector: 'app-post-list',
@@ -15,6 +16,7 @@ export class PostListComponent implements OnInit {
 
   @Input() posts: IPost[];
   @Input() user: IUser;
+  commentList: Comment[];
 
   constructor(private postService: PostService,
               private dialog: MatDialog,
@@ -65,5 +67,14 @@ export class PostListComponent implements OnInit {
         });
       }
     });
+  }
+
+  getComment(id: number): void {
+
+  }
+
+  updateCommentList(comment: IComment): void {
+    console.log('parent');
+    console.log(comment);
   }
 }
