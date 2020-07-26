@@ -109,12 +109,19 @@ export class PostSingleComponent implements OnInit {
         });
       });
     } else {
-      this.postService.unlikePost(this.postData.id, this.reaction.id);
-      this.snackBar.open('Bạn đã bỏ thích bài viết ' + this.postData.content, '', {
-        duration: 1000
+      this.postService.unlikePost(this.postData.id).subscribe(next => {
+        console.log(next);
+        this.snackBar.open('Bạn đã bỏ thích bài viết ' + this.postData.content, '', {
+          duration: 1000
+        });
+        this.numberOfReaction--;
+        this.isLikePost = false;
+      }, error => {
+        console.log(error);
+        this.snackBar.open('Có lỗi xảy ra ', '', {
+          duration: 1000
+        });
       });
-      this.numberOfReaction--;
-      this.isLikePost = false;
     }
   }
 }
