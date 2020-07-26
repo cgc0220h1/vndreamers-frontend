@@ -1,84 +1,125 @@
-<div class="card card-user">
-  <div class="card-header">
-    <h5 class="card-title"></h5>
+<form [formGroup]="profile" (ngSubmit)="updateProfile()">
+  <div class="row">
+    <div class="col-md-6 pr-1">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Tên của bạn</mat-label>
+          <input required matInput type="text" placeholder="Tên" formControlName="firstName">
+        </mat-form-field>
+        <ng-container *ngIf="profile.touched && profile.invalid">
+          <mat-error *ngIf="profile.get('firstName').hasError('required')">
+            Tên không được để trống.
+          </mat-error>
+          <mat-error *ngIf="profile.get('firstName').hasError('pattern')">
+            Tên chỉ chứa chữ có độ dài từ 3 đến 32 ký tự!
+          </mat-error>
+        </ng-container>
+      </div>
+    </div>
+    <div class="col-md-6 pl-1">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Họ</mat-label>
+          <input required matInput type="text" placeholder="Họ" formControlName="lastName">
+          <ng-container *ngIf="profile.touched && profile.invalid">
+            <mat-error *ngIf="profile.get('lastName').hasError('required')">
+              Tên không được để trống.
+            </mat-error>
+            <mat-error *ngIf="profile.get('lastName').hasError('pattern')">
+              Tên chỉ chứa chữ có độ dài từ 3 đến 32 ký tự!
+            </mat-error>
+          </ng-container>
+        </mat-form-field>
+      </div>
+    </div>
   </div>
-  <div class="card-body">
-    <form>
-      <div class="row">
-        <div class="col-md-5 pr-1">
-          <div class="form-group">
-            <label>Company (disabled)</label>
-            <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-          </div>
-        </div>
-        <div class="col-md-3 px-1">
-          <div class="form-group">
-            <label>Username</label>
-            <input type="text" class="form-control" placeholder="Username" value="michael23">
-          </div>
-        </div>
-        <div class="col-md-4 pl-1">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" placeholder="Email">
-          </div>
-        </div>
+
+  <div class="row">
+    <div class="col-md-5 pr-1">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Email</mat-label>
+          <mat-icon matSuffix>email</mat-icon>
+          <input matInput disabled="disabled" type="text" placeholder="Email" formControlName="email">
+        </mat-form-field>
       </div>
-      <div class="row">
-        <div class="col-md-6 pr-1">
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text" class="form-control" placeholder="Company" value="Chet">
-          </div>
-        </div>
-        <div class="col-md-6 pl-1">
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" class="form-control" placeholder="Last Name" value="Faker">
-          </div>
-        </div>
+    </div>
+    <div class="col-md-3 px-1">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Ngày sinh</mat-label>
+          <input required [min]="minDate" [max]="maxDate" [matDatepicker]="birthday" matInput type="text"
+                 placeholder="Ngày sinh" formControlName="birthDate">
+          <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
+          <mat-datepicker #birthday></mat-datepicker>
+          <ng-container *ngIf="profile.touched && profile.invalid">
+            <mat-error *ngIf="profile.get('birthDate').hasError('required')">
+              Ngày sinh không được để trống.
+            </mat-error>
+          </ng-container>
+        </mat-form-field>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group">
-            <label>Address</label>
-            <input type="text" class="form-control" placeholder="Home Address" value="Melbourne, Australia">
-          </div>
-        </div>
+    </div>
+    <div class="col-md-4 pl-1">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Username</mat-label>
+          <mat-icon matSuffix>supervised_user_circle</mat-icon>
+          <input required matInput type="text" placeholder="Username" formControlName="username">
+        </mat-form-field>
       </div>
-      <div class="row">
-        <div class="col-md-4 pr-1">
-          <div class="form-group">
-            <label>City</label>
-            <input type="text" class="form-control" placeholder="City" value="Melbourne">
-          </div>
-        </div>
-        <div class="col-md-4 px-1">
-          <div class="form-group">
-            <label>Country</label>
-            <input type="text" class="form-control" placeholder="Country" value="Australia">
-          </div>
-        </div>
-        <div class="col-md-4 pl-1">
-          <div class="form-group">
-            <label>Postal Code</label>
-            <input type="number" class="form-control" placeholder="ZIP Code">
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group">
-            <label>About Me</label>
-            <textarea class="form-control textarea">Oh so, your weak rhyme You doubt I'll bother, reading into it</textarea>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="update ml-auto mr-auto">
-          <button type="submit" class="btn btn-primary btn-round">Update Profile</button>
-        </div>
-      </div>
-    </form>
+    </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Địa chỉ</mat-label>
+          <mat-icon matSuffix>home</mat-icon>
+          <input matInput type="text" placeholder="Address" formControlName="address">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Số điện thoại</mat-label>
+          <mat-icon matSuffix>phone_android</mat-icon>
+          <input matInput type="text" placeholder="Phone" formControlName="phone">
+        </mat-form-field>
+        <ng-container *ngIf="profile.touched && profile.invalid">
+          <mat-error *ngIf="profile.get('phone').hasError('pattern')">
+            Số điện thoại không đúng
+          </mat-error>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <mat-form-field appearance="outline" fxFill>
+          <mat-label>Châm ngôn ưa thích</mat-label>
+          <mat-icon matSuffix>format_quote</mat-icon>
+          <textarea rows="5" maxlength="255" style="resize: none" #input matInput type="text" placeholder="About me"
+                    formControlName="aboutMe">
+          </textarea>
+          <mat-hint>Tối đa 255 ký tự</mat-hint>
+          <mat-hint align="end">{{input.value?.length || 0}}/255</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="update ml-auto mr-auto">
+      <button type="submit" mat-raised-button color="primary">Cập nhật</button>
+    </div>
+    <div class="update ml-auto mr-auto">
+      <button type="button" mat-raised-button color="warn" (click)="dialogRef.close(null)"
+              class="btn btn-primary btn-round">Đóng
+      </button>
+    </div>
+  </div>
+</form>
+

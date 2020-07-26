@@ -25,6 +25,7 @@ export class AuthService {
     return this.httpClient.post<any>(`${environment.apiSource}/auth/login`, {email, password})
       .pipe(map(iAccount => {
         localStorage.setItem('access_token', iAccount.access_token);
+        localStorage.setItem('user', JSON.stringify(iAccount.user));
         return iAccount;
       }));
   }

@@ -3,6 +3,7 @@ import {Observable, Subject} from 'rxjs';
 import {NavigationStart, Router} from '@angular/router';
 
 @Injectable({providedIn: 'root'})
+// @ts-ignore
 export class AlertService {
   private subject = new Subject<any>();
   private keepAfterRouteChange = false;
@@ -40,4 +41,7 @@ export class AlertService {
     // clear by calling subject.next() without parameters
     this.subject.next();
   }
+}
+
+class AlertServiceImpl extends AlertService {
 }
