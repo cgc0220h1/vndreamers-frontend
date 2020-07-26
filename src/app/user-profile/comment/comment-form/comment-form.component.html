@@ -12,7 +12,7 @@
         <div class="col-md-11" style="padding-left: 0; padding-right: 0">
           <mat-form-field appearance="outline" fxFill>
             <input matInput type="text"
-                   placeholder="Viết bình luận..." [value]="commentContent" (keyup.enter)="submitComment()">
+                   placeholder="Viết bình luận..." #inputElement (keyup.enter)="submitComment(inputElement.value)">
           </mat-form-field>
         </div>
       </div>

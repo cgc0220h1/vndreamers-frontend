@@ -18,8 +18,9 @@ export class PostListComponent implements OnInit {
 
   ngOnInit(): void {
     this.postService.getPosts().subscribe(next => {
+      console.log(next);
       this.posts = next;
-      this.posts.reverse();
+      // this.posts.reverse();
     }, error => {
       console.log(error);
     }, () => {

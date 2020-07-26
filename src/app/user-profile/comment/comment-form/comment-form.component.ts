@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {IUser} from '../../../model/User';
 import {PostService} from '../../../service/post.service';
 import {IComment} from '../../../model/comment';
@@ -10,8 +10,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./comment-form.component.scss']
 })
 export class CommentFormComponent implements OnInit {
+  @ViewChild('inputElement') inputRef: ElementRef;
   comment: IComment;
-  commentContent = '';
 
   @Input()
   userLoggedIn: IUser;
@@ -29,16 +29,17 @@ export class CommentFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  submitComment(): void {
-    if (this.commentContent !== null && this.commentContent !== '') {
+  submitComment(content: string): void {
+    if (content !== '') {
       this.comment = {
-        content: this.commentContent
+        content
       };
       this.postService.submitComment(this.comment, this.postId).subscribe(next => {
         console.log(next);
         this.snackBar.open('Đăng bình luận thành công', '', {
           duration: 2500
         });
+        this.inputRef.nativeElement.value = '';
         this.commentSubmitted.emit(next);
       }, error => {
         console.log(error);

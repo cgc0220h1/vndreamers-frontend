@@ -13,6 +13,7 @@ const apiUrl = environment.apiSource;
 export class AuthService {
 
   public currentUserSubject = new BehaviorSubject<IUser>(null);
+  isAuthenticated = false;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -32,5 +33,6 @@ export class AuthService {
 
   logout(): void {
     localStorage.clear();
+    this.isAuthenticated = false;
   }
 }
