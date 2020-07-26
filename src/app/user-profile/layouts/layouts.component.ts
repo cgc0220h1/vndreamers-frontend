@@ -14,7 +14,7 @@ import {IPost} from '../../model/Post';
 })
 export class LayoutsComponent implements OnInit {
 
-  user: IUser;
+  userRequested: IUser;
   username: string;
   posts: IPost[];
   userLoggedIn: IUser;
@@ -26,13 +26,13 @@ export class LayoutsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.userService.getUserLoggedIn();
+    this.userRequested = this.userService.getUserLoggedIn();
     this.userLoggedIn = this.userService.getUserLoggedIn();
     this.activatedRoute.params.subscribe(params => {
       this.username = params.username;
       this.userService.getByUsername(this.username).subscribe(user => {
-        this.user = user;
-        this.postService.getPostsOtherUser(this.user.id).subscribe(posts => {
+        this.userRequested = user;
+        this.postService.getPostsOtherUser(this.userRequested.id).subscribe(posts => {
           this.posts = posts;
         });
       });

@@ -11,8 +11,8 @@ import {PostService} from '../../../service/post.service';
 export class PostListComponent implements OnInit {
 
   @Input() posts: IPost[];
-  @Input() user: IUser;
-  @Input() userLoggedIn: IUser;
+  @Input() userRequest: IUser;
+  @Input() currentUser: IUser;
 
   constructor(private postService: PostService) {
   }

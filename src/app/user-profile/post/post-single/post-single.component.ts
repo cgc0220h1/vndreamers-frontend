@@ -20,7 +20,7 @@ export class PostSingleComponent implements OnInit {
   postData: IPost;
 
   @Input()
-  userData: IUser;
+  otherUser: IUser;
 
   @Input()
   userLogged: IUser;
