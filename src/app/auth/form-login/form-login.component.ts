@@ -27,6 +27,8 @@ export class FormLoginComponent implements OnInit {
     access_token: string
   };
 
+  username: string;
+
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private authService: AuthService,
@@ -50,8 +52,9 @@ export class FormLoginComponent implements OnInit {
   onSubmitSignIn(): void {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(response => {
       this.authService.currentUserSubject.next(response.user);
+      this.username = response.user.username;
       // this.authService.shouldRefresh.next(response.user);
-      this.router.navigateByUrl('/wall').then(r => console.log(r));
+      this.router.navigateByUrl(this.username).then(r => console.log(r));
     }, error => {
       this.matSnackBar.open(error.error.error, '', {
         duration: 2500
