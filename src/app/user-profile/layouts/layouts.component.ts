@@ -32,7 +32,8 @@ export class LayoutsComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.getUserLoggedIn();
-
+    console.log('me');
+    console.log(this.user);
     this.activatedRoute.params.subscribe(params => {
       this.username = params.username;
       console.log(this.username);
