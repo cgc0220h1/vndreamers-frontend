@@ -12,7 +12,9 @@ import {EditProfileDialogComponent} from '../dialog/edit-profile-dialog/edit-pro
   styleUrls: ['./show-profile.component.scss']
 })
 export class ShowProfileComponent implements OnInit {
-  @Input() user: IUser;
+  @Input() userRequest: IUser;
+
+  @Input() currentUser: IUser;
 
 
   constructor(private authService: AuthService,
@@ -25,13 +27,13 @@ export class ShowProfileComponent implements OnInit {
   }
 
   openEditProfileDialog(): void {
-    if (this.user === null) {
+    if (this.userRequest === null) {
       return;
     }
     const dialogRef = this.dialog.open(EditProfileDialogComponent, {
       panelClass: 'custom-dialog',
       hasBackdrop: false,
-      data: this.user
+      data: this.userRequest
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -43,7 +45,7 @@ export class ShowProfileComponent implements OnInit {
       } else {
         this.userService.updateUser(result).subscribe({
           next: response => {
-            this.user = response;
+            this.userRequest = response;
             this.snackBar.open('Cập nhật thành công', '', {
               duration: 2000,
               panelClass: 'center'
