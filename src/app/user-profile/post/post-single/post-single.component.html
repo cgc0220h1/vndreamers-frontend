@@ -31,14 +31,14 @@
   </div>
   <!--Hiển thị số lượng like-->
   <p>
-    <a href="#"><span style="color: #1b1e21; font-size: 15px">10 người thích</span></a>
+    <a href="#"><span style="color: #1b1e21; font-size: 15px">{{numberOfReaction}} người thích</span></a>
   </p>
   <hr>
   <!--Nút like va comment-->
   <div class="row">
     <div class="col-md-6" style="display: flex; justify-content: center; font-size: 25px;">
       <div class="form-group row">
-        <button mat-mini-fab color="primary">
+        <button mat-mini-fab color="primary" (click)="doLikeThisPost()">
           <mat-icon>thumb_up_alt</mat-icon>
         </button>
         <span class="status-interaction-text">Thích</span>

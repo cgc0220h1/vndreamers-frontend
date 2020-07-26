@@ -6,6 +6,7 @@ import {DeleteDialogComponent} from '../../dialog/delete-dialog/delete-dialog.co
 import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {PostService} from '../../../service/post.service';
+import {IReaction} from '../../../model/reaction';
 
 @Component({
   selector: 'app-post-single',
@@ -14,7 +15,11 @@ import {PostService} from '../../../service/post.service';
 })
 export class PostSingleComponent implements OnInit {
   commentList: IComment[] = [];
+  reaction: IReaction;
+  reactionList: IReaction[] = [];
+  numberOfReaction = 0;
   toggleCommentList = false;
+  isLikePost = false;
 
   @Input()
   postData: IPost;
@@ -34,6 +39,10 @@ export class PostSingleComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.postService.getReaction(this.postData.id).subscribe(next => {
+      this.reactionList = next.filter(currentReaction => currentReaction.status === 1);
+      this.numberOfReaction = this.reactionList.length;
+    });
   }
 
   deletePost(id: number): void {
@@ -79,5 +88,33 @@ export class PostSingleComponent implements OnInit {
 
   updateCommentList(comment: IComment): void {
     this.commentList.push(comment);
+  }
+
+  doLikeThisPost(): void {
+    if (!this.isLikePost) {
+      this.reaction = {
+        status: 1
+      };
+      this.postService.likePost(this.postData.id, this.reaction).subscribe(next => {
+        console.log(next);
+        this.snackBar.open('Bạn đã thích bài viết ' + this.postData.content, '', {
+          duration: 1000
+        });
+        this.numberOfReaction++;
+        this.isLikePost = true;
+      }, error => {
+        console.log(error);
+        this.snackBar.open('Có lỗi xảy ra!', '', {
+          duration: 1000
+        });
+      });
+    } else {
+      this.postService.unlikePost(this.postData.id, this.reaction.id);
+      this.snackBar.open('Bạn đã bỏ thích bài viết ' + this.postData.content, '', {
+        duration: 1000
+      });
+      this.numberOfReaction--;
+      this.isLikePost = false;
+    }
   }
 }
