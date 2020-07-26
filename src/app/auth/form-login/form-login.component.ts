@@ -50,7 +50,6 @@ export class FormLoginComponent implements OnInit {
   onSubmitSignIn(): void {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(response => {
       this.authService.currentUserSubject.next(response.user);
-      // this.authService.shouldRefresh.next(response.user);
       this.router.navigateByUrl('/wall').then(r => console.log(r));
     }, error => {
       this.matSnackBar.open(error.error.error, '', {
