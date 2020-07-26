@@ -23,6 +23,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import { DeleteDialogComponent } from './dialog/delete-dialog/delete-dialog.component';
+import { CommentSingleComponent } from './comment/comment-single/comment-single.component';
+import { CommentFormComponent } from './comment/comment-form/comment-form.component';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { DeleteDialogComponent } from './dialog/delete-dialog/delete-dialog.comp
     PostListComponent,
     EditProfileComponent,
     ShowProfileComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    CommentSingleComponent,
+    CommentFormComponent
   ],
     imports: [
         CommonModule,
