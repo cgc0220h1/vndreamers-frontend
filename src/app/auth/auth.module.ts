@@ -14,6 +14,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {FormSignupComponent} from './form-signup/form-signup.component';
 import {LayoutsComponent} from './layouts/layouts.component';
+import {FlexModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {LayoutsComponent} from './layouts/layouts.component';
     MatButtonModule,
     MatRadioModule,
     MatDatepickerModule,
+    FlexModule,
   ],
 })
 export class AuthModule {
