@@ -2,7 +2,6 @@ export interface IUser {
   id?: number;
   first_name?: string;
   last_name?: string;
-  username?: string;
   email?: string;
   password?: string;
   confirm_password?: string;
@@ -11,4 +10,6 @@ export interface IUser {
   phone?: string;
   address?: string;
   avatar?: string;
+  about_me?: string;
+  username?: string;
 }
