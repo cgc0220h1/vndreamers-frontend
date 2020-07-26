@@ -38,15 +38,11 @@ export class PostListComponent implements OnInit {
   deletePost(id: number): void {
     if (confirm('Bạn có muốn xóa dòng trạng thái này không?')) {
       this.postService.deletePost(id).subscribe(result => {
-        this.postService.getPosts().subscribe(next => {
-          this.posts = next;
-          this.posts.reverse();
-        }, error => {
-          console.log(error);
-        }, () => {
-          console.log('complete');
-        });
-        this.postService.shouldRefresh.next();
+        for (let i = 0; i < this.posts.length; i++){
+          if (this.posts[i].id === result.id){
+            this.posts.splice(i, 1);
+          }
+        }
       }, error => {
         console.log('delele error');
       });
