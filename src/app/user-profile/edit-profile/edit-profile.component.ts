@@ -3,7 +3,7 @@ import {IUser} from '../../model/User';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {regex} from '../../../assets/regex';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {LayoutsComponent} from '../layouts/layouts.component';
+import {ShowProfileComponent} from '../show-profile/show-profile.component';
 
 @Component({
   selector: 'app-edit-profile',
@@ -19,7 +19,7 @@ export class EditProfileComponent implements OnInit {
   // hide = true;
 
   constructor(private formBuilder: FormBuilder,
-              public dialogRef: MatDialogRef<LayoutsComponent>,
+              public dialogRef: MatDialogRef<ShowProfileComponent>,
               @Inject(MAT_DIALOG_DATA) public user: IUser) {
   }
 

@@ -42,41 +42,4 @@ export class LayoutsComponent implements OnInit {
       });
     });
   }
-
-  openEditProfileDialog(): void {
-    if (this.user === null) {
-      return;
-    }
-    const dialogRef = this.dialog.open(EditProfileComponent, {
-      panelClass: 'custom-dialog',
-      hasBackdrop: false,
-      data: this.user
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === null) {
-        this.snackBar.open('Huỷ cập nhật thông tin', '', {
-          duration: 2000,
-          panelClass: 'center'
-        });
-      } else {
-        this.userService.updateUser(result).subscribe({
-          next: response => {
-            this.user = response;
-            this.snackBar.open('Cập nhật thành công', '', {
-              duration: 2000,
-              panelClass: 'center'
-            });
-          },
-          error: err => {
-            this.snackBar.open('Có lỗi xảy ra', '', {
-              duration: 2000,
-              panelClass: 'center'
-            });
-            console.log(err);
-          }
-        });
-      }
-    });
-  }
 }
