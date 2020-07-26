@@ -27,12 +27,16 @@ export class LayoutsComponent implements OnInit {
   ngOnInit(): void {
     this.authService.currentUserSubject.subscribe(response => {
       this.user = response;
+      console.log('me');
+      console.log(this.user);
     });
     this.activatedRoute.params.subscribe(params => {
       this.username = params.username;
       console.log(this.username);
       this.userService.getByUsername(this.username).subscribe(user => {
         this.user = user;
+        console.log('other persion');
+        console.log(this.user);
         this.postService.getPostsOtherUser(this.user.id).subscribe(posts => {
           this.posts = posts;
         });
