@@ -1,17 +1,16 @@
-import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
-import {IUser} from '../../model/User';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {regex} from '../../../assets/regex';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {ShowProfileComponent} from '../show-profile/show-profile.component';
+import {ShowProfileComponent} from '../../show-profile/show-profile.component';
+import {IUser} from '../../../model/User';
+import {regex} from '../../../../assets/regex';
 
 @Component({
-  selector: 'app-edit-profile',
-  templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  selector: 'app-edit-profile-dialog',
+  templateUrl: './edit-profile-dialog.component.html',
+  styleUrls: ['./edit-profile-dialog.component.scss']
 })
-export class EditProfileComponent implements OnInit {
+export class EditProfileDialogComponent implements OnInit {
   profile: FormGroup;
   maxDate = new Date();
   minDate = new Date(1900, 0, 1);

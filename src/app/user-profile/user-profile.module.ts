@@ -15,7 +15,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from '../shared/shared.module';
 import {FormPostComponent} from './form-post/form-post.component';
 import {FriendListComponent} from './friend-list/friend-list.component';
-import {EditProfileComponent} from './edit-profile/edit-profile.component';
 import {ShowProfileComponent} from './show-profile/show-profile.component';
 import {FlexModule} from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
@@ -26,6 +25,7 @@ import { CommentSingleComponent } from './comment/comment-single/comment-single.
 import { CommentFormComponent } from './comment/comment-form/comment-form.component';
 import { PostSingleComponent } from './post/post-single/post-single.component';
 import {PostListComponent} from './post/post-list/post-list.component';
+import { EditProfileDialogComponent } from './dialog/edit-profile-dialog/edit-profile-dialog.component';
 
 
 @NgModule({
@@ -33,13 +33,13 @@ import {PostListComponent} from './post/post-list/post-list.component';
     LayoutsComponent,
     FormPostComponent,
     FriendListComponent,
-    EditProfileComponent,
     ShowProfileComponent,
     DeleteDialogComponent,
     CommentSingleComponent,
     CommentFormComponent,
     PostSingleComponent,
-    PostListComponent
+    PostListComponent,
+    EditProfileDialogComponent
   ],
     imports: [
         CommonModule,

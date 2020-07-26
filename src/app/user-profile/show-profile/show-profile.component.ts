@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IUser} from '../../model/User';
 import {AuthService} from '../../service/auth.service';
-import {EditProfileComponent} from '../edit-profile/edit-profile.component';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UserService} from '../../service/user.service';
+import {EditProfileDialogComponent} from '../dialog/edit-profile-dialog/edit-profile-dialog.component';
 
 @Component({
   selector: 'app-show-profile',
@@ -28,7 +28,7 @@ export class ShowProfileComponent implements OnInit {
     if (this.user === null) {
       return;
     }
-    const dialogRef = this.dialog.open(EditProfileComponent, {
+    const dialogRef = this.dialog.open(EditProfileDialogComponent, {
       panelClass: 'custom-dialog',
       hasBackdrop: false,
       data: this.user
