@@ -89,7 +89,7 @@
           <input matInput type="text" placeholder="Phone" formControlName="phone">
         </mat-form-field>
         <ng-container *ngIf="profile.touched && profile.invalid">
-          <mat-error *ngIf="profile.get('phoneNumber').hasError('pattern')">
+          <mat-error *ngIf="profile.get('phone').hasError('pattern')">
             Số điện thoại không đúng
           </mat-error>
         </ng-container>
