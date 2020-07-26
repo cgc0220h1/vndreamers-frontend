@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {IUser} from '../model/User';
 import {map} from 'rxjs/operators';
 
@@ -28,5 +28,9 @@ export class AuthService {
         localStorage.setItem('user', JSON.stringify(iAccount.user));
         return iAccount;
       }));
+  }
+
+  logout(): void {
+    localStorage.clear();
   }
 }
