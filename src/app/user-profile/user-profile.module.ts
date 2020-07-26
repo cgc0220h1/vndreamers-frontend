@@ -19,14 +19,14 @@ import {FlexModule} from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
-import { DeleteDialogComponent } from './dialog/delete-dialog/delete-dialog.component';
-import { CommentSingleComponent } from './comment/comment-single/comment-single.component';
-import { CommentFormComponent } from './comment/comment-form/comment-form.component';
-import { PostSingleComponent } from './post/post-single/post-single.component';
+import {DeleteDialogComponent} from './dialog/delete-dialog/delete-dialog.component';
+import {CommentSingleComponent} from './comment/comment-single/comment-single.component';
+import {CommentFormComponent} from './comment/comment-form/comment-form.component';
+import {PostSingleComponent} from './post/post-single/post-single.component';
 import {PostListComponent} from './post/post-list/post-list.component';
-import { EditProfileDialogComponent } from './dialog/edit-profile-dialog/edit-profile-dialog.component';
-import { PostFormComponent } from './post/post-form/post-form.component';
-import { CommentListComponent } from './comment/comment-list/comment-list.component';
+import {EditProfileDialogComponent} from './dialog/edit-profile-dialog/edit-profile-dialog.component';
+import {PostFormComponent} from './post/post-form/post-form.component';
+import {CommentListComponent} from './comment/comment-list/comment-list.component';
 
 
 @NgModule({
@@ -43,25 +43,25 @@ import { CommentListComponent } from './comment/comment-list/comment-list.compon
     PostFormComponent,
     CommentListComponent
   ],
-    imports: [
-        CommonModule,
-        UserProfileRoutingModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatCardModule,
-        MatTabsModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatRadioModule,
-        MatDatepickerModule,
-        FormsModule,
-        NgbModule,
-        SharedModule,
-        FlexModule,
-        MatIconModule,
-        MatSnackBarModule,
-        MatSelectModule
-    ]
+  imports: [
+    CommonModule,
+    UserProfileRoutingModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatTabsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    FormsModule,
+    NgbModule,
+    SharedModule,
+    FlexModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatSelectModule
+  ]
 })
 export class UserProfileModule {
 }
