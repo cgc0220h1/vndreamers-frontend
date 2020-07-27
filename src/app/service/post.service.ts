@@ -4,6 +4,7 @@ import {Observable, Subject} from 'rxjs';
 import {IPost} from '../model/Post';
 import {environment} from '../../environments/environment';
 import {IComment} from '../model/comment';
+import {IReaction} from '../model/reaction';
 
 // const API_URL = 'http://localhost:8080/api/posts';
 
@@ -49,5 +50,17 @@ export class PostService {
 
   getCommentsByPost(postId: number): Observable<IComment[]> {
     return this.http.get<IComment[]>(`${apiUrl}/api/posts/${postId}/comments`);
+  }
+
+  likePost(postId: number, reaction: IReaction): Observable<IReaction> {
+    return this.http.post<IReaction>(`${apiUrl}/api/posts/${postId}/reactions`, reaction);
+  }
+
+  unlikePost(postId: number): Observable<any> {
+    return this.http.delete(`${apiUrl}/api/posts/${postId}/reactions`);
+  }
+
+  getReaction(postId: number): Observable<IReaction[]> {
+    return this.http.get<IReaction[]>(`${apiUrl}/api/posts/${postId}/reactions`);
   }
 }

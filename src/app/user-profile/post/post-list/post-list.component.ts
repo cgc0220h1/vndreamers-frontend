@@ -11,15 +11,17 @@ import {PostService} from '../../../service/post.service';
 export class PostListComponent implements OnInit {
 
   @Input() posts: IPost[];
-  @Input() user: IUser;
+  @Input() userRequest: IUser;
+  @Input() currentUser: IUser;
 
   constructor(private postService: PostService) {
   }
 
   ngOnInit(): void {
     this.postService.getPosts().subscribe(next => {
+      console.log(next);
       this.posts = next;
-      this.posts.reverse();
+      // this.posts.reverse();
     }, error => {
       console.log(error);
     }, () => {

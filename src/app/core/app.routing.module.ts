@@ -1,5 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
+import {AuthGuard} from '../auth.guard';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 const routes: Routes = [
   {
@@ -8,12 +10,13 @@ const routes: Routes = [
   },
   {
     path: ':username',
-    loadChildren: () => import('../user-profile/user-profile.module').then(m => m.UserProfileModule)
+    loadChildren: () => import('../user-profile/user-profile.module').then(m => m.UserProfileModule),
+    canActivate: [AuthGuard]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), MatSnackBarModule],
   exports: [RouterModule],
   declarations: []
 })

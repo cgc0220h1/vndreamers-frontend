@@ -56,6 +56,7 @@ export class FormLoginComponent implements OnInit {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(response => {
       this.authService.currentUserSubject.next(response.user);
       this.username = response.user.username;
+      this.authService.isAuthenticated = true;
       // this.authService.shouldRefresh.next(response.user);
       this.router.navigateByUrl(this.username).then(r => console.log(r));
     }, error => {

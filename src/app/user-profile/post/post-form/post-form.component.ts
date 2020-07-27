@@ -16,7 +16,9 @@ export class PostFormComponent implements OnInit {
     image: new FormControl('')
   });
 
-  @Input() user: IUser;
+  @Input() currentUser: IUser;
+
+  @Input() userRequest: IUser;
 
   constructor(private postService: PostService,
               private snackBar: MatSnackBar) {

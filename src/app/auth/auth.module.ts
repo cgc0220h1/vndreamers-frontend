@@ -15,6 +15,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {FormSignupComponent} from './form-signup/form-signup.component';
 import {LayoutsComponent} from './layouts/layouts.component';
 import {FlexModule} from '@angular/flex-layout';
+import {LogOutBtnComponent} from './log-out-btn/log-out-btn.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import {FlexModule} from '@angular/flex-layout';
     FormLoginComponent,
     FormSignupComponent,
     LayoutsComponent,
+    LogOutBtnComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +39,9 @@ import {FlexModule} from '@angular/flex-layout';
     MatRadioModule,
     MatDatepickerModule,
     FlexModule,
+    MatIconModule,
   ],
+  exports: [LogOutBtnComponent]
 })
 export class AuthModule {
 }

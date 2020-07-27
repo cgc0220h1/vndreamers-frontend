@@ -1,3 +1,12 @@
 ###
 GET http://vndreamers-dev.herokuapp.com/api/posts/23/comments
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXZ0ZWFtIiwiaWF0IjoxNTk1NzcxMjM1LCJleHAiOjE1OTU3NzEzMjF9.S7L-JXlhgjWgRwQnakpBYlwXCpyrG11qXfXb-vT4_OudRQwylWAl2HydwiKHYgLgWh58PS3Z3GKzIItWCFcE0g
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXZ0ZWFtIiwiaWF0IjoxNTk1Nzg2MDEyLCJleHAiOjE1OTU4NzI0MTJ9.e9cuH6jL9-TOhHHYTQ1jXbOnvTov_qxa2FYCulESpHsm2heS15kaTDNUYMpsy37z3HVmWDzG5yim9nECy8oxfQ
+
+###
+POST http://vndreamers-dev.herokuapp.com/api/posts/20/comments
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXZ0ZWFtIiwiaWF0IjoxNTk1Nzg2MDEyLCJleHAiOjE1OTU4NzI0MTJ9.e9cuH6jL9-TOhHHYTQ1jXbOnvTov_qxa2FYCulESpHsm2heS15kaTDNUYMpsy37z3HVmWDzG5yim9nECy8oxfQ
+Content-Type: application/json
+
+{
+  "content": "Test comment"
+}
