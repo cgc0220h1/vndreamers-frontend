@@ -27,6 +27,7 @@ import {EditProfileDialogComponent} from './dialog/edit-profile-dialog/edit-prof
 import {PostFormComponent} from './post/post-form/post-form.component';
 import {CommentListComponent} from './comment/comment-list/comment-list.component';
 import {FriendListComponent} from './friend/friend-list/friend-list.component';
+import { FriendRequestDialogComponent } from './dialog/friend-request-dialog/friend-request-dialog.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {FriendListComponent} from './friend/friend-list/friend-list.component';
     PostFormComponent,
     CommentListComponent,
     FriendListComponent,
+    FriendRequestDialogComponent,
   ],
   imports: [
     CommonModule,

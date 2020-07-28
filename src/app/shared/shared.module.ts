@@ -17,7 +17,7 @@ import {MatIconModule} from '@angular/material/icon';
     NgbModule,
     AuthModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
   exports: [NavbarComponent]
 })

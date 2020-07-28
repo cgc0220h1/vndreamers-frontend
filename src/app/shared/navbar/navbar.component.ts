@@ -8,7 +8,8 @@ import {IUser} from '../../model/User';
   // moduleId: module.id,
   // tslint:disable-next-line:component-selector
   selector: 'navbar-cmp',
-  templateUrl: 'navbar.component.html'
+  templateUrl: 'navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
 })
 
 export class NavbarComponent implements OnInit {

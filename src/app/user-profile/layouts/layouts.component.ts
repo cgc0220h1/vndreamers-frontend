@@ -5,6 +5,8 @@ import {UserService} from '../../service/user.service';
 import {ActivatedRoute} from '@angular/router';
 import {PostService} from '../../service/post.service';
 import {IPost} from '../../model/Post';
+import {MatDialog} from '@angular/material/dialog';
+import {FriendRequestDialogComponent} from '../dialog/friend-request-dialog/friend-request-dialog.component';
 
 @Component({
   selector: 'app-layouts',
@@ -22,7 +24,8 @@ export class LayoutsComponent implements OnInit {
   constructor(private authService: AuthService,
               private activatedRoute: ActivatedRoute,
               private postService: PostService,
-              private userService: UserService) {
+              private userService: UserService,
+              private matDialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -37,5 +40,9 @@ export class LayoutsComponent implements OnInit {
         });
       });
     });
+  }
+
+  showFriendRequest(): void {
+    const dialogRef = this.matDialog.open(FriendRequestDialogComponent);
   }
 }
