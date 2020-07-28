@@ -29,6 +29,7 @@ import {CommentListComponent} from './comment/comment-list/comment-list.componen
 import {FriendListComponent} from './friend/friend-list/friend-list.component';
 import { FriendRequestDialogComponent } from './dialog/friend-request-dialog/friend-request-dialog.component';
 import { FriendRequestSingleComponent } from './friend/friend-request-single/friend-request-single.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { FriendRequestSingleComponent } from './friend/friend-request-single/fri
     FlexModule,
     MatIconModule,
     MatSnackBarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule
   ]
 })
 export class UserProfileModule {

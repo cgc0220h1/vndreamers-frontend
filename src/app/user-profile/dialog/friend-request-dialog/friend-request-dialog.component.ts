@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FriendService} from '../../../service/friend.service';
 import {IUser} from '../../../model/User';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-friend-request-dialog',
@@ -8,15 +9,10 @@ import {IUser} from '../../../model/User';
   styleUrls: ['./friend-request-dialog.component.scss']
 })
 export class FriendRequestDialogComponent implements OnInit {
-  friendRequestList: IUser[];
-
-  constructor(private friendService: FriendService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public friendRequestList: IUser[]) {
   }
 
   ngOnInit(): void {
-    this.friendService.getUserRequest().subscribe(next => {
-      this.friendRequestList = next;
-    });
   }
 
 }
