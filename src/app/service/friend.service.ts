@@ -30,4 +30,8 @@ export class FriendService {
   denyRequest(id: number): Observable<IFriendRequest> {
     return this.http.delete<IFriendRequest>(`${apiUrl}/api/friends/${id}`);
   }
+
+  getFriendList(id: number): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`${apiUrl}/api/friends/${id}`);
+  }
 }

@@ -30,6 +30,7 @@ import {FriendListComponent} from './friend/friend-list/friend-list.component';
 import { FriendRequestDialogComponent } from './dialog/friend-request-dialog/friend-request-dialog.component';
 import { FriendRequestSingleComponent } from './friend/friend-request-single/friend-request-single.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { FriendSingleComponent } from './friend/friend-single/friend-single.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import {MatChipsModule} from '@angular/material/chips';
     FriendListComponent,
     FriendRequestDialogComponent,
     FriendRequestSingleComponent,
+    FriendSingleComponent,
   ],
   imports: [
     CommonModule,
