@@ -9,7 +9,9 @@
       <!--          <span class="navbar-toggler-bar bar3"></span>-->
       <!--        </button>-->
       <!--      </div>-->
-      <a class="navbar-brand" href="javascript:void(0)">Vndreamers</a>
+      <a class="navbar-brand" href="javascript:void(0)"
+         [routerLink]="['',currentUser.username]">{{currentUser.first_name}} {{currentUser.last_name}}
+      </a>
     </div>
     <!--    <button class="navbar-toggler" type="button" (click)="collapse()"-->
     <!--      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">-->
@@ -50,6 +52,9 @@
             <a ngbDropdownItem href="javascript:void(0)">Another action</a>
             <a ngbDropdownItem href="javascript:void(0)">Something else here</a>
           </div>
+        </li>
+        <li class="nav-item">
+          <app-log-out-btn></app-log-out-btn>
         </li>
         <li class="nav-item">
           <app-log-out-btn></app-log-out-btn>

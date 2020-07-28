@@ -1,7 +1,8 @@
-import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {ROUTES} from '../shared-routing.module';
+import {IUser} from '../../model/User';
 
 @Component({
   // moduleId: module.id,
@@ -11,6 +12,12 @@ import {ROUTES} from '../shared-routing.module';
 })
 
 export class NavbarComponent implements OnInit {
+  @Input()
+  currentUser: IUser;
+
+  @Input()
+  userRequest: IUser;
+
   private listTitles: any[];
   location: Location;
   private nativeElement: Node;
