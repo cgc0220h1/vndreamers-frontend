@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IUser} from '../../../model/User';
 import {FriendService} from '../../../service/friend.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-friend-request-single',
@@ -14,7 +15,11 @@ export class FriendRequestSingleComponent implements OnInit {
   @Output()
   confirmRequestEvent = new EventEmitter();
 
-  constructor(private friendService: FriendService) {
+  @Output()
+  denyRequestEvent = new EventEmitter();
+
+  constructor(private friendService: FriendService,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -24,6 +29,9 @@ export class FriendRequestSingleComponent implements OnInit {
     this.friendService.confirmRequest(this.friendRequest).subscribe(next => {
       console.log(next);
       this.confirmRequestEvent.emit(this.friendRequest);
+      this.snackBar.open(`Bạn và ${this.friendRequest.first_name} ${this.friendRequest.last_name} đã trở thành bạn bè`, '', {
+        duration: 2500
+      });
     }, error => {
       console.log(error);
     });
@@ -32,6 +40,12 @@ export class FriendRequestSingleComponent implements OnInit {
   denyRequest(): void {
     this.friendService.denyRequest(this.friendRequest.id).subscribe(next => {
       console.log(next);
+      this.denyRequestEvent.emit(this.friendRequest);
+      this.snackBar.open(`Bạn đã huỷ yêu cầu kết bạn`, '', {
+        duration: 2500
+      });
+    }, error => {
+      console.log(error);
     });
   }
 }
