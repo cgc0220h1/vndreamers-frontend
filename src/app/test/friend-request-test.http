@@ -1,0 +1,51 @@
+### Create FriendRequest
+POST  https://vndreamers-dev.herokuapp.com/api/friends
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXZ0ZWFtIiwiaWF0IjoxNTk1OTQ5NzU3LCJleHAiOjE1OTYwMzYxNTd9.d63WhVQs7r7S_512NJD5z7PaYovcMVQg7eRH5n1bNifKgxS3jofsXLNMb0iD4u-uT8s1jvai4bFMjERmFkvKZw
+
+{
+  "id": 10,
+  "email": "vanduc@gmail.com",
+  "first_name": "Văn",
+  "last_name": "Đức",
+  "birth_date": "2020-07-14",
+  "status": 1
+}
+
+### Confirm FriendRequest
+PUT  https://vndreamers-dev.herokuapp.com/api/friends
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXZ0ZWFtIiwiaWF0IjoxNTk1OTI3Mzc4LCJleHAiOjE1OTYwMTM3Nzh9.CCSK8NYPqmCZmWfjGzMlE-7pbSDusfGlaj3QPeQIVIPKwIqtU8DB-5d5bHw4gKjKqHRB3esqRmGevPN4k0bFjA
+
+
+{
+  "id": 2,
+  "email": "phi@vndreamers.com",
+  "first_name": "dev",
+  "last_name": "team",
+  "password": "@dev1234",
+  "confirm_password": "@dev1234",
+  "birth_date": "2020-04-20",
+  "status": 1
+}
+
+### Delete FriendRelationship or Delete Friend Request
+DELETE https://vndreamers-dev.herokuapp.com/api/friends/3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXZ0ZWFtIiwiaWF0IjoxNTk1ODYyNTg0LCJleHAiOjE1OTU5NDg5ODR9.MDs-XgduhDPFVz--aPO5o6PrNH7dvd2CguFRg8ohPkmCArxfbCGRoeiVeh3B7rGEqKxNv5RkNq5RZQ2aXyWg6w
+
+
+### Get list Friend of user
+GET https://vndreamers-dev.herokuapp.com/api/friends/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXZ0ZWFtIiwiaWF0IjoxNTk1OTQ5NzU3LCJleHAiOjE1OTYwMzYxNTd9.d63WhVQs7r7S_512NJD5z7PaYovcMVQg7eRH5n1bNifKgxS3jofsXLNMb0iD4u-uT8s1jvai4bFMjERmFkvKZw
+
+### Get list friend request to me
+GET https://vndreamers-dev.herokuapp.com/api/friends/receive
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXZ0ZWFtIiwiaWF0IjoxNTk1OTUwNjQwLCJleHAiOjE1OTYwMzcwNDB9.nBWSWr4_xP6nL3PREcb_Z4OkIe9ljriSYMPnujIFxL4xIzsYf5f-toCqFfsr3Y2Sp2D2W0tOmGAHIDKFzWkg4w
+
+
+### Get list friend request from me
+GET https://vndreamers-dev.herokuapp.com/api/friends/send
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXZ0ZWFtIiwiaWF0IjoxNTk1OTUwNjQwLCJleHAiOjE1OTYwMzcwNDB9.nBWSWr4_xP6nL3PREcb_Z4OkIe9ljriSYMPnujIFxL4xIzsYf5f-toCqFfsr3Y2Sp2D2W0tOmGAHIDKFzWkg4w

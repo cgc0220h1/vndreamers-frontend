@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-2 col-2">
+    <div class="avatar">
+      <img src="{{friendRequest.avatar}}" alt="Circle Image"
+           class="img-raised img-responsive">
+    </div>
+  </div>
+  <div class="col-md-7 col-7">
+    <h5>
+      <strong>{{friendRequest.first_name}} {{friendRequest.last_name}}</strong>
+    </h5>
+    <p class="request-info">
+      {{friendRequest.username}}
+    </p>
+    <p class="request-info">{{friendRequest.gender === 1 ? 'Nam' : 'Nữ'}}</p>
+    <p class="request-info">{{friendRequest.birth_date}}</p>
+    <p class="request-info">{{friendRequest.about_me}}</p>
+  </div>
+  <div class="col-md-3 col-3 text-right">
+    <button style="margin-bottom: 20px" mat-raised-button color="primary" (click)="confirmRequest()">Đồng ý kết bạn</button>
+    <br>
+    <button mat-raised-button color="warn" (click)="denyRequest()">Huỷ yêu cầu</button>
+  </div>
+</div>
+<br>

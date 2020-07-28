@@ -5,6 +5,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UserService} from '../../service/user.service';
 import {EditProfileDialogComponent} from '../dialog/edit-profile-dialog/edit-profile-dialog.component';
+import {FriendService} from '../../service/friend.service';
 
 @Component({
   selector: 'app-show-profile',
@@ -20,7 +21,8 @@ export class ShowProfileComponent implements OnInit {
   constructor(private authService: AuthService,
               private dialog: MatDialog,
               private snackBar: MatSnackBar,
-              private userService: UserService) {
+              private userService: UserService,
+              private friendService: FriendService) {
   }
 
   ngOnInit(): void {
@@ -60,6 +62,18 @@ export class ShowProfileComponent implements OnInit {
           }
         });
       }
+    });
+  }
+
+  sendFriendRequest(): void {
+    this.friendService.sendFriendRequest(this.userRequest).subscribe(() => {
+      this.snackBar.open('Gửi yêu cầu thành công', '', {
+        duration: 2500
+      });
+    }, () => {
+      this.snackBar.open('Không thành công! Bạn đã gửi yêu cầu kết bạn tới người này', '', {
+        duration: 2500
+      });
     });
   }
 }

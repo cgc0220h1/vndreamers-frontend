@@ -18,6 +18,9 @@
       <ng-container *ngIf="currentUser.id === userRequest.id">
         <button mat-raised-button color="primary" (click)="openEditProfileDialog()">Cập nhật thông tin</button>
       </ng-container>
+      <ng-container *ngIf="currentUser.id !== userRequest.id">
+        <button mat-raised-button color="primary" (click)="sendFriendRequest()">Kết bạn</button>
+      </ng-container>
       <!--      <div class="card-footer">-->
       <!--        &lt;!&ndash;    <hr>&ndash;&gt;-->
       <!--        <div class="button-container">-->

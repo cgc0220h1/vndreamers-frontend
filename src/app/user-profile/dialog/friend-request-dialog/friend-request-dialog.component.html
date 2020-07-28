@@ -1,0 +1,9 @@
+<div class="card-body">
+  <ng-container *ngFor="let friendRequest of friendRequestList">
+    <app-friend-request-single [friendRequest]="friendRequest"
+                               (confirmRequestEvent)="removeFriendRequest($event)"
+                               (denyRequestEvent)="removeFriendRequest($event)">
+
+    </app-friend-request-single>
+  </ng-container>
+</div>

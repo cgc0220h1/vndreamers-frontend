@@ -4,6 +4,8 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {SharedRoutingModule} from './shared-routing.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AuthModule} from '../auth/auth.module';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -13,7 +15,9 @@ import {AuthModule} from '../auth/auth.module';
     CommonModule,
     SharedRoutingModule,
     NgbModule,
-    AuthModule
+    AuthModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   exports: [NavbarComponent]
 })
