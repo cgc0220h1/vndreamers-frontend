@@ -28,6 +28,7 @@ import {PostFormComponent} from './post/post-form/post-form.component';
 import {CommentListComponent} from './comment/comment-list/comment-list.component';
 import {FriendListComponent} from './friend/friend-list/friend-list.component';
 import { FriendRequestDialogComponent } from './dialog/friend-request-dialog/friend-request-dialog.component';
+import { FriendRequestSingleComponent } from './friend/friend-request-single/friend-request-single.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { FriendRequestDialogComponent } from './dialog/friend-request-dialog/fri
     CommentListComponent,
     FriendListComponent,
     FriendRequestDialogComponent,
+    FriendRequestSingleComponent,
   ],
   imports: [
     CommonModule,

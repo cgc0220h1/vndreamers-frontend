@@ -43,6 +43,6 @@ export class LayoutsComponent implements OnInit {
   }
 
   showFriendRequest(): void {
-    const dialogRef = this.matDialog.open(FriendRequestDialogComponent);
+    this.matDialog.open(FriendRequestDialogComponent, {});
   }
 }

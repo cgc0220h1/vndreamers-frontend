@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FriendService} from '../../../service/friend.service';
+import {IUser} from '../../../model/User';
 
 @Component({
   selector: 'app-friend-request-dialog',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./friend-request-dialog.component.scss']
 })
 export class FriendRequestDialogComponent implements OnInit {
+  friendRequestList: IUser[];
 
-  constructor() { }
+  constructor(private friendService: FriendService) {
+  }
 
   ngOnInit(): void {
+    this.friendService.getUserRequest().subscribe(next => {
+      this.friendRequestList = next;
+    });
   }
 
 }
