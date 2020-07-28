@@ -1,25 +1,5 @@
 <div class="card-body">
   <ng-container *ngFor="let friendRequest of friendRequestList">
-    <app-friend-request-single [friendRequest]="friendRequest"></app-friend-request-single>
+    <app-friend-request-single [friendRequest]="friendRequest" (confirmRequestEvent)="removeFriendRequest($event)"></app-friend-request-single>
   </ng-container>
-  <!--  <div class="row">-->
-  <!--    <div class="col-md-2 col-2">-->
-  <!--      <div class="avatar">-->
-  <!--        <img src="assets/img/faces/ayo-ogunseinde-2.jpg" alt="Circle Image"-->
-  <!--             class="img-circle img-no-padding img-responsive">-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--    <div class="col-md-7 col-7">-->
-  <!--      DJ Khaled-->
-  <!--      <br/>-->
-  <!--      <span class="text-muted">-->
-  <!--                  <small>Offline</small>-->
-  <!--                </span>-->
-  <!--    </div>-->
-  <!--    <div class="col-md-3 col-3 text-right">-->
-  <!--      <button style="margin-bottom: 20px" mat-raised-button color="primary">Đồng ý kết bạn</button>-->
-  <!--      <button mat-raised-button color="warn">Huỷ yêu cầu</button>-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <!--  <br>-->
 </div>

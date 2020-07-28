@@ -17,9 +17,9 @@
     <p class="request-info">{{friendRequest.about_me}}</p>
   </div>
   <div class="col-md-3 col-3 text-right">
-    <button style="margin-bottom: 20px" mat-raised-button color="primary">Đồng ý kết bạn</button>
+    <button style="margin-bottom: 20px" mat-raised-button color="primary" (click)="confirmRequest()">Đồng ý kết bạn</button>
     <br>
-    <button mat-raised-button color="warn">Huỷ yêu cầu</button>
+    <button mat-raised-button color="warn" (click)="denyRequest()">Huỷ yêu cầu</button>
   </div>
 </div>
 <br>

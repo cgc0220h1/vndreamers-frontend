@@ -19,7 +19,15 @@ export class FriendService {
     return this.http.post<IFriendRequest>(`${apiUrl}/api/friends`, userRequest);
   }
 
-  getUserRequest(): Observable<IFriendRequest[]> {
-    return this.http.get<IFriendRequest[]>(`${apiUrl}/api/friends/receive`);
+  getUserRequest(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`${apiUrl}/api/friends/receive`);
+  }
+
+  confirmRequest(friendRequest: IUser): Observable<IFriendRequest> {
+    return this.http.put<IFriendRequest>(`${apiUrl}/api/friends`, friendRequest);
+  }
+
+  denyRequest(id: number): Observable<IFriendRequest> {
+    return this.http.delete<IFriendRequest>(`${apiUrl}/api/friends/${id}`);
   }
 }
