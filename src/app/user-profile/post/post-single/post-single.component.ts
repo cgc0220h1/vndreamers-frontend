@@ -104,7 +104,7 @@ export class PostSingleComponent implements OnInit {
         this.isLikePost = true;
       }, error => {
         console.log(error);
-        this.snackBar.open('Có lỗi xảy ra!', '', {
+        this.snackBar.open('Bạn đã thích bài viết này rồi!', '', {
           duration: 1000
         });
       });
