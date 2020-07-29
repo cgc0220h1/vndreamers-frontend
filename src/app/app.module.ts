@@ -19,6 +19,10 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {AuthRoutingModule} from './auth/auth.routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {environment} from '../environments/environment';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -41,6 +45,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatDatepickerModule,
     AuthRoutingModule,
     NgbModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule
   ],
   providers: [
     {
