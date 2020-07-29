@@ -27,11 +27,10 @@ export class PostFormComponent implements OnInit {
     image: new FormControl('')
   });
 
-  @Output() onClickPostButton = new EventEmitter<IPost>();
-
-
   @Input() currentUser: IUser;
   @Input() userRequest: IUser;
+
+  @Output() onClickPostButton = new EventEmitter<IPost>();
 
   file: any;
   imageFile: any;
