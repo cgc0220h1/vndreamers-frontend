@@ -29,6 +29,9 @@ export class ShowProfileComponent implements OnInit, OnChanges {
   @Input()
   listRequestReceive: IUser[];
 
+  @Input()
+  friendList: IUser[];
+
   @Output()
   acceptFriendEvent = new EventEmitter();
 
@@ -48,6 +51,7 @@ export class ShowProfileComponent implements OnInit, OnChanges {
     if (!this.isUserReceivedRequest) {
       this.isUserSentRequest = this.listRequestReceive.some(({id}) => id === this.userRequest.id);
     }
+    this.isFriend = this.friendList.some(({id}) => id !== this.userRequest.id);
   }
 
   ngOnInit(): void {

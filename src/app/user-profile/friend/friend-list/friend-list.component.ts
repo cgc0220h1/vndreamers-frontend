@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IUser} from '../../../model/User';
-import {FriendService} from '../../../service/friend.service';
 
 @Component({
   selector: 'app-friend-list',
