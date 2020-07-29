@@ -21,6 +21,7 @@ export class PostSingleComponent implements OnInit {
   numberOfReaction = 0;
   toggleCommentList = false;
   isLikePost = false;
+  toggleEditForm = false;
 
   @Input()
   postData: IPost;
@@ -47,7 +48,12 @@ export class PostSingleComponent implements OnInit {
   }
 
   deletePost(id: number): void {
-    const dialogRef = this.dialog.open(DeleteDialogComponent);
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: {
+        title: 'Bạn có muốn xoá trạng thái này ?',
+        label: 'Xoá trạng thái'
+      }
+    });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'cancel') {
         this.snackBar.open('Huỷ xoá trạng thái', '', {
@@ -124,5 +130,33 @@ export class PostSingleComponent implements OnInit {
         });
       });
     }
+  }
+
+  toggleForm(): void {
+    if (this.toggleEditForm) {
+      this.toggleEditForm = false;
+    } else {
+      this.toggleEditForm = true;
+    }
+  }
+
+  openDeletePrompt(): void {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: {
+        title: 'Bạn có muốn xoá ảnh này ?',
+        label: 'Xoá ảnh'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      switch (result) {
+        case 'delete':
+          console.log('do something');
+          break;
+        case 'cancel':
+          this.snackBar.open('Huỷ xoá ảnh', '', {
+            duration: 2500
+          });
+      }
+    });
   }
 }

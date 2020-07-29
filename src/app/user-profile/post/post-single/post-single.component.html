@@ -7,7 +7,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-8 px-10">
+    <div class="col-md-9 px-10">
       <div class="form-group">
         <span style="font-weight: bold">{{ otherUser.first_name }}</span><span
         style="font-weight: bold"> {{ otherUser.last_name }}</span><br>
@@ -19,25 +19,21 @@
         <button mat-mini-fab color="primary" [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>
+        <mat-menu #menu="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item (click)="toggleForm()">
             <mat-icon>edit</mat-icon>
             <span>Sửa nội dung</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="fileInput.click()">
+            <input type="file" hidden #fileInput>
             <mat-icon>image</mat-icon>
             <span>Thay ảnh</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item (click)="openDeletePrompt()">
             <mat-icon>delete_sweep</mat-icon>
             <span>Xoá ảnh</span>
           </button>
         </mat-menu>
-      </div>
-      <div class="col-md-1 px-10">
-        <button mat-mini-fab color="primary">
-          <mat-icon>visibility</mat-icon>
-        </button>
       </div>
       <div class="col-md-1 px-10">
         <button mat-mini-fab color="warn" (click)="deletePost(postData.id)">
@@ -48,8 +44,24 @@
   </div>
   <div class="row">
     <div class="col-md-12 pl-1">
-      <div class="form-group">
-        <p style="margin-left: 10px; font-size: 20px; font-weight: bold">{{ postData.content }}</p>
+      <div class="form-group" style="margin-left: 10px">
+        <ng-container *ngIf="toggleEditForm">
+          <mat-form-field appearance="outline" fxFill>
+            <label for="post-content"></label>
+            <textarea id="post-content" matInput
+                      cdkTextareaAutosize
+                      cdkAutosizeMinRows="3"
+                      style="font-size: 18px"
+                      type="text" [value]="postData.content">
+            </textarea>
+          </mat-form-field>
+          <br>
+          <button mat-raised-button color="primary">Cập nhật</button>
+          <button mat-raised-button color="warn" style="margin-left: 10px" (click)="toggleForm()">Quay lại</button>
+        </ng-container>
+        <ng-container *ngIf="!toggleEditForm">
+          <p style="margin-left: 10px; font-size: 20px; font-weight: bold">{{postData.content}}</p>
+        </ng-container>
       </div>
     </div>
   </div>
