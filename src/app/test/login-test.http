@@ -11,11 +11,11 @@ Content-Type: application/json
 
 POST https://vndreamers-dev.herokuapp.com/api/posts
 Content-Type: application/json
-Authorization: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXZ0ZWFtIiwiaWF0IjoxNTk1NTc0MjQ4LCJleHAiOjE1OTU1NzQzMzR9.1yEY9I1ktaaUr3Uy6UBppvIxxGCblQ-9fE1e6rswzSAegJpzJ1e_MVfL2m8QBAfpXK4QCu0dN5gmFNbhzFLWIg"
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkZXZ0ZWFtIiwiaWF0IjoxNTk2MDEzMTgyLCJleHAiOjE1OTYwOTk1ODJ9.NzE-4u9ai3kZIRVCJWvhjJxz9BSFcA1SVuCmUrOHJlXtIKOlbI79FrCkehdnbkLblXfK49G9W8ejKtxWivQZ_A
+
 {
-  "image": "",
-  "content": "dummy_first_name",
-  "status": 1
+  "content": "dummy_first_name2",
+  "status": 2
 }
 
 
