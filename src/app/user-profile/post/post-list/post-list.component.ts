@@ -28,11 +28,11 @@ export class PostListComponent implements OnInit {
       console.log('complete');
     });
 
-    this.postService.shouldRefresh.subscribe(result => {
-      if (result !== null) {
-        this.posts.unshift(result);
-      }
-    });
+    // this.postService.shouldRefresh.subscribe(result => {
+    //   if (result !== null) {
+    //     this.posts.unshift(result);
+    //   }
+    // });
 
   }
 

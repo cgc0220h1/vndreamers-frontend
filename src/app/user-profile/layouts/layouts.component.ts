@@ -93,4 +93,8 @@ export class LayoutsComponent implements OnInit {
       this.listFriendRequestReceive = next;
     });
   }
+
+  getPost(event): void {
+    this.posts.unshift(event);
+  }
 }
