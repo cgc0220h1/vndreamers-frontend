@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {IUser} from '../../model/User';
 import {AuthService} from '../../service/auth.service';
 import {MatDialog} from '@angular/material/dialog';
@@ -28,6 +28,9 @@ export class ShowProfileComponent implements OnInit, OnChanges {
 
   @Input()
   listRequestReceive: IUser[];
+
+  @Output()
+  acceptFriendEvent = new EventEmitter();
 
   isUserReceivedRequest = false;
   isUserSentRequest = false;
@@ -117,6 +120,7 @@ export class ShowProfileComponent implements OnInit, OnChanges {
             duration: 2500
           });
           this.isFriend = true;
+          this.acceptFriendEvent.emit(this.isFriend);
         });
         break;
       case 'deny':

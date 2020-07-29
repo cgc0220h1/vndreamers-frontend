@@ -73,4 +73,12 @@ export class LayoutsComponent implements OnInit {
       });
     });
   }
+
+  handleEvent(isFriend: boolean): void {
+    if (isFriend) {
+      this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
+        this.friendList = friends;
+      });
+    }
+  }
 }
