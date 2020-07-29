@@ -8,6 +8,7 @@ import {IPost} from '../../model/Post';
 import {MatDialog} from '@angular/material/dialog';
 import {FriendRequestDialogComponent} from '../dialog/friend-request-dialog/friend-request-dialog.component';
 import {FriendService} from '../../service/friend.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-layouts',
@@ -21,7 +22,7 @@ export class LayoutsComponent implements OnInit {
   username: string;
   posts: IPost[];
   userLoggedIn: IUser;
-  friendRequestList: IUser[];
+  friendRequestList: IUser[] = [];
   friendList: IUser[];
 
   constructor(private authService: AuthService,
@@ -29,7 +30,8 @@ export class LayoutsComponent implements OnInit {
               private postService: PostService,
               private userService: UserService,
               private matDialog: MatDialog,
-              private friendService: FriendService) {
+              private friendService: FriendService,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -51,8 +53,13 @@ export class LayoutsComponent implements OnInit {
 
   showFriendRequest(): void {
     this.friendService.getUserRequest().subscribe(next => {
-      console.log(next);
       this.friendRequestList = next;
+      if (this.friendRequestList.length === 0) {
+        this.snackBar.open('Bạn không có lời mời kết bạn nào', '', {
+          duration: 2500
+        });
+        return;
+      }
       const dialogRef = this.matDialog.open(FriendRequestDialogComponent, {
         data: this.friendRequestList
       });

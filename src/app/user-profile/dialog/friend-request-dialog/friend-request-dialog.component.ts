@@ -18,5 +18,8 @@ export class FriendRequestDialogComponent implements OnInit {
 
   removeFriendRequest(friendRequest: IUser): void {
     this.friendRequestList = this.friendRequestList.filter(currentRequest => currentRequest.id !== friendRequest.id);
+    if (this.friendRequestList.length === 0) {
+      this.dialogRef.close();
+    }
   }
 }
