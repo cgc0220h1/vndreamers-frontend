@@ -8,9 +8,11 @@ import {HttpClient} from '@angular/common/http';
 import {UploadFileService} from '../../../service/upload-file.service';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {IPost} from '../../../model/Post';
+import {promises} from "fs";
+import {any} from "codelyzer/util/function";
 
 const FRONT_LINK = 'https://firebasestorage.googleapis.com/v0/b/vndreamer-fontend.appspot.com/o/uploads%2F';
-const BACK_LINK = '?alt=media&token=1888bbc5-f913-4e94-90a5-b35aad7318c8';
+const BACK_LINK = '?alt=media&token=00e955b1-7332-4c37-af5b-5aa8472ad1ca';
 
 @Component({
   selector: 'app-post-form',
@@ -53,10 +55,20 @@ export class PostFormComponent implements OnInit {
     // });
   }
 
-  onSubmit(): void {
+  // async asyncCall(): void {
+  //   async function asyncCall() {
+  //     console.log('calling');
+  //     const result = await resolveAfter2Seconds();
+  //     console.log(result);
+  //     // expected output: "resolved"
+  //   }
+  // }
+
+  async onSubmit(): promises {
+
     if (this.imageFile !== undefined) {
-      this.upload();
-      this.setDefaultValue();
+      upload: any = this.upload();
+       setValue: any() = this.setDefaultValue();
     }
     this.postForm.markAllAsTouched();
     if (this.postForm.valid) {
