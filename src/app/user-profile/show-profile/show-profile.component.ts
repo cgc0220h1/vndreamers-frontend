@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {IUser} from '../../model/User';
 import {AuthService} from '../../service/auth.service';
 import {MatDialog} from '@angular/material/dialog';
@@ -12,15 +12,26 @@ import {FriendService} from '../../service/friend.service';
   templateUrl: './show-profile.component.html',
   styleUrls: ['./show-profile.component.scss']
 })
-export class ShowProfileComponent implements OnInit, AfterViewInit {
-  @Input() userRequest: IUser;
+export class ShowProfileComponent implements OnInit, OnChanges {
+  @Input() userRequest: IUser = {
+    username: '',
+    avatar: ''
+  };
 
-  @Input() currentUser: IUser;
-
-  isFriendRequestSent = false;
+  @Input() currentUser: IUser = {
+    username: '',
+    avatar: ''
+  };
 
   @Input()
   listRequestSent: IUser[];
+
+  @Input()
+  listRequestReceive: IUser[];
+
+  isUserReceivedRequest = false;
+  isUserSentRequest = false;
+  isFriend = false;
 
   constructor(private authService: AuthService,
               private dialog: MatDialog,
@@ -29,11 +40,14 @@ export class ShowProfileComponent implements OnInit, AfterViewInit {
               private friendService: FriendService) {
   }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    this.isUserReceivedRequest = this.listRequestSent.some(({id}) => id === this.userRequest.id);
+    if (!this.isUserReceivedRequest) {
+      this.isUserSentRequest = this.listRequestReceive.some(({id}) => id === this.userRequest.id);
+    }
   }
 
-  ngAfterViewInit(): void {
-    this.isFriendRequestSent = this.listRequestSent.some(({id}) => id === this.userRequest.id);
+  ngOnInit(): void {
   }
 
   openEditProfileDialog(): void {
@@ -73,26 +87,47 @@ export class ShowProfileComponent implements OnInit, AfterViewInit {
     });
   }
 
-  handleFriendRequest(): void {
-    if (this.isFriendRequestSent) {
+  handleOutgoingRequest(): void {
+    if (this.isUserReceivedRequest) {
       this.friendService.denyRequest(this.userRequest.id).subscribe(next => {
-        console.log(next);
         this.snackBar.open('Huỷ yêu cầu thành công', '', {
           duration: 2500
         });
-        this.isFriendRequestSent = false;
+        this.isUserReceivedRequest = false;
       });
     } else {
       this.friendService.sendFriendRequest(this.userRequest).subscribe(() => {
         this.snackBar.open('Gửi yêu cầu thành công', '', {
           duration: 2500
         });
-        this.isFriendRequestSent = true;
+        this.isUserReceivedRequest = true;
       }, () => {
         this.snackBar.open('Không thành công! Bạn đã gửi yêu cầu kết bạn tới người này', '', {
           duration: 2500
         });
       });
+    }
+  }
+
+  handleIncomingRequest(choice: string): void {
+    switch (choice) {
+      case 'accept':
+        this.friendService.confirmRequest(this.userRequest).subscribe(next => {
+          this.snackBar.open(`Bạn và ${this.userRequest.first_name} ${this.userRequest.last_name} đã trở thành bạn bè`, '', {
+            duration: 2500
+          });
+          this.isFriend = true;
+        });
+        break;
+      case 'deny':
+        this.friendService.denyRequest(this.userRequest.id).subscribe(next => {
+          this.snackBar.open('Huỷ yêu cầu thành công', '', {
+            duration: 2500
+          });
+          this.isFriend = false;
+          this.isUserSentRequest = false;
+        });
+        break;
     }
   }
 }
