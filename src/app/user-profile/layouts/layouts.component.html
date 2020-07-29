@@ -11,7 +11,8 @@
           <app-show-profile [userRequest]="userRequested" [currentUser]="userLoggedIn"
                             [listRequestSent]="listFriendRequestSend"
                             [listRequestReceive]="listFriendRequestReceive"
-                            (acceptFriendEvent)="handleEvent($event)"
+                            (acceptFriendEvent)="handleAcceptEvent($event)"
+                            (denyFriendEvent)="handleDenyEvent()"
                             [friendList]="friendList"></app-show-profile>
           <app-friend-list [friendList]="friendList"></app-friend-list>
         </div>

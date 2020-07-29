@@ -33,6 +33,16 @@ export class LayoutsComponent implements OnInit {
               private matDialog: MatDialog,
               private friendService: FriendService,
               private snackBar: MatSnackBar) {
+  }
+
+  ngOnInit(): void {
+    this.userLoggedIn = this.userService.getUserLoggedIn();
+    this.friendService.getUserRequestTo().subscribe(next => {
+      this.listFriendRequestSend = next;
+    });
+    this.friendService.getUserRequest().subscribe(next => {
+      this.listFriendRequestReceive = next;
+    });
     this.activatedRoute.params.subscribe(params => {
       this.username = params.username;
       this.userService.getByUsername(this.username).subscribe(user => {
@@ -44,16 +54,6 @@ export class LayoutsComponent implements OnInit {
           this.friendList = friends;
         });
       });
-    });
-  }
-
-  ngOnInit(): void {
-    this.userLoggedIn = this.userService.getUserLoggedIn();
-    this.friendService.getUserRequestTo().subscribe(next => {
-      this.listFriendRequestSend = next;
-    });
-    this.friendService.getUserRequest().subscribe(next => {
-      this.listFriendRequestReceive = next;
     });
   }
 
@@ -74,11 +74,20 @@ export class LayoutsComponent implements OnInit {
     });
   }
 
-  handleEvent(isFriend: boolean): void {
+  handleAcceptEvent(isFriend: boolean): void {
     if (isFriend) {
       this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
         this.friendList = friends;
       });
+      this.friendService.getUserRequest().subscribe(next => {
+        this.listFriendRequestReceive = next;
+      });
     }
+  }
+
+  handleDenyEvent(): void {
+    this.friendService.getUserRequest().subscribe(next => {
+      this.listFriendRequestReceive = next;
+    });
   }
 }

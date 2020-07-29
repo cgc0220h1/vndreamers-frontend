@@ -19,7 +19,7 @@
         <button mat-raised-button color="primary" (click)="openEditProfileDialog()">Cập nhật thông tin</button>
       </ng-container>
       <ng-container *ngIf="currentUser.id !== userRequest.id">
-        <ng-container *ngIf="!isUserReceivedRequest && !isUserSentRequest">
+        <ng-container *ngIf="!isUserReceivedRequest && !isUserSentRequest && !isFriend">
           <button mat-raised-button color="primary" (click)="handleOutgoingRequest()">
             Kết bạn
           </button>

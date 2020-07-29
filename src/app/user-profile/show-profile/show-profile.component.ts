@@ -35,6 +35,9 @@ export class ShowProfileComponent implements OnInit, OnChanges {
   @Output()
   acceptFriendEvent = new EventEmitter();
 
+  @Output()
+  denyFriendEvent = new EventEmitter();
+
   isUserReceivedRequest = false;
   isUserSentRequest = false;
   isFriend = false;
@@ -134,6 +137,7 @@ export class ShowProfileComponent implements OnInit, OnChanges {
           });
           this.isFriend = false;
           this.isUserSentRequest = false;
+          this.denyFriendEvent.emit();
         });
         break;
     }
