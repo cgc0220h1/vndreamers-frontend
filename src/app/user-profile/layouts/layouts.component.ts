@@ -71,10 +71,13 @@ export class LayoutsComponent implements OnInit {
       this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
         this.friendList = friends;
       });
+      this.friendService.getUserRequest().subscribe(next => {
+        this.listFriendRequestReceive = next;
+      });
     });
   }
 
-  handleAcceptEvent(isFriend: boolean): void {
+  handleFriendEvent(isFriend: boolean): void {
     if (isFriend) {
       this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
         this.friendList = friends;
