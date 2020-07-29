@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <div class="author">
-      <a href="#">
+      <a [routerLink]="['',userRequest.username]">
         <img class="avatar border-gray" src="{{userRequest.avatar}}" alt="...">
         <h5 class="card-title">{{userRequest.first_name}} {{userRequest.last_name}}</h5>
       </a>
@@ -19,7 +19,31 @@
         <button mat-raised-button color="primary" (click)="openEditProfileDialog()">Cập nhật thông tin</button>
       </ng-container>
       <ng-container *ngIf="currentUser.id !== userRequest.id">
-        <button mat-raised-button color="primary" (click)="sendFriendRequest()">Kết bạn</button>
+        <ng-container *ngIf="!isUserReceivedRequest && !isUserSentRequest && !isFriend">
+          <button mat-raised-button color="primary" (click)="handleOutgoingRequest()">
+            Kết bạn
+          </button>
+        </ng-container>
+        <ng-container *ngIf="isUserReceivedRequest">
+          <button mat-raised-button color="warn" (click)="handleOutgoingRequest()">
+            Huỷ lời mời
+          </button>
+        </ng-container>
+        <ng-container *ngIf="isUserSentRequest">
+          <ng-container *ngIf="!isFriend">
+            <button mat-raised-button color="primary" (click)="handleIncomingRequest('accept')">
+              Đồng ý
+            </button>
+          </ng-container>
+          <ng-container *ngIf="!isFriend">
+            <button mat-raised-button color="warn" (click)="handleIncomingRequest('deny')" style="margin-left: 10px">
+              Từ chối
+            </button>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="isFriend">
+          <button mat-raised-button color="primary" disabled>Bạn bè</button>
+        </ng-container>
       </ng-container>
       <!--      <div class="card-footer">-->
       <!--        &lt;!&ndash;    <hr>&ndash;&gt;-->

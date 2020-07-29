@@ -31,6 +31,7 @@ import { FriendRequestDialogComponent } from './dialog/friend-request-dialog/fri
 import { FriendRequestSingleComponent } from './friend/friend-request-single/friend-request-single.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { FriendSingleComponent } from './friend/friend-single/friend-single.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -50,26 +51,27 @@ import { FriendSingleComponent } from './friend/friend-single/friend-single.comp
     FriendRequestSingleComponent,
     FriendSingleComponent,
   ],
-  imports: [
-    CommonModule,
-    UserProfileRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatTabsModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    FormsModule,
-    NgbModule,
-    SharedModule,
-    FlexModule,
-    MatIconModule,
-    MatSnackBarModule,
-    MatSelectModule,
-    MatChipsModule
-  ]
+    imports: [
+        CommonModule,
+        UserProfileRoutingModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardModule,
+        MatTabsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatRadioModule,
+        MatDatepickerModule,
+        FormsModule,
+        NgbModule,
+        SharedModule,
+        FlexModule,
+        MatIconModule,
+        MatSnackBarModule,
+        MatSelectModule,
+        MatChipsModule,
+        MatDialogModule
+    ]
 })
 export class UserProfileModule {
 }

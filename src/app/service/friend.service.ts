@@ -23,6 +23,10 @@ export class FriendService {
     return this.http.get<IUser[]>(`${apiUrl}/api/friends/receive`);
   }
 
+  getUserRequestTo(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`${apiUrl}/api/friends/send`);
+  }
+
   confirmRequest(friendRequest: IUser): Observable<IFriendRequest> {
     return this.http.put<IFriendRequest>(`${apiUrl}/api/friends`, friendRequest);
   }

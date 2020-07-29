@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {IUser} from '../../../model/User';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {LayoutsComponent} from '../../layouts/layouts.component';
 
 @Component({
   selector: 'app-friend-request-dialog',
@@ -9,7 +9,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./friend-request-dialog.component.scss']
 })
 export class FriendRequestDialogComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public friendRequestList: IUser[]) {
+  constructor(@Inject(MAT_DIALOG_DATA) public friendRequestList: IUser[],
+              public dialogRef: MatDialogRef<LayoutsComponent>) {
   }
 
   ngOnInit(): void {
@@ -17,5 +18,8 @@ export class FriendRequestDialogComponent implements OnInit {
 
   removeFriendRequest(friendRequest: IUser): void {
     this.friendRequestList = this.friendRequestList.filter(currentRequest => currentRequest.id !== friendRequest.id);
+    if (this.friendRequestList.length === 0) {
+      this.dialogRef.close();
+    }
   }
 }

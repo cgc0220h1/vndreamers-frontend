@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IUser} from '../../../model/User';
-import {FriendService} from '../../../service/friend.service';
 
 @Component({
   selector: 'app-friend-list',
@@ -8,19 +7,13 @@ import {FriendService} from '../../../service/friend.service';
   styleUrls: ['./friend-list.component.scss']
 })
 export class FriendListComponent implements OnInit {
+  @Input()
   friendList: IUser[];
 
-  @Input()
-  userRequest: IUser;
-
-  constructor(private friendService: FriendService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.friendService.getFriendList(this.userRequest.id).subscribe(next => {
-      this.friendList = next;
-      console.log(this.friendList);
-    });
   }
 
 }

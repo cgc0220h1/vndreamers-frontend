@@ -1,9 +1,11 @@
-<div class="card-body">
-  <ng-container *ngFor="let friendRequest of friendRequestList">
-    <app-friend-request-single [friendRequest]="friendRequest"
-                               (confirmRequestEvent)="removeFriendRequest($event)"
-                               (denyRequestEvent)="removeFriendRequest($event)">
-
-    </app-friend-request-single>
-  </ng-container>
-</div>
+<mat-dialog-content>
+  <div class="card-body">
+    <ng-container *ngFor="let friendRequest of friendRequestList">
+      <app-friend-request-single [friendRequest]="friendRequest"
+                                 (confirmRequestEvent)="removeFriendRequest($event)"
+                                 (denyRequestEvent)="removeFriendRequest($event)">
+      </app-friend-request-single>
+    </ng-container>
+  </div>
+</mat-dialog-content>
+<button mat-raised-button color="warn" style="margin-top: 20px; float: right" (click)="dialogRef.close()">Đóng</button>

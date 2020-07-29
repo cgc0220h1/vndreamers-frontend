@@ -8,6 +8,7 @@ import {IPost} from '../../model/Post';
 import {MatDialog} from '@angular/material/dialog';
 import {FriendRequestDialogComponent} from '../dialog/friend-request-dialog/friend-request-dialog.component';
 import {FriendService} from '../../service/friend.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-layouts',
@@ -21,19 +22,27 @@ export class LayoutsComponent implements OnInit {
   username: string;
   posts: IPost[];
   userLoggedIn: IUser;
-  friendRequestList: IUser[];
+  listFriendRequestReceive: IUser[] = [];
+  friendList: IUser[];
+  listFriendRequestSend: IUser[] = [];
 
   constructor(private authService: AuthService,
               private activatedRoute: ActivatedRoute,
               private postService: PostService,
               private userService: UserService,
               private matDialog: MatDialog,
-              private friendService: FriendService) {
+              private friendService: FriendService,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
-    this.userRequested = this.userService.getUserLoggedIn();
     this.userLoggedIn = this.userService.getUserLoggedIn();
+    this.friendService.getUserRequestTo().subscribe(next => {
+      this.listFriendRequestSend = next;
+    });
+    this.friendService.getUserRequest().subscribe(next => {
+      this.listFriendRequestReceive = next;
+    });
     this.activatedRoute.params.subscribe(params => {
       this.username = params.username;
       this.userService.getByUsername(this.username).subscribe(user => {
@@ -41,17 +50,47 @@ export class LayoutsComponent implements OnInit {
         this.postService.getPostsOtherUser(this.userRequested.id).subscribe(posts => {
           this.posts = posts;
         });
+        this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
+          this.friendList = friends;
+        });
       });
     });
   }
 
   showFriendRequest(): void {
-    this.friendService.getUserRequest().subscribe(next => {
-      console.log(next);
-      this.friendRequestList = next;
-      this.matDialog.open(FriendRequestDialogComponent, {
-        data: this.friendRequestList
+    if (this.listFriendRequestReceive.length === 0) {
+      this.snackBar.open('Bạn không có lời mời kết bạn nào', '', {
+        duration: 2500
       });
+      return;
+    }
+    const dialogRef = this.matDialog.open(FriendRequestDialogComponent, {
+      data: this.listFriendRequestReceive
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
+        this.friendList = friends;
+      });
+      this.friendService.getUserRequest().subscribe(next => {
+        this.listFriendRequestReceive = next;
+      });
+    });
+  }
+
+  handleFriendEvent(isFriend: boolean): void {
+    if (isFriend) {
+      this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
+        this.friendList = friends;
+      });
+      this.friendService.getUserRequest().subscribe(next => {
+        this.listFriendRequestReceive = next;
+      });
+    }
+  }
+
+  handleDenyEvent(): void {
+    this.friendService.getUserRequest().subscribe(next => {
+      this.listFriendRequestReceive = next;
     });
   }
 }
