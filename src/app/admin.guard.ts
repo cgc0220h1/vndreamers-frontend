@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthService} from './service/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -7,7 +7,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
 
   constructor(private authService: AuthService,
               private router: Router,
@@ -17,18 +17,8 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (localStorage.getItem('access_token') !== null && localStorage.getItem('role') === 'ROLE_USER') {
+    if (localStorage.getItem('access_token') !== null && localStorage.getItem('role') === 'ROLE_ADMIN') {
       this.snackBar.open('Chào mừng bạn quay trở lại!', '', {
-        duration: 1000
-      });
-      return true;
-    } else if (this.authService.isAuthenticated && localStorage.getItem('role') === 'ROLE_USER') {
-      this.snackBar.open('Đang chuyển trang!', '', {
-        duration: 1000
-      });
-      return true;
-    } else if (localStorage.getItem('access_token') !== null && localStorage.getItem('role') === 'ROLE_ADMIN') {
-      this.snackBar.open('Đang chuyển trang!!', '', {
         duration: 1000
       });
       return true;
@@ -46,4 +36,5 @@ export class AuthGuard implements CanActivate {
       return false;
     }
   }
+
 }

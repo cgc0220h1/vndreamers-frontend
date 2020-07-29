@@ -2,6 +2,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {AuthGuard} from '../auth.guard';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
+import {AdminGuard} from '../admin.guard';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
   {
     path: 'admin/:name',
     loadChildren: () => import('../admin-profile/admin-profile.module').then(m => m.AdminProfileModule),
-    canActivate: [AuthGuard]
+    canActivate: [AdminGuard]
   }
 ];
 

@@ -27,6 +27,7 @@ export class AuthService {
       .pipe(map(iAccount => {
         localStorage.setItem('access_token', iAccount.access_token);
         localStorage.setItem('user', JSON.stringify(iAccount.user));
+        localStorage.setItem('role', iAccount.roles[0].role_name);
         return iAccount;
       }));
   }
