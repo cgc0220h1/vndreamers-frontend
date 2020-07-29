@@ -22,6 +22,7 @@ export class LayoutsComponent implements OnInit {
   posts: IPost[];
   userLoggedIn: IUser;
   friendRequestList: IUser[];
+  friendList: IUser[];
 
   constructor(private authService: AuthService,
               private activatedRoute: ActivatedRoute,
@@ -32,7 +33,7 @@ export class LayoutsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userRequested = this.userService.getUserLoggedIn();
+    // this.userRequested = this.userService.getUserLoggedIn();
     this.userLoggedIn = this.userService.getUserLoggedIn();
     this.activatedRoute.params.subscribe(params => {
       this.username = params.username;
@@ -40,6 +41,9 @@ export class LayoutsComponent implements OnInit {
         this.userRequested = user;
         this.postService.getPostsOtherUser(this.userRequested.id).subscribe(posts => {
           this.posts = posts;
+        });
+        this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
+          this.friendList = friends;
         });
       });
     });
@@ -49,8 +53,13 @@ export class LayoutsComponent implements OnInit {
     this.friendService.getUserRequest().subscribe(next => {
       console.log(next);
       this.friendRequestList = next;
-      this.matDialog.open(FriendRequestDialogComponent, {
+      const dialogRef = this.matDialog.open(FriendRequestDialogComponent, {
         data: this.friendRequestList
+      });
+      dialogRef.afterClosed().subscribe(() => {
+        this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
+          this.friendList = friends;
+        });
       });
     });
   }

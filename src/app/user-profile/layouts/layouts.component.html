@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-md-4">
           <app-show-profile [userRequest]="userRequested" [currentUser]="userLoggedIn"></app-show-profile>
-          <app-friend-list [userRequest]="userRequested"></app-friend-list>
+          <app-friend-list [friendList]="friendList"></app-friend-list>
         </div>
         <div class="col-md-8">
           <app-post-form [currentUser]="userLoggedIn" [userRequest]="userRequested"></app-post-form>
