@@ -61,6 +61,7 @@ export class PostFormComponent implements OnInit {
           duration: 2500
         });
         this.postService.shouldRefresh.next(result);
+        this.url = '';
       }, error => {
         this.snackBar.open('Post bài không thành công', '', {
           duration: 2500
