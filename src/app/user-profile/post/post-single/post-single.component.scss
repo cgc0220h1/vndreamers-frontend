@@ -6,3 +6,9 @@
   margin-top: auto;
   margin-bottom: auto;
 }
+
+button:focus {
+  outline: none;
+  border: 0;
+}
+

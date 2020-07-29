@@ -7,7 +7,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-10 px-10">
+    <div class="col-md-8 px-10">
       <div class="form-group">
         <span style="font-weight: bold">{{ otherUser.first_name }}</span><span
         style="font-weight: bold"> {{ otherUser.last_name }}</span><br>
@@ -15,6 +15,30 @@
       </div>
     </div>
     <ng-container *ngIf="userLogged.id === otherUser.id">
+      <div class="col-md-1 px-10">
+        <button mat-mini-fab color="primary" [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>Sửa nội dung</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>image</mat-icon>
+            <span>Thay ảnh</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>delete_sweep</mat-icon>
+            <span>Xoá ảnh</span>
+          </button>
+        </mat-menu>
+      </div>
+      <div class="col-md-1 px-10">
+        <button mat-mini-fab color="primary">
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </div>
       <div class="col-md-1 px-10">
         <button mat-mini-fab color="warn" (click)="deletePost(postData.id)">
           <mat-icon>delete_outline</mat-icon>

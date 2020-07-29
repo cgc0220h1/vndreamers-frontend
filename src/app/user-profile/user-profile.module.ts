@@ -32,6 +32,7 @@ import { FriendRequestSingleComponent } from './friend/friend-request-single/fri
 import {MatChipsModule} from '@angular/material/chips';
 import { FriendSingleComponent } from './friend/friend-single/friend-single.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import {MatDialogModule} from '@angular/material/dialog';
         MatSnackBarModule,
         MatSelectModule,
         MatChipsModule,
-        MatDialogModule
+        MatDialogModule,
+        MatMenuModule
     ]
 })
 export class UserProfileModule {

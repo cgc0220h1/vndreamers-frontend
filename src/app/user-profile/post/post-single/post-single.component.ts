@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {IPost} from '../../../model/Post';
 import {IUser} from '../../../model/User';
 import {IComment} from '../../../model/comment';
@@ -11,7 +11,8 @@ import {IReaction} from '../../../model/reaction';
 @Component({
   selector: 'app-post-single',
   templateUrl: './post-single.component.html',
-  styleUrls: ['./post-single.component.scss']
+  styleUrls: ['./post-single.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PostSingleComponent implements OnInit {
   commentList: IComment[] = [];

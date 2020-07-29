@@ -14,10 +14,10 @@
             <div class="form-group">
               <mat-form-field appearance="outline" style="float: right">
                 <mat-label>Tuỳ chọn</mat-label>
-                <mat-select>
-                  <mat-option value="">Chỉ Mình Tôi</mat-option>
-                  <mat-option value="">Với Bạn Bè</mat-option>
-                  <mat-option value="">Công Khai</mat-option>
+                <mat-select [formControl]="status">
+                  <mat-option value="1">Công Khai</mat-option>
+                  <mat-option value="2">Với Bạn Bè</mat-option>
+                  <mat-option value="3">Chỉ Mình Tôi</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
