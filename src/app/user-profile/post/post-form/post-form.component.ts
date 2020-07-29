@@ -7,10 +7,9 @@ import {FileUpload} from '../../../model/upload-file';
 import {HttpClient} from '@angular/common/http';
 import {UploadFileService} from '../../../service/upload-file.service';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {finalize} from 'rxjs/operators';
 
-const FRONT_LINK = 'https://firebasestorage.googleapis.com/v0/b/project-module-5.appspot.com/o/uploads%2F';
-const BACK_LINK = '?alt=media&token=fad94b03-0cbe-49a5-b06f-4c2284bc4bd8';
+const FRONT_LINK = 'https://firebasestorage.googleapis.com/v0/b/vndreamer-fontend.appspot.com/o/uploads%2F';
+const BACK_LINK = '?alt=media&token=1888bbc5-f913-4e94-90a5-b35aad7318c8';
 
 @Component({
   selector: 'app-post-form',
@@ -28,14 +27,12 @@ export class PostFormComponent implements OnInit {
 
   @Input() currentUser: IUser;
   @Input() userRequest: IUser;
-  imgSrc: any;
   isShowSuccess = false;
   message: string;
   file: any;
   imageFile: any;
-  selectedFile: FileList;
-  selectedImage: any = null;
-  currentImageUpload: FileUpload;
+  selectedImage: FileList;
+  currentImageUpload: FileUpload ;
   percentage: number;
   url: string | ArrayBuffer = '';
 
@@ -54,17 +51,8 @@ export class PostFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.selectedImage !== null) {
-      const filePath = `avatar/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
-      const fileRef = this.storage.ref(filePath);
-      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe(url => {
-            this.imgSrc = url;
-          });
-        })
-      ).subscribe();
-    }
+    this.upload();
+    this.setDefaultValue();
     this.postForm.markAllAsTouched();
     if (this.postForm.valid) {
       this.postForm.value.status = 1;
@@ -86,16 +74,34 @@ export class PostFormComponent implements OnInit {
     }
   }
 
-  showPriview(event: any): void {
+  displayImage(event): void {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
-      reader.onload = (e: any) => this.imgSrc = e.target.result;
-      reader.readAsDataURL(event.target.files[0]);
-      this.selectedImage = event.target.files[0];
-      this.onSubmit();
-    } else {
-      this.imgSrc = '';
-      this.selectedImage = null;
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+      // tslint:disable-next-line:no-shadowed-variable
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = event.target.result;
+      };
     }
+    this.selectedImage = event.target.files;
   }
+
+  setDefaultValue(): void {
+    this.postForm.value.image = FRONT_LINK + this.imageFile.name + BACK_LINK;
+  }
+
+  upload(): void {
+    this.imageFile = this.selectedImage.item(0);
+    this.selectedImage = undefined;
+    this.currentImageUpload = new FileUpload(this.imageFile);
+    this.uploadFileService.pushFileToStorage(this.currentImageUpload).subscribe(
+      percentage => {
+        this.percentage = Math.round(percentage);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
 }

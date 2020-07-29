@@ -12,7 +12,9 @@ import {FileUpload} from '../model/upload-file';
 
 export class UploadFileService {
   private basePath = '/uploads';
+
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) { }
+
   pushFileToStorage(fileUpload: FileUpload): Observable<number> {
     const filePath = `${this.basePath}/${fileUpload.file.name}`;
     const storageRef = this.storage.ref(filePath);
