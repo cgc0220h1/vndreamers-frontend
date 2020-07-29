@@ -19,7 +19,8 @@
         <button mat-raised-button color="primary" (click)="openEditProfileDialog()">Cập nhật thông tin</button>
       </ng-container>
       <ng-container *ngIf="currentUser.id !== userRequest.id">
-        <button mat-raised-button color="primary" [disabled]="isFriendRequestSent" (click)="sendFriendRequest()">Kết bạn</button>
+        <button mat-raised-button color="primary"
+                (click)="handleFriendRequest()">{{isFriendRequestSent ? 'Huỷ kết bạn' : 'Kết bạn'}}</button>
       </ng-container>
       <ng-container></ng-container>
       <!--      <div class="card-footer">-->

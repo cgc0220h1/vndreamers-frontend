@@ -8,7 +8,8 @@
     <div class="content">
       <div class="row">
         <div class="col-md-4">
-          <app-show-profile [userRequest]="userRequested" [currentUser]="userLoggedIn"></app-show-profile>
+          <app-show-profile [userRequest]="userRequested" [currentUser]="userLoggedIn"
+                            [listRequestSent]="listFriendRequestSend"></app-show-profile>
           <app-friend-list [friendList]="friendList"></app-friend-list>
         </div>
         <div class="col-md-8">

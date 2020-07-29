@@ -37,9 +37,6 @@ export class LayoutsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userLoggedIn = this.userService.getUserLoggedIn();
-    this.friendService.getUserRequestTo().subscribe(next => {
-      this.listFriendRequestSend = next;
-    });
     this.activatedRoute.params.subscribe(params => {
       this.username = params.username;
       this.userService.getByUsername(this.username).subscribe(user => {
@@ -51,6 +48,9 @@ export class LayoutsComponent implements OnInit {
           this.friendList = friends;
         });
       });
+    });
+    this.friendService.getUserRequestTo().subscribe(next => {
+      this.listFriendRequestSend = next;
     });
   }
 

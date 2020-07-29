@@ -10,7 +10,7 @@ import {LayoutsComponent} from '../../layouts/layouts.component';
 })
 export class FriendRequestDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public friendRequestList: IUser[],
-              private dialogRef: MatDialogRef<LayoutsComponent>) {
+              public dialogRef: MatDialogRef<LayoutsComponent>) {
   }
 
   ngOnInit(): void {

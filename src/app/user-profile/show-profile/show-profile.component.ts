@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {IUser} from '../../model/User';
 import {AuthService} from '../../service/auth.service';
 import {MatDialog} from '@angular/material/dialog';
@@ -12,12 +12,15 @@ import {FriendService} from '../../service/friend.service';
   templateUrl: './show-profile.component.html',
   styleUrls: ['./show-profile.component.scss']
 })
-export class ShowProfileComponent implements OnInit {
+export class ShowProfileComponent implements OnInit, AfterViewInit {
   @Input() userRequest: IUser;
 
   @Input() currentUser: IUser;
 
   isFriendRequestSent = false;
+
+  @Input()
+  listRequestSent: IUser[];
 
   constructor(private authService: AuthService,
               private dialog: MatDialog,
@@ -27,6 +30,10 @@ export class ShowProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    this.isFriendRequestSent = this.listRequestSent.some(({id}) => id === this.userRequest.id);
   }
 
   openEditProfileDialog(): void {
@@ -66,16 +73,26 @@ export class ShowProfileComponent implements OnInit {
     });
   }
 
-  sendFriendRequest(): void {
-    this.friendService.sendFriendRequest(this.userRequest).subscribe(() => {
-      this.snackBar.open('Gửi yêu cầu thành công', '', {
-        duration: 2500
+  handleFriendRequest(): void {
+    if (this.isFriendRequestSent) {
+      this.friendService.denyRequest(this.userRequest.id).subscribe(next => {
+        console.log(next);
+        this.snackBar.open('Huỷ yêu cầu thành công', '', {
+          duration: 2500
+        });
+        this.isFriendRequestSent = false;
       });
-      this.isFriendRequestSent = true;
-    }, () => {
-      this.snackBar.open('Không thành công! Bạn đã gửi yêu cầu kết bạn tới người này', '', {
-        duration: 2500
+    } else {
+      this.friendService.sendFriendRequest(this.userRequest).subscribe(() => {
+        this.snackBar.open('Gửi yêu cầu thành công', '', {
+          duration: 2500
+        });
+        this.isFriendRequestSent = true;
+      }, () => {
+        this.snackBar.open('Không thành công! Bạn đã gửi yêu cầu kết bạn tới người này', '', {
+          duration: 2500
+        });
       });
-    });
+    }
   }
 }
