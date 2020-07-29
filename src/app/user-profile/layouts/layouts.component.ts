@@ -22,8 +22,9 @@ export class LayoutsComponent implements OnInit {
   username: string;
   posts: IPost[];
   userLoggedIn: IUser;
-  friendRequestList: IUser[] = [];
+  listFriendRequestReceive: IUser[] = [];
   friendList: IUser[];
+  listFriendRequestSend: IUser[] = [];
 
   constructor(private authService: AuthService,
               private activatedRoute: ActivatedRoute,
@@ -35,8 +36,10 @@ export class LayoutsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.userRequested = this.userService.getUserLoggedIn();
     this.userLoggedIn = this.userService.getUserLoggedIn();
+    this.friendService.getUserRequestTo().subscribe(next => {
+      this.listFriendRequestSend = next;
+    });
     this.activatedRoute.params.subscribe(params => {
       this.username = params.username;
       this.userService.getByUsername(this.username).subscribe(user => {
@@ -53,15 +56,15 @@ export class LayoutsComponent implements OnInit {
 
   showFriendRequest(): void {
     this.friendService.getUserRequest().subscribe(next => {
-      this.friendRequestList = next;
-      if (this.friendRequestList.length === 0) {
+      this.listFriendRequestReceive = next;
+      if (this.listFriendRequestReceive.length === 0) {
         this.snackBar.open('Bạn không có lời mời kết bạn nào', '', {
           duration: 2500
         });
         return;
       }
       const dialogRef = this.matDialog.open(FriendRequestDialogComponent, {
-        data: this.friendRequestList
+        data: this.listFriendRequestReceive
       });
       dialogRef.afterClosed().subscribe(() => {
         this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {

@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <div class="author">
-      <a href="#">
+      <a [routerLink]="['',userRequest.username]">
         <img class="avatar border-gray" src="{{userRequest.avatar}}" alt="...">
         <h5 class="card-title">{{userRequest.first_name}} {{userRequest.last_name}}</h5>
       </a>
@@ -19,8 +19,9 @@
         <button mat-raised-button color="primary" (click)="openEditProfileDialog()">Cập nhật thông tin</button>
       </ng-container>
       <ng-container *ngIf="currentUser.id !== userRequest.id">
-        <button mat-raised-button color="primary" (click)="sendFriendRequest()">Kết bạn</button>
+        <button mat-raised-button color="primary" [disabled]="isFriendRequestSent" (click)="sendFriendRequest()">Kết bạn</button>
       </ng-container>
+      <ng-container></ng-container>
       <!--      <div class="card-footer">-->
       <!--        &lt;!&ndash;    <hr>&ndash;&gt;-->
       <!--        <div class="button-container">-->

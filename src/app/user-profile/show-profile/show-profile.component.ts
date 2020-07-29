@@ -17,6 +17,7 @@ export class ShowProfileComponent implements OnInit {
 
   @Input() currentUser: IUser;
 
+  isFriendRequestSent = false;
 
   constructor(private authService: AuthService,
               private dialog: MatDialog,
@@ -70,6 +71,7 @@ export class ShowProfileComponent implements OnInit {
       this.snackBar.open('Gửi yêu cầu thành công', '', {
         duration: 2500
       });
+      this.isFriendRequestSent = true;
     }, () => {
       this.snackBar.open('Không thành công! Bạn đã gửi yêu cầu kết bạn tới người này', '', {
         duration: 2500
