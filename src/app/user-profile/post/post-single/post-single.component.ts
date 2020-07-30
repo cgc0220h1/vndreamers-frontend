@@ -51,10 +51,11 @@ export class PostSingleComponent implements OnInit {
     } else {
       this.status = 'lock';
     }
-    this.postService.getReaction(this.postData.id).subscribe(next => {
-      this.reactionList = next.filter(currentReaction => currentReaction.status === 1);
-      this.numberOfReaction = this.reactionList.length;
-    });
+    // this.postService.getReaction(this.postData.id).subscribe(next => {
+    //   this.reactionList = next.filter(currentReaction => currentReaction.status === 1);
+    //   this.numberOfReaction = this.reactionList.length;
+    // });
+
   }
 
   deletePost(id: number): void {
@@ -117,7 +118,7 @@ export class PostSingleComponent implements OnInit {
         this.snackBar.open('Bạn đã thích bài viết ' + this.postData.content, '', {
           duration: 1000
         });
-        this.numberOfReaction++;
+        this.postData.likeQuantity++;
         this.isLikePost = true;
       }, error => {
         console.log(error);
@@ -131,7 +132,7 @@ export class PostSingleComponent implements OnInit {
         this.snackBar.open('Bạn đã bỏ thích bài viết ' + this.postData.content, '', {
           duration: 1000
         });
-        this.numberOfReaction--;
+        this.postData.likeQuantity--;
         this.isLikePost = false;
       }, error => {
         console.log(error);

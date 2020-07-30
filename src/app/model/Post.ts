@@ -7,4 +7,5 @@ export interface IPost {
   status: number;
   createDate?: string;
   user?: IUser;
+  likeQuantity?: number;
 }
