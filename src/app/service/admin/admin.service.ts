@@ -26,5 +26,7 @@ export class AdminService {
     return this.httpClient.put<IUser>(`${apiUrl}/api/admin/users/status`, user);
   }
 
-
+  getUsersRegisterToday(): Observable<IUser[]> {
+    return this.httpClient.get<IUser[]>(`${apiUrl}/api/admin/users/statistics/today`);
+  }
 }
