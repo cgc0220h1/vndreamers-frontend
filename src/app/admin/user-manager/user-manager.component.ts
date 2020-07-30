@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../service/user.service';
 import {IUser} from '../../model/User';
 import {AuthService} from '../../service/auth.service';
+import {AdminService} from '../../service/admin.service';
 
 @Component({
   selector: 'app-user-manager',
@@ -14,12 +15,12 @@ export class UserManagerComponent implements OnInit {
   users: IUser[];
   admin: IUser;
 
-  constructor(private userService: UserService,
+  constructor(private adminService: AdminService,
               private authService: AuthService) { }
 
   ngOnInit(): void {
 
-    this.userService.getAllUser().subscribe(users => {
+    this.adminService.getAllUser().subscribe(users => {
       this.users = users;
     }, error => {
       console.log(error);
@@ -29,9 +30,9 @@ export class UserManagerComponent implements OnInit {
   blockUser(user: IUser): void {
     user.status = 0;
     if (confirm('Do you really want to block this user?')) {
-      this.userService.blocActiveUser(user).subscribe(result => {
+      this.adminService.blockActiveUser(user).subscribe(result => {
         console.log('block ok');
-        this.userService.getAllUser().subscribe(result2 => {
+        this.adminService.getAllUser().subscribe(result2 => {
           this.users = result2;
         });
       }, error => console.log(error));
@@ -41,9 +42,9 @@ export class UserManagerComponent implements OnInit {
   activeUser(user: IUser): void {
     user.status = 1;
     if (confirm('Do you really want to unblock this user?')) {
-      this.userService.blocActiveUser(user).subscribe(result => {
+      this.adminService.blockActiveUser(user).subscribe(result => {
         console.log('active ok');
-        this.userService.getAllUser().subscribe(result1 => {
+        this.adminService.getAllUser().subscribe(result1 => {
          this.users = result1;
        });
       }, error => console.log(error));
