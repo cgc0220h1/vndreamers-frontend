@@ -23,7 +23,7 @@ import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
-import {Ng2SearchPipeModule} from "ng2-search-filter";
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
