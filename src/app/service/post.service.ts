@@ -41,7 +41,7 @@ export class PostService {
   }
 
   updatePost(post: IPost): Observable<IPost> {
-    return this.http.put<IPost>(`${apiUrl}/api/posts/${post.id}`, post);
+    return this.http.put<IPost>(`${apiUrl}/api/posts`, post);
   }
 
   submitComment(comment: IComment, postId: number): Observable<IComment> {
