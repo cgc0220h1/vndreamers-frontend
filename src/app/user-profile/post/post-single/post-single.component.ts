@@ -150,13 +150,29 @@ export class PostSingleComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       switch (result) {
         case 'delete':
-          console.log('do something');
+          this.postData.image = '';
+          this.postService.updatePost(this.postData).subscribe(post => {
+            this.snackBar.open('Xoá ảnh thành công', '', {
+              duration: 2500
+            });
+            console.log('xoa anh thanh cong');
+          });
           break;
         case 'cancel':
           this.snackBar.open('Huỷ xoá ảnh', '', {
             duration: 2500
           });
       }
+    });
+  }
+
+  changeContent(): void {
+    this.postData.content = document.getElementById('content')['value'];
+    this.postService.updatePost(this.postData).subscribe(result => {
+      console.log('update thanh cong');
+      this.toggleForm();
+    }, error => {
+      console.log('update content error !');
     });
   }
 }

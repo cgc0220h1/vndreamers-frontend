@@ -52,11 +52,11 @@
                       cdkTextareaAutosize
                       cdkAutosizeMinRows="3"
                       style="font-size: 18px"
-                      type="text" [value]="postData.content">
+                      type="text" id="content" [value]="postData.content">
             </textarea>
           </mat-form-field>
           <br>
-          <button mat-raised-button color="primary">Cập nhật</button>
+          <button mat-raised-button color="primary" (click)="changeContent()">Cập nhật</button>
           <button mat-raised-button color="warn" style="margin-left: 10px" (click)="toggleForm()">Quay lại</button>
           <mat-form-field appearance="outline" style="float: right">
             <mat-label>Tuỳ chọn</mat-label>

@@ -20,4 +20,6 @@ export class DeleteDialogComponent implements OnInit {
     this.label = this.data.label;
   }
 
+
+
 }
