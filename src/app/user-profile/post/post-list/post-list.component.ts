@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {IPost} from '../../../model/Post';
 import {IUser} from '../../../model/User';
-import {PostService} from '../../../service/post.service';
+import {PostService} from '../../../service/user/post.service';
 
 @Component({
   selector: 'app-post-list',

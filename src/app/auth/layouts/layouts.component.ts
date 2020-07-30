@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../service/auth.service';
+import {AuthService} from '../../service/public/auth.service';
 import {Router} from '@angular/router';
-import {UserService} from '../../service/user.service';
+import {UserService} from '../../service/user/user.service';
 
 @Component({
   selector: 'app-layouts',

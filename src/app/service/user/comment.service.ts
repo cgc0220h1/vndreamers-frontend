@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
-import {IComment} from '../model/comment';
+import {environment} from '../../../environments/environment';
+import {IComment} from '../../model/comment';
 
 const apiUrl = environment.apiSource;
 

@@ -5,7 +5,7 @@ import {IComment} from '../../../model/comment';
 import {DeleteDialogComponent} from '../../dialog/delete-dialog/delete-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {PostService} from '../../../service/post.service';
+import {PostService} from '../../../service/user/post.service';
 import {IReaction} from '../../../model/reaction';
 import {EditStatusDialogComponent} from '../../dialog/edit-status-dialog/edit-status-dialog.component';
 

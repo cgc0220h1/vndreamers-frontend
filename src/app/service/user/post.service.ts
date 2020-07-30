@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {IPost} from '../model/Post';
-import {environment} from '../../environments/environment';
-import {IComment} from '../model/comment';
-import {IReaction} from '../model/reaction';
+import {IPost} from '../../model/Post';
+import {environment} from '../../../environments/environment';
+import {IComment} from '../../model/comment';
+import {IReaction} from '../../model/reaction';
 
 // const API_URL = 'http://localhost:8080/api/posts';
 

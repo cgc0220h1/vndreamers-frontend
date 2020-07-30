@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IComment} from '../../../model/comment';
 import {DeleteDialogComponent} from '../../dialog/delete-dialog/delete-dialog.component';
-import {CommentService} from '../../../service/comment.service';
+import {CommentService} from '../../../service/user/comment.service';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 

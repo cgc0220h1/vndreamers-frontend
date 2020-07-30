@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {IUser} from '../model/User';
+import {IUser} from '../../model/User';
 import {Observable} from 'rxjs';
-import {environment} from '../../environments/environment';
-import {IFriendRequest} from '../model/friend-request';
+import {environment} from '../../../environments/environment';
+import {IFriendRequest} from '../../model/friend-request';
 
 const apiUrl = environment.apiSource;
 

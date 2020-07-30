@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../service/user.service';
+import {UserService} from '../../service/user/user.service';
 import {IUser} from '../../model/User';
-import {AuthService} from '../../service/auth.service';
-import {AdminService} from '../../service/admin.service';
+import {AuthService} from '../../service/public/auth.service';
+import {AdminService} from '../../service/admin/admin.service';
 
 @Component({
   selector: 'app-user-manager',

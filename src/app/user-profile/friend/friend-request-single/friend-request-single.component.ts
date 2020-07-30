@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IUser} from '../../../model/User';
-import {FriendService} from '../../../service/friend.service';
+import {FriendService} from '../../../service/user/friend.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialogRef} from '@angular/material/dialog';
 import {LayoutsComponent} from '../../layouts/layouts.component';
