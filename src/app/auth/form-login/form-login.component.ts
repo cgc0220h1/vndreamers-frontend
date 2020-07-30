@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validat
 import {Router} from '@angular/router';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {AuthService} from '../../service/auth.service';
+import {AuthService} from '../../service/public/auth.service';
 import {regex} from '../../../assets/regex';
 import {IUser} from '../../model/User';
 

@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {IUser} from '../../../model/User';
-import {PostService} from '../../../service/post.service';
+import {PostService} from '../../../service/user/post.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {FileUpload} from '../../../model/upload-file';
 import {HttpClient} from '@angular/common/http';
-import {UploadFileService} from '../../../service/upload-file.service';
+import {UploadFileService} from '../../../service/public/upload-file.service';
 import {IPost} from '../../../model/Post';
 import {Observable, Subject} from 'rxjs';
 

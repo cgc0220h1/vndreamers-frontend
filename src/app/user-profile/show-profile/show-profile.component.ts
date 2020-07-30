@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {IUser} from '../../model/User';
-import {AuthService} from '../../service/auth.service';
+import {AuthService} from '../../service/public/auth.service';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {UserService} from '../../service/user.service';
+import {UserService} from '../../service/user/user.service';
 import {EditProfileDialogComponent} from '../dialog/edit-profile-dialog/edit-profile-dialog.component';
-import {FriendService} from '../../service/friend.service';
+import {FriendService} from '../../service/user/friend.service';
 import {DeleteDialogComponent} from '../dialog/delete-dialog/delete-dialog.component';
 
 @Component({

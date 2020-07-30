@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, Subject} from 'rxjs';
-import {IPost} from '../model/Post';
-import {environment} from '../../environments/environment';
-import {IComment} from '../model/comment';
-import {IReaction} from '../model/reaction';
+import {Observable} from 'rxjs';
+import {IPost} from '../../model/Post';
+import {environment} from '../../../environments/environment';
+import {IComment} from '../../model/comment';
+import {IReaction} from '../../model/reaction';
 
 // const API_URL = 'http://localhost:8080/api/posts';
 
@@ -15,13 +15,11 @@ const apiUrl = environment.apiSource;
 })
 export class PostService {
 
-  shouldRefresh = new Subject<any>();
-
   constructor(private http: HttpClient) {
   }
 
   getPosts(): Observable<IPost[]> {
-    return this.http.get<IPost[]>(`${apiUrl}/api/admin/posts`);
+    return this.http.get<IPost[]>(`${apiUrl}/api/posts`);
   }
 
   getPostsOtherUser(id: number): Observable<IPost[]> {

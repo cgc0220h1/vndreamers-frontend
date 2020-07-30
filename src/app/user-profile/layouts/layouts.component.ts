@@ -1,13 +1,13 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {AuthService} from '../../service/auth.service';
+import {AuthService} from '../../service/public/auth.service';
 import {IUser} from '../../model/User';
-import {UserService} from '../../service/user.service';
+import {UserService} from '../../service/user/user.service';
 import {ActivatedRoute} from '@angular/router';
-import {PostService} from '../../service/post.service';
+import {PostService} from '../../service/user/post.service';
 import {IPost} from '../../model/Post';
 import {MatDialog} from '@angular/material/dialog';
 import {FriendRequestDialogComponent} from '../dialog/friend-request-dialog/friend-request-dialog.component';
-import {FriendService} from '../../service/friend.service';
+import {FriendService} from '../../service/user/friend.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({

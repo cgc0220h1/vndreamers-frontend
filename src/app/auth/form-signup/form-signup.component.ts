@@ -12,7 +12,7 @@ import {
 } from '@angular/forms';
 import {IUser} from '../../model/User';
 import {regex} from '../../../assets/regex';
-import {AuthService} from '../../service/auth.service';
+import {AuthService} from '../../service/public/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Observer} from 'rxjs';
 
