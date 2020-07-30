@@ -31,4 +31,8 @@ export class SelectTypeComponent implements OnInit {
   showChartToday(): void {
     this.router.navigateByUrl('admin/chart/today').then(r => console.log(r));
   }
+
+  showChartRange(): void {
+    this.router.navigateByUrl('admin/chart/range').then(r => console.log(r));
+  }
 }

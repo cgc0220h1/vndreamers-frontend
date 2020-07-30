@@ -25,7 +25,7 @@ const routes: Routes = [
         component: SelectTypeComponent,
         children: [
           {
-            path: 'result',
+            path: 'range',
             component: UserBarChartComponent
           },
           {

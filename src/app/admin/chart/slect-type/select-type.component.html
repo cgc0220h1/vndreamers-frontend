@@ -17,7 +17,7 @@
       <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Ngày kết thúc không hợp lệ</mat-error>
     </mat-form-field>
 
-    <button mat-raised-button color="accent">Hiển thị</button>
+    <button mat-raised-button color="accent" (click)="showChartRange()">Hiển thị</button>
   </ng-container>
 </div>
 <br>
