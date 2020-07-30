@@ -54,7 +54,7 @@ export class ShowProfileComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.isFriend = this.friendList.some(({id}) => id !== this.userRequest.id);
+    this.isFriend = this.friendList.some(({id}) => id === this.userRequest.id);
     this.isUserReceivedRequest = this.listRequestSent.some(({id}) => id === this.userRequest.id);
     this.isUserSentRequest = this.listRequestReceive.some(({id}) => id === this.userRequest.id);
   }
