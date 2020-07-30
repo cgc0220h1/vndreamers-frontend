@@ -18,9 +18,29 @@
           <app-friend-list [friendList]="friendList"></app-friend-list>
         </div>
         <div class="col-md-8">
-          <app-post-form [currentUser]="userLoggedIn" [userRequest]="userRequested"
-                         (whenClickPostButton)="updatePost($event)"></app-post-form>
-          <app-post-list [posts]="posts" [userRequest]="userRequested" [currentUser]="userLoggedIn"></app-post-list>
+
+          <ng-container *ngIf="userLoggedIn.id === userRequested.id">
+            <app-post-form [currentUser]="userLoggedIn" (whenClickPostButton)="updatePost($event)">
+            </app-post-form>
+          </ng-container>
+          <ng-container *ngIf="posts.length > 0">
+            <app-post-list [posts]="posts" [userRequest]="userRequested" [currentUser]="userLoggedIn"></app-post-list>
+          </ng-container>
+
+          <ng-container *ngIf="posts.length === 0">
+            <div class="card card-user">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-12 pl-1">
+                    <div class="form-group no-post-container">
+                      <h4 style="font-style: italic;">Người dùng không có bài viết nào</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
         </div>
       </div>
     </div>

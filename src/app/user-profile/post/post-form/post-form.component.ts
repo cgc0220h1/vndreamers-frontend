@@ -29,7 +29,6 @@ export class PostFormComponent implements OnInit {
   status: FormControl;
 
   @Input() currentUser: IUser;
-  @Input() userRequest: IUser;
 
   @Output() whenClickPostButton = new EventEmitter<IPost>();
 
