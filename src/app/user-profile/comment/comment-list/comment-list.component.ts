@@ -13,7 +13,7 @@ export class CommentListComponent implements OnInit {
   commentOfPost: IComment[];
 
   @Input()
-  post: IPost[];
+  post: IPost;
 
   constructor() {
   }
