@@ -12,7 +12,8 @@
                             [listRequestSent]="listFriendRequestSend"
                             [listRequestReceive]="listFriendRequestReceive"
                             (acceptFriendEvent)="handleFriendEvent($event)"
-                            (denyFriendEvent)="handleDenyEvent()"
+                            (denyFriendEvent)="handleDenyFriendEvent()"
+                            (removeFriendEvent)="handleRemoveFriendEvent($event)"
                             [friendList]="friendList"></app-show-profile>
           <app-friend-list [friendList]="friendList"></app-friend-list>
         </div>

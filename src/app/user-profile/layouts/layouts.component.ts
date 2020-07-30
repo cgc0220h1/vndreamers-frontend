@@ -88,9 +88,13 @@ export class LayoutsComponent implements OnInit {
     }
   }
 
-  handleDenyEvent(): void {
+  handleDenyFriendEvent(): void {
     this.friendService.getUserRequest().subscribe(next => {
       this.listFriendRequestReceive = next;
     });
+  }
+
+  handleRemoveFriendEvent(): void {
+    this.friendList = this.friendList.filter(currentFriend => currentFriend.id !== this.userLoggedIn.id);
   }
 }

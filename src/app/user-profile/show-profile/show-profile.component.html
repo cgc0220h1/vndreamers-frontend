@@ -43,6 +43,7 @@
         </ng-container>
         <ng-container *ngIf="isFriend">
           <button mat-raised-button color="primary" disabled>Bạn bè</button>
+          <button mat-raised-button color="warn" style="margin-left: 10px" (click)="removeFriend()">Xoá bạn bè</button>
         </ng-container>
       </ng-container>
       <!--      <div class="card-footer">-->
