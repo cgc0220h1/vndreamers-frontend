@@ -18,8 +18,7 @@ export class AdminGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (localStorage.getItem('access_token') !== null
-      && this.authService.isAdminLoggedIn
-      && this.authService.isAuthenticated) {
+      && localStorage.getItem('role') === 'ROLE_ADMIN') {
       this.snackBar.open('Chào mừng admin quay trở lại!', '', {
         duration: 2500
       });
