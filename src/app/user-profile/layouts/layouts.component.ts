@@ -26,6 +26,8 @@ export class LayoutsComponent implements OnInit {
   otherFriendList: IUser[] = [];
   currentFriendList: IUser[] = [];
   listFriendRequestSend: IUser[] = [];
+  isPostLoaded = false;
+  isFriendListLoaded = false;
 
   constructor(private authService: AuthService,
               private activatedRoute: ActivatedRoute,
@@ -55,9 +57,11 @@ export class LayoutsComponent implements OnInit {
         this.userRequested = user;
         this.postService.getPostsOtherUser(this.userRequested.id).subscribe(posts => {
           this.posts = posts;
+          this.isPostLoaded = true;
         });
         this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
           this.otherFriendList = friends;
+          this.isFriendListLoaded = true;
         });
       });
     });
