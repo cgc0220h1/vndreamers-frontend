@@ -27,7 +27,6 @@ export class PostFormComponent implements OnInit {
 
   postForm: FormGroup;
   status: FormControl;
-  imageLink = new Subject();
 
   @Input() currentUser: IUser;
   @Input() userRequest: IUser;
@@ -40,6 +39,7 @@ export class PostFormComponent implements OnInit {
   currentImageUpload: FileUpload;
   percentage: number;
   url: string | ArrayBuffer = '';
+  isShowProgressBar = false;
 
   ngOnInit(): void {
     this.status = new FormControl();
@@ -57,7 +57,6 @@ export class PostFormComponent implements OnInit {
     this.uploadFileService.uploadSubject.subscribe(downloadUrl => {
       this.postForm.value.image = downloadUrl;
       this.postService.createPost(this.postForm.value).subscribe(result => {
-        console.log(result);
         this.snackBar.open('Post bài thành công', '', {
           duration: 2500
         });
@@ -65,16 +64,11 @@ export class PostFormComponent implements OnInit {
         this.url = '';
         this.postForm.reset();
         this.postForm.get('status').setValue('1');
-      }, error => {
+      }, () => {
         this.snackBar.open('Post bài không thành công', '', {
           duration: 2500
         });
-        console.log(error);
       });
-    }, error => {
-      console.log(error);
-    }, () => {
-      console.log(this.postForm.value.image);
     });
 
     if (this.postForm.valid) {
@@ -82,10 +76,15 @@ export class PostFormComponent implements OnInit {
         this.uploadFileService.uploadSubject.next('');
         this.uploadFileService.uploadSubject = new Subject();
       } else {
+        this.isShowProgressBar = true;
         this.upload().subscribe(next => {
-          console.log(next);
-        }, error => {
-          console.log(error);
+          this.percentage = Math.round(next * 100) / 100;
+        }, () => {
+          this.snackBar.open('Có lỗi xảy ra', '', {
+            duration: 2500
+          });
+        }, () => {
+          this.isShowProgressBar = false;
         });
       }
 

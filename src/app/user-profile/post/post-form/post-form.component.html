@@ -40,6 +40,24 @@
             </div>
           </div>
         </div>
+        <ng-container *ngIf="isShowProgressBar">
+        <div class="row">
+          <div class="col-md-12 pl-1">
+            <div class="form-group">
+              <section class="example-section">
+                <mat-progress-bar
+                  class="example-margin"
+                  color="primary"
+                  mode="determinate"
+                  [value]="percentage">
+                </mat-progress-bar>
+                <hr>
+                <span>{{percentage}}%</span>
+              </section>
+            </div>
+          </div>
+        </div>
+        </ng-container>
         <hr>
         <!--            Hien thi anh-->
         <div class="row">

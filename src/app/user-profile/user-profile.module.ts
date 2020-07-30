@@ -33,6 +33,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { FriendSingleComponent } from './friend/friend-single/friend-single.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -52,28 +53,29 @@ import {MatMenuModule} from '@angular/material/menu';
     FriendRequestSingleComponent,
     FriendSingleComponent,
   ],
-    imports: [
-        CommonModule,
-        UserProfileRoutingModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatCardModule,
-        MatTabsModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-        MatRadioModule,
-        MatDatepickerModule,
-        FormsModule,
-        NgbModule,
-        SharedModule,
-        FlexModule,
-        MatIconModule,
-        MatSnackBarModule,
-        MatSelectModule,
-        MatChipsModule,
-        MatDialogModule,
-        MatMenuModule
-    ]
+  imports: [
+    CommonModule,
+    UserProfileRoutingModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatTabsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    FormsModule,
+    NgbModule,
+    SharedModule,
+    FlexModule,
+    MatIconModule,
+    MatSnackBarModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatProgressBarModule
+  ]
 })
 export class UserProfileModule {
 }
