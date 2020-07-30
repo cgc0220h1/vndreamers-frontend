@@ -1,0 +1,41 @@
+<div class="row justify-content-between">
+  <h2 style="margin-bottom: 20px; margin-top: 20px">List User</h2>
+  <div class="d-flex">
+    <input type="text" class="form-control mr-3" style="width: 400px;" placeholder="tim kiem theo ten">
+    <button class="btn btn-outline-success">Search</button>
+  </div>
+</div>
+<div class="row">
+  <table class="table mt-4 table-striped" style="font-size: 12px; text-align: center">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>User Name</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.id}}</td>
+      <td>{{user.first_name}}</td>
+      <td>{{user.last_name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.username}}</td>
+      <td style="width: 30%">
+        <button class="btn btn-sm btn-success mr-3" [routerLink]="['/admin/:username/view', user.id]"><i class="fa fa-eye" aria-hidden="true"></i></button>
+        <button class="btn btn-sm btn-warning mr-3"  routerLink="#"><i class="fa fa-unlock-alt" aria-hidden="true"></i></button>
+        <button class="btn btn-sm btn-danger"  routerLink="#"><i class="fa fa-trash" aria-hidden="true"></i></button>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
