@@ -7,7 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {PostService} from '../../../service/post.service';
 import {IReaction} from '../../../model/reaction';
-import {EditStatusDialogComponent} from "../../dialog/edit-status-dialog/edit-status-dialog.component";
+import {EditStatusDialogComponent} from '../../dialog/edit-status-dialog/edit-status-dialog.component';
 
 @Component({
   selector: 'app-post-single',
@@ -179,8 +179,10 @@ export class PostSingleComponent implements OnInit {
   changeContent(): void {
     this.postData.content = document.getElementById('content')['value'];
     this.postService.updatePost(this.postData).subscribe(result => {
-      console.log('update thanh cong');
       this.toggleForm();
+      this.snackBar.open('Đổi nội dung thành công', '', {
+        duration: 2500
+      });
     }, error => {
       console.log('update content error !');
     });
@@ -201,16 +203,13 @@ export class PostSingleComponent implements OnInit {
             this.snackBar.open('Đổi trạng thái thành công', '', {
               duration: 2500
             });
-            console.log('Đổi trạng thái thành công');
-            this.status = post.status;
-            if (this.status === 1) {
+            if (this.postData.status === 1) {
               this.status = 'language';
-            } else if (this.status === 2) {
+            } else if (this.postData.status === 2) {
               this.status = 'people_alt';
             } else {
               this.status = 'lock';
             }
-            console.log(this.postData);
           });
           break;
         case 'cancel':
