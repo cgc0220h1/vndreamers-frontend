@@ -1,4 +1,4 @@
-<ng-container *ngIf="commentOfPost.length !== 0">
+<ng-container *ngIf="commentOfPost.length > 0">
   <ng-container *ngFor="let comment of commentOfPost">
     <app-comment-single [comment]="comment" (deleteCommentEvent)="removeComment($event)"></app-comment-single>
   </ng-container>

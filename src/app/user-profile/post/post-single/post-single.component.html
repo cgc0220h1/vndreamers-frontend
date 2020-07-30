@@ -77,14 +77,6 @@
           <br>
           <button mat-raised-button color="primary" (click)="changeContent()">Cập nhật</button>
           <button mat-raised-button color="warn" style="margin-left: 10px" (click)="toggleForm()">Quay lại</button>
-          <mat-form-field appearance="outline" style="float: right">
-            <mat-label>Tuỳ chọn</mat-label>
-            <mat-select [(value)]="postData.status">
-              <mat-option value="1">Công Khai</mat-option>
-              <mat-option value="2">Với Bạn Bè</mat-option>
-              <mat-option value="3">Chỉ Mình Tôi</mat-option>
-            </mat-select>
-          </mat-form-field>
         </ng-container>
         <ng-container *ngIf="!toggleEditForm">
           <p style="margin-left: 10px; font-size: 20px; font-weight: bold">{{postData.content}}</p>
