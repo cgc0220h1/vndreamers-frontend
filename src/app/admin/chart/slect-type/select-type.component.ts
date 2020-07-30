@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-select-type',
@@ -13,7 +14,7 @@ export class SelectTypeComponent implements OnInit {
     end: new FormControl()
   });
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
@@ -28,6 +29,6 @@ export class SelectTypeComponent implements OnInit {
   }
 
   showChartToday(): void {
-
+    this.router.navigateByUrl('admin/chart/today').then(r => console.log(r));
   }
 }

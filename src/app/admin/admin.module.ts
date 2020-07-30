@@ -16,10 +16,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { UserDoughnutChartComponent } from './chart/user-doughnut-chart/user-doughnut-chart.component';
 
 
 @NgModule({
-  declarations: [LayoutComponent, UserManagerComponent, UserProfileComponent, UserBarChartComponent, SelectTypeComponent],
+  declarations: [LayoutComponent, UserManagerComponent, UserProfileComponent, UserBarChartComponent, SelectTypeComponent, UserDoughnutChartComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

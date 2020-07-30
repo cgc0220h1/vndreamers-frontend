@@ -5,6 +5,7 @@ import {UserManagerComponent} from './user-manager/user-manager.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {UserBarChartComponent} from './chart/user-bar-chart/user-bar-chart.component';
 import {SelectTypeComponent} from './chart/slect-type/select-type.component';
+import {UserDoughnutChartComponent} from './chart/user-doughnut-chart/user-doughnut-chart.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
           {
             path: 'result',
             component: UserBarChartComponent
+          },
+          {
+            path: 'today',
+            component: UserDoughnutChartComponent
           }
         ]
       }
