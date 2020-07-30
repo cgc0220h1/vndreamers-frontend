@@ -40,12 +40,9 @@ export class UserService {
     return this.httpClient.get<IUser>(`${apiSource}/api/admin/users/${id}`);
   }
 
-  blockUser(id: number): Observable<IUser> {
-    return this.httpClient.delete<IUser>(`${apiSource}/api/admin/users/block/${id}`);
+  blocActiveUser(user: IUser): Observable<IUser> {
+    return this.httpClient.put<IUser>(`${apiSource}/api/admin/users/status`, user);
   }
 
-  activeUser(id: number): Observable<IUser> {
-    return this.httpClient.delete<IUser>(`${apiSource}/api/admin/users/active/${id}`);
-  }
 
 }

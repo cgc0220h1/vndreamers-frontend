@@ -1,7 +1,7 @@
 <div class="row justify-content-between">
   <h2 style="margin-bottom: 20px; margin-top: 20px">List User</h2>
   <div class="d-flex">
-    <input type="text" class="form-control mr-3" style="width: 400px;" placeholder="tim kiem theo ten">
+    <input type="text" class="form-control mr-3" style="width: 400px;" placeholder="tim kiem theo ten"  [(ngModel)]="term">
     <button class="btn btn-outline-success">Search</button>
   </div>
 </div>
@@ -18,7 +18,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of users">
+    <tr *ngFor="let user of users | filter:term">
       <td>{{user.id}}</td>
       <td>{{user.first_name}}</td>
       <td>{{user.last_name}}</td>
@@ -26,9 +26,9 @@
       <td>{{user.username}}</td>
       <td style="width: 20%">
         <button class="btn btn-success fa fa-eye mr-3" [routerLink]="['/admin/:username/view', user.id]" style="font-size: 20px; cursor: pointer"></button>
-        <button *ngIf="user.status == 1" class="btn btn-danger fa fa-lock text-black-50" (click)="blockUser(+user.id)"
+        <button *ngIf="user.status == 1" class="btn btn-danger fa fa-lock text-black-50" (click)="blockUser(user)"
               style="font-size: 20px; cursor: pointer"></button>
-        <button *ngIf="user.status == 0" class="btn btn-warning fa fa-unlock text-black-50" (click)="activeUser(+user.id)"
+        <button *ngIf="user.status == 0" class="btn btn-warning fa fa-unlock text-black-50" (click)="activeUser(user)"
               style="font-size: 20px; cursor: pointer"></button>
       </td>
     </tr>

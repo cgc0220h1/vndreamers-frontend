@@ -9,6 +9,7 @@ import {AuthService} from '../../service/auth.service';
   styleUrls: ['./user-manager.component.scss']
 })
 export class UserManagerComponent implements OnInit {
+  term: string;
 
   users: IUser[];
   admin: IUser;
@@ -25,20 +26,22 @@ export class UserManagerComponent implements OnInit {
     });
   }
 
-  blockUser(id: number): void {
+  blockUser(user: IUser): void {
+    user.status =  0;
     if (confirm('Do you really want to block ?')) {
-      this.userService.blockUser(id).subscribe(() => {
+      this.userService.blocActiveUser(user).subscribe(result => {
         console.log('block ok');
-        this.userService.getAllUser().subscribe(result => {
-          this.users = result;
+        this.userService.getAllUser().subscribe(result2 => {
+          this.users = result2;
         });
       }, error => console.log(error));
     }
   }
 
-  activeUser(id: number): void {
+  activeUser(user: IUser): void {
+    user.status = 1;
     if (confirm('Do you really want to unblock ?')) {
-      this.userService.activeUser(id).subscribe(() => {
+      this.userService.blocActiveUser(user).subscribe(result => {
         console.log('active ok');
         this.userService.getAllUser().subscribe(result1 => {
          this.users = result1;
