@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, Subject} from 'rxjs';
+import {Observable} from 'rxjs';
 import {IPost} from '../model/Post';
 import {environment} from '../../environments/environment';
 import {IComment} from '../model/comment';
@@ -15,13 +15,11 @@ const apiUrl = environment.apiSource;
 })
 export class PostService {
 
-  shouldRefresh = new Subject<any>();
-
   constructor(private http: HttpClient) {
   }
 
   getPosts(): Observable<IPost[]> {
-    return this.http.get<IPost[]>(`${apiUrl}/api/admin/posts`);
+    return this.http.get<IPost[]>(`${apiUrl}/api/posts`);
   }
 
   getPostsOtherUser(id: number): Observable<IPost[]> {
