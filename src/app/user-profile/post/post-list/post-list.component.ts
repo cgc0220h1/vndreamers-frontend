@@ -14,18 +14,10 @@ export class PostListComponent implements OnInit, OnChanges {
   @Input() userRequest: IUser;
   @Input() currentUser: IUser;
 
-  constructor(private postService: PostService) {
+  constructor() {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.postService.getPosts().subscribe(next => {
-      console.log(next);
-      this.posts = next;
-    }, error => {
-      console.log(error);
-    }, () => {
-      console.log('complete');
-    });
   }
 
   ngOnInit(): void {

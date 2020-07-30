@@ -1,11 +1,12 @@
 <div class="container-fluid px-0" style="height: 100vh">
-  <nav class="navbar navbar-expand-sm navbar-dark rounded" style="height: 10%; background-color: dodgerblue; margin-bottom: 0px !important;">
+  <nav class="navbar navbar-expand-sm navbar-dark rounded"
+       style="height: 10%; background-color: dodgerblue; margin-bottom: 0px !important;">
     <!-- Brand -->
     <h1 class="navbar-brand" style="margin-top: 2%">VNDREAMERS</h1>
     <!-- Links -->
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-<!--        <a class="nav-link" routerLink="/admin">{{admin.value.username}}</a>-->
+        <!--        <a class="nav-link" routerLink="/admin">{{admin.value.username}}</a>-->
         <a class="nav-link" href="#"><i class="fa fa-facebook"></i>Facebook</a>
       </li>
       <li class="nav-item">
@@ -23,7 +24,7 @@
         <p class="list-group-item list-group-item-action active">Dasboard</p>
         <div class="list-group-item list-group-item-action">
           <img src="./assets/img/user.png" width="20" alt="">
-          <a routerLink="/admin/listUser" >
+          <a [routerLink]="['listUser']">
             User Manager
           </a>
         </div>
