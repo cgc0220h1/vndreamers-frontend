@@ -64,11 +64,11 @@ export class PostFormComponent implements OnInit {
   //   }
   // }
 
-  async onSubmit(): promises {
+  onSubmit(): promises {
 
     if (this.imageFile !== undefined) {
-      upload: any = this.upload();
-       setValue: any() = this.setDefaultValue();
+      this.upload();
+      this.setDefaultValue();
     }
     this.postForm.markAllAsTouched();
     if (this.postForm.valid) {
