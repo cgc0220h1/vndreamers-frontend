@@ -15,4 +15,9 @@ export class CommentListComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  removeComment(comment: any): void {
+    console.log(comment);
+    this.commentOfPost = this.commentOfPost.filter(currentComment => currentComment.id !== comment.id);
+  }
 }
