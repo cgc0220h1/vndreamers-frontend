@@ -11,7 +11,7 @@ import {AuthService} from '../../service/auth.service';
 export class UserManagerComponent implements OnInit {
 
   users: IUser[];
-
+  admin: IUser;
 
   constructor(private userService: UserService,
               private authService: AuthService) { }
