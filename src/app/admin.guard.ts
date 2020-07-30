@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthService} from './service/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -17,14 +17,11 @@ export class AdminGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (localStorage.getItem('access_token') !== null && localStorage.getItem('role') === 'ROLE_ADMIN') {
-      this.snackBar.open('Chào mừng bạn quay trở lại!', '', {
-        duration: 1000
-      });
-      return true;
-    } else if (this.authService.isAuthenticated && localStorage.getItem('role') === 'ROLE_ADMIN') {
-      this.snackBar.open('Đang chuyển trang!', '', {
-        duration: 1000
+    if (localStorage.getItem('access_token') !== null
+      && this.authService.isAdminLoggedIn
+      && this.authService.isAuthenticated) {
+      this.snackBar.open('Chào mừng admin quay trở lại!', '', {
+        duration: 2500
       });
       return true;
     } else {
