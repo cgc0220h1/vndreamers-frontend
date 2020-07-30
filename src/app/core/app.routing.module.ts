@@ -10,14 +10,15 @@ const routes: Routes = [
     loadChildren: () => import('../auth/auth.module').then(m => m.AuthModule),
   },
   {
+    path: 'admin',
+    loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule),
+    canActivate: [AdminGuard],
+    pathMatch: 'full'
+  },
+  {
     path: ':username',
     loadChildren: () => import('../user-profile/user-profile.module').then(m => m.UserProfileModule),
     canActivate: [AuthGuard]
-  },
-  {
-    path: 'admin/:name',
-    loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule),
-    canActivate: [AdminGuard]
   }
 ];
 

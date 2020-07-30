@@ -17,24 +17,13 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (localStorage.getItem('access_token') !== null && localStorage.getItem('role') === 'ROLE_USER') {
-      this.snackBar.open('Chào mừng bạn quay trở lại!', '', {
-        duration: 1000
-      });
-      return true;
-    } else if (this.authService.isAuthenticated && localStorage.getItem('role') === 'ROLE_USER') {
-      this.snackBar.open('Đang chuyển trang!', '', {
-        duration: 1000
-      });
-      return true;
-    } else if (localStorage.getItem('access_token') !== null && localStorage.getItem('role') === 'ROLE_ADMIN') {
-      this.snackBar.open('Đang chuyển trang!!', '', {
-        duration: 1000
-      });
-      return true;
-    } else if (this.authService.isAuthenticated && localStorage.getItem('role') === 'ROLE_ADMIN') {
-      this.snackBar.open('Đang chuyển trang!', '', {
-        duration: 1000
+    if (localStorage.getItem('access_token') !== null) {
+      this.authService.currentUserSubject.subscribe(result => {
+        if (result.username === next.params.username) {
+          this.snackBar.open(`Chào mừng ${result.username} quay trở lại!`, '', {
+            duration: 2500
+          });
+        }
       });
       return true;
     } else {

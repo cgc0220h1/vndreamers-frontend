@@ -14,6 +14,7 @@ export class AuthService {
 
   public currentUserSubject = new BehaviorSubject<IUser>(null);
   isAuthenticated = false;
+  isAdminLoggedIn = false;
 
   constructor(private httpClient: HttpClient) {
   }

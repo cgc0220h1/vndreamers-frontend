@@ -58,15 +58,13 @@ export class FormLoginComponent implements OnInit {
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(response => {
       if (response.roles[0].role_name === 'ROLE_ADMIN') {
         this.authService.currentUserSubject.next(response.user);
-        this.name = response.user.username;
         this.authService.isAuthenticated = true;
-        // this.authService.shouldRefresh.next(response.user);
-        this.router.navigateByUrl('admin/' + this.name).then(r => console.log(r));
+        this.authService.isAdminLoggedIn = true;
+        this.router.navigateByUrl('/admin').then(r => console.log(r));
       } else {
         this.authService.currentUserSubject.next(response.user);
         this.username = response.user.username;
         this.authService.isAuthenticated = true;
-        // this.authService.shouldRefresh.next(response.user);
         this.router.navigateByUrl(this.username).then(r => console.log(r));
       }
     }, error => {
