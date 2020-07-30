@@ -8,6 +8,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {PostService} from '../../../service/user/post.service';
 import {IReaction} from '../../../model/reaction';
 import {EditStatusDialogComponent} from '../../dialog/edit-status-dialog/edit-status-dialog.component';
+import {FileUpload} from '../../../model/upload-file';
+import {UploadFileService} from '../../../service/public/upload-file.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-post-single',
@@ -23,6 +26,11 @@ export class PostSingleComponent implements OnInit {
   toggleCommentList = false;
   isLikePost = false;
   toggleEditForm = false;
+  file: any;
+  imageFile: any;
+  selectedImage: FileList;
+  imageToUpload: FileUpload;
+  imageUrl: string;
 
   @Input()
   postData: IPost;
@@ -37,10 +45,13 @@ export class PostSingleComponent implements OnInit {
   deletePostEvent = new EventEmitter();
 
   status: string;
+  isShowProgressBar = false;
+  percentage: number;
 
   constructor(private dialog: MatDialog,
               private snackBar: MatSnackBar,
-              private postService: PostService) {
+              private postService: PostService,
+              private uploadFileService: UploadFileService) {
   }
 
   ngOnInit(): void {
@@ -51,6 +62,7 @@ export class PostSingleComponent implements OnInit {
     } else {
       this.status = 'lock';
     }
+    this.imageUrl = this.postData.image;
     // this.postService.getReaction(this.postData.id).subscribe(next => {
     //   this.reactionList = next.filter(currentReaction => currentReaction.status === 1);
     //   this.numberOfReaction = this.reactionList.length;
@@ -219,5 +231,49 @@ export class PostSingleComponent implements OnInit {
           });
       }
     });
+  }
+
+  uploadImage(event): void {
+    const temp = this.imageUrl;
+    this.imageUrl = '';
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage = event.target.files;
+      this.isShowProgressBar = true;
+
+      this.upload().subscribe(next => {
+        this.percentage = Math.round(next * 100) / 100;
+      }, () => {
+        this.snackBar.open('Có lỗi xảy ra', '', {
+          duration: 2500
+        });
+      });
+
+      this.uploadFileService.uploadSubject.subscribe((downloadUrl: string) => {
+        this.postData.image = downloadUrl;
+        this.postService.updatePost(this.postData).subscribe(result => {
+          this.snackBar.open('Đổi nội dung thành công', '', {
+            duration: 2500
+          });
+          this.imageUrl = result.image;
+        }, error => {
+          console.log(error);
+          this.snackBar.open('Có lỗi xảy ra', '', {
+            duration: 2500
+          });
+          this.imageUrl = temp;
+        }, () => {
+          this.isShowProgressBar = false;
+        });
+      });
+    }
+  }
+
+  upload(): Observable<any> {
+    this.imageFile = this.selectedImage.item(0);
+    this.selectedImage = undefined;
+    this.imageToUpload = new FileUpload(this.imageFile);
+    return this.uploadFileService.pushFileToStorage(this.imageToUpload);
   }
 }
