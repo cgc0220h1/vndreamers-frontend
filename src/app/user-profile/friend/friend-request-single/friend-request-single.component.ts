@@ -41,7 +41,7 @@ export class FriendRequestSingleComponent implements OnInit {
   }
 
   denyRequest(): void {
-    this.friendService.denyRequest(this.friendRequest.id).subscribe(next => {
+    this.friendService.removeFriendship(this.friendRequest.id).subscribe(next => {
       console.log(next);
       this.denyRequestEvent.emit(this.friendRequest);
       this.snackBar.open(`Bạn đã huỷ yêu cầu kết bạn`, '', {

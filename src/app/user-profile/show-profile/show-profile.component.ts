@@ -6,6 +6,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {UserService} from '../../service/user.service';
 import {EditProfileDialogComponent} from '../dialog/edit-profile-dialog/edit-profile-dialog.component';
 import {FriendService} from '../../service/friend.service';
+import {DeleteDialogComponent} from '../dialog/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-show-profile',
@@ -37,6 +38,9 @@ export class ShowProfileComponent implements OnInit, OnChanges {
 
   @Output()
   denyFriendEvent = new EventEmitter();
+
+  @Output()
+  removeFriendEvent = new EventEmitter();
 
   isUserReceivedRequest = false;
   isUserSentRequest = false;
@@ -99,7 +103,7 @@ export class ShowProfileComponent implements OnInit, OnChanges {
 
   handleOutgoingRequest(): void {
     if (this.isUserReceivedRequest) {
-      this.friendService.denyRequest(this.userRequest.id).subscribe(next => {
+      this.friendService.removeFriendship(this.userRequest.id).subscribe(next => {
         this.snackBar.open('Huỷ yêu cầu thành công', '', {
           duration: 2500
         });
@@ -131,7 +135,7 @@ export class ShowProfileComponent implements OnInit, OnChanges {
         });
         break;
       case 'deny':
-        this.friendService.denyRequest(this.userRequest.id).subscribe(next => {
+        this.friendService.removeFriendship(this.userRequest.id).subscribe(next => {
           this.snackBar.open('Huỷ yêu cầu thành công', '', {
             duration: 2500
           });
@@ -141,5 +145,33 @@ export class ShowProfileComponent implements OnInit, OnChanges {
         });
         break;
     }
+  }
+
+  removeFriend(): void {
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: {
+        title: `Bạn có muốn xoá <strong>${this.userRequest.first_name} ${this.userRequest.last_name}</strong> <br> khỏi danh sách bạn bè ?`,
+        label: `Xoá ${this.userRequest.first_name} ${this.userRequest.last_name}`
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      switch (result) {
+        case 'delete':
+          this.friendService.removeFriendship(this.userRequest.id).subscribe(next => {
+            this.snackBar.open('Xoá bạn bè thành công', '', {
+              duration: 2500
+            });
+            this.isFriend = false;
+            this.isUserSentRequest = false;
+          });
+          this.removeFriendEvent.emit();
+          break;
+        case 'cancel':
+          this.snackBar.open('Huỷ thao tác', '', {
+            duration: 2500
+          });
+          break;
+      }
+    });
   }
 }

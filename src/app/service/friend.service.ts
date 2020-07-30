@@ -31,7 +31,7 @@ export class FriendService {
     return this.http.put<IFriendRequest>(`${apiUrl}/api/friends`, friendRequest);
   }
 
-  denyRequest(id: number): Observable<IFriendRequest> {
+  removeFriendship(id: number): Observable<IFriendRequest> {
     return this.http.delete<IFriendRequest>(`${apiUrl}/api/friends/${id}`);
   }
 
