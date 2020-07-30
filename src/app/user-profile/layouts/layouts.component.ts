@@ -20,11 +20,11 @@ export class LayoutsComponent implements OnInit {
 
   userRequested: IUser;
   username: string;
-  posts: IPost[];
+  posts: IPost[] = [];
   userLoggedIn: IUser;
   listFriendRequestReceive: IUser[] = [];
-  otherFriendList: IUser[];
-  currentFriendList: IUser[];
+  otherFriendList: IUser[] = [];
+  currentFriendList: IUser[] = [];
   listFriendRequestSend: IUser[] = [];
 
   constructor(private authService: AuthService,
