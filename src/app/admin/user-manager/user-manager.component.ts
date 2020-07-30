@@ -27,8 +27,8 @@ export class UserManagerComponent implements OnInit {
   }
 
   blockUser(user: IUser): void {
-    user.status =  0;
-    if (confirm('Do you really want to block ?')) {
+    user.status = 0;
+    if (confirm('Do you really want to block this user?')) {
       this.userService.blocActiveUser(user).subscribe(result => {
         console.log('block ok');
         this.userService.getAllUser().subscribe(result2 => {
@@ -40,7 +40,7 @@ export class UserManagerComponent implements OnInit {
 
   activeUser(user: IUser): void {
     user.status = 1;
-    if (confirm('Do you really want to unblock ?')) {
+    if (confirm('Do you really want to unblock this user?')) {
       this.userService.blocActiveUser(user).subscribe(result => {
         console.log('active ok');
         this.userService.getAllUser().subscribe(result1 => {
