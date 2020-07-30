@@ -1,0 +1,50 @@
+<div class="container-fluid px-0" style="height: 100vh">
+  <nav class="navbar navbar-expand-sm navbar-dark rounded" style="height: 10%; background-color: blue; margin-bottom: 0px !important;">
+    <!-- Brand -->
+    <h1 class="navbar-brand" style="margin-top: 2%">VNDREAMERS</h1>
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+<!--        <a class="nav-link" routerLink="/admin">{{admin.value.username}}</a>-->
+        <a class="nav-link" href="#">Link 1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 2</a>
+      </li>
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+          Dropdown link
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Link 1</a>
+          <a class="dropdown-item" href="#">Link 2</a>
+          <a class="dropdown-item" href="#">Link 3</a>
+        </div>
+      </li>
+      <li class="nav-item" style="float: left">
+        <app-log-out-btn></app-log-out-btn>
+      </li>
+    </ul>
+  </nav>
+  <!--  Chia giao dien ra 2 cot sidebar vs hien thi noi dung.-->
+  <div class="row px-0 mx-0" style="height: 90%">
+    <div class="col-2 px-0">
+      <div class="list-group border border-primary rounded h-100">
+        <p class="list-group-item list-group-item-action active">Dasboard</p>
+        <div class="list-group-item list-group-item-action">
+          <img src="./assets/img/user.png" width="20" alt="">
+          <a routerLink="/admin/:name/listUser" >
+            User Manager
+          </a>
+        </div>
+
+
+        <!--        <a href="#" class="list-group-item list-group-item-action">Third item</a>-->
+      </div>
+    </div>
+    <div class="col-10 p-5">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

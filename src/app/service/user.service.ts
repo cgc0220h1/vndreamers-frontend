@@ -31,4 +31,18 @@ export class UserService {
   getByUsername(username: string): Observable<IUser> {
     return this.httpClient.get<IUser>(`${apiSource}/api/users/${username}`);
   }
+
+  getAllUser(): Observable<IUser[]> {
+    return this.httpClient.get<IUser[]>(`${apiSource}/api/admin/users`);
+  }
+
+  getUserById(id: number): Observable<IUser> {
+    return this.httpClient.get<IUser>(`${apiSource}/api/admin/users/${id}`);
+  }
+
+  blocActiveUser(user: IUser): Observable<IUser> {
+    return this.httpClient.put<IUser>(`${apiSource}/api/admin/users/status`, user);
+  }
+
+
 }
