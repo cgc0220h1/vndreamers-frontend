@@ -21,7 +21,7 @@ export class PostService {
   }
 
   getPosts(): Observable<IPost[]> {
-    return this.http.get<IPost[]>(`${apiUrl}/api/posts`);
+    return this.http.get<IPost[]>(`${apiUrl}/api/admin/posts`);
   }
 
   getPostsOtherUser(id: number): Observable<IPost[]> {
