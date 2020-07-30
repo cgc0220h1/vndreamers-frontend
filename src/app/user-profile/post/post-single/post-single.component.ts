@@ -44,11 +44,11 @@ export class PostSingleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.postData.status === 1){
+    if (this.postData.status === 1) {
       this.status = 'language';
-    }else if (this.postData.status === 2) {
+    } else if (this.postData.status === 2) {
       this.status = 'people_alt';
-    }else {
+    } else {
       this.status = 'lock';
     }
     this.postService.getReaction(this.postData.id).subscribe(next => {
@@ -202,6 +202,14 @@ export class PostSingleComponent implements OnInit {
               duration: 2500
             });
             console.log('Đổi trạng thái thành công');
+            this.status = post.status;
+            if (this.status === 1) {
+              this.status = 'language';
+            } else if (this.status === 2) {
+              this.status = 'people_alt';
+            } else {
+              this.status = 'lock';
+            }
             console.log(this.postData);
           });
           break;
