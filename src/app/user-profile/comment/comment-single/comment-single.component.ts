@@ -5,6 +5,8 @@ import {CommentService} from '../../../service/comment.service';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {IPost} from '../../../model/Post';
+import {IUser} from '../../../model/User';
+import {UserService} from '../../../service/user.service';
 
 @Component({
   selector: 'app-comment-single',
@@ -17,13 +19,16 @@ export class CommentSingleComponent implements OnInit {
   @Input()
   post: IPost;
   toggleEditFormComment = false;
+  currentUser: IUser;
 
   constructor(private commentService: CommentService,
               private dialog: MatDialog,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private  userService: UserService) {
   }
 
   ngOnInit(): void {
+    this.currentUser = this.userService.getUserLoggedIn();
   }
 
   toggleForm(): void {
@@ -70,7 +75,7 @@ export class CommentSingleComponent implements OnInit {
   changeContent(): void {
     this.comment.content = document.getElementById('content')['value'];
     console.log(this.comment);
-    this.commentService.updateComment( this.post.id, this.comment).subscribe(result => {
+    this.commentService.updateComment(this.post.id, this.comment).subscribe(result => {
       this.toggleForm();
       this.snackBar.open('Đổi nội dung thành công', '', {
         duration: 2500

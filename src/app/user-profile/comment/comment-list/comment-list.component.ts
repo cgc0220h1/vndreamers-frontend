@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IComment} from '../../../model/comment';
 import {IPost} from '../../../model/Post';
+import {IUser} from '../../../model/User';
 
 @Component({
   selector: 'app-comment-list',
