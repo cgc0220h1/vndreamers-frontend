@@ -19,31 +19,33 @@
         <button mat-raised-button color="primary" (click)="openEditProfileDialog()">Cập nhật thông tin</button>
       </ng-container>
       <ng-container *ngIf="currentUser.id !== userRequest.id">
-        <ng-container *ngIf="!isUserReceivedRequest && !isUserSentRequest && !isFriend">
-          <button mat-raised-button color="primary" (click)="handleOutgoingRequest()">
-            Kết bạn
-          </button>
-        </ng-container>
-        <ng-container *ngIf="isUserReceivedRequest">
-          <button mat-raised-button color="warn" (click)="handleOutgoingRequest()">
-            Huỷ lời mời
-          </button>
-        </ng-container>
-        <ng-container *ngIf="isUserSentRequest">
-          <ng-container *ngIf="!isFriend">
-            <button mat-raised-button color="primary" (click)="handleIncomingRequest('accept')">
-              Đồng ý
-            </button>
-          </ng-container>
-          <ng-container *ngIf="!isFriend">
-            <button mat-raised-button color="warn" (click)="handleIncomingRequest('deny')" style="margin-left: 10px">
-              Từ chối
-            </button>
-          </ng-container>
-        </ng-container>
         <ng-container *ngIf="isFriend">
           <button mat-raised-button color="primary" disabled>Bạn bè</button>
           <button mat-raised-button color="warn" style="margin-left: 10px" (click)="removeFriend()">Xoá bạn bè</button>
+        </ng-container>
+        <ng-container *ngIf="!isFriend">
+          <ng-container *ngIf="isUserReceivedRequest && !isUserSentRequest">
+            <button mat-raised-button color="primary" (click)="handleOutgoingRequest()">
+              Kết bạn
+            </button>
+          </ng-container>
+          <ng-container *ngIf="isUserReceivedRequest">
+            <button mat-raised-button color="warn" (click)="handleOutgoingRequest()">
+              Huỷ lời mời
+            </button>
+          </ng-container>
+          <ng-container *ngIf="isUserSentRequest">
+            <ng-container *ngIf="!isFriend">
+              <button mat-raised-button color="primary" (click)="handleIncomingRequest('accept')">
+                Đồng ý
+              </button>
+            </ng-container>
+            <ng-container *ngIf="!isFriend">
+              <button mat-raised-button color="warn" (click)="handleIncomingRequest('deny')" style="margin-left: 10px">
+                Từ chối
+              </button>
+            </ng-container>
+          </ng-container>
         </ng-container>
       </ng-container>
       <!--      <div class="card-footer">-->
