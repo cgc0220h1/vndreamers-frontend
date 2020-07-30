@@ -7,20 +7,32 @@ import { UserManagerComponent } from './user-manager/user-manager.component';
 import {AuthModule} from '../auth/auth.module';
 import {MatIconModule} from '@angular/material/icon';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
-import { ChartComponent } from './chart/chart.component';
+import {ChartsModule} from 'ng2-charts';
+import { UserBarChartComponent } from './chart/user-bar-chart/user-bar-chart.component';
+import { SelectTypeComponent } from './chart/slect-type/select-type.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
-  declarations: [LayoutComponent, UserManagerComponent, UserProfileComponent, ChartComponent],
+  declarations: [LayoutComponent, UserManagerComponent, UserProfileComponent, UserBarChartComponent, SelectTypeComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
     AuthModule,
     MatIconModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    ChartsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }
