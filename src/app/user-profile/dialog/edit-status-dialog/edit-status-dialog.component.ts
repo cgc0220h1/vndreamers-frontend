@@ -3,11 +3,12 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {PostSingleComponent} from '../../post/post-single/post-single.component';
 
 @Component({
-  selector: 'app-delete-dialog',
-  templateUrl: './delete-dialog.component.html',
-  styleUrls: ['./delete-dialog.component.scss']
+  selector: 'app-edit-status-dialog',
+  templateUrl: './edit-status-dialog.component.html',
+  styleUrls: ['./edit-status-dialog.component.scss']
 })
-export class DeleteDialogComponent implements OnInit {
+export class EditStatusDialogComponent implements OnInit {
+
   title: string;
   label: string;
 
@@ -19,7 +20,5 @@ export class DeleteDialogComponent implements OnInit {
     this.title = this.data.title;
     this.label = this.data.label;
   }
-
-
 
 }

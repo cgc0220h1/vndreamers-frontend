@@ -34,6 +34,7 @@ import { FriendSingleComponent } from './friend/friend-single/friend-single.comp
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { EditStatusDialogComponent } from './dialog/edit-status-dialog/edit-status-dialog.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     FriendRequestDialogComponent,
     FriendRequestSingleComponent,
     FriendSingleComponent,
+    EditStatusDialogComponent,
   ],
   imports: [
     CommonModule,
