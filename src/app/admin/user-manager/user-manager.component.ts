@@ -25,4 +25,26 @@ export class UserManagerComponent implements OnInit {
     });
   }
 
+  blockUser(id: number): void {
+    if (confirm('Do you really want to block ?')) {
+      this.userService.blockUser(id).subscribe(() => {
+        console.log('block ok');
+        this.userService.getAllUser().subscribe(result => {
+          this.users = result;
+        });
+      }, error => console.log(error));
+    }
+  }
+
+  activeUser(id: number): void {
+    if (confirm('Do you really want to unblock ?')) {
+      this.userService.activeUser(id).subscribe(() => {
+        console.log('active ok');
+        this.userService.getAllUser().subscribe(result1 => {
+         this.users = result1;
+       });
+      }, error => console.log(error));
+    }
+  }
+
 }

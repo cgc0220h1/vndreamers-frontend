@@ -12,4 +12,5 @@ export interface IUser {
   avatar?: string;
   about_me?: string;
   username?: string;
+  status?: number;
 }
