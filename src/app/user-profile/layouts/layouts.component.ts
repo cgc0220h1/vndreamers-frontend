@@ -23,7 +23,8 @@ export class LayoutsComponent implements OnInit {
   posts: IPost[];
   userLoggedIn: IUser;
   listFriendRequestReceive: IUser[] = [];
-  friendList: IUser[];
+  otherFriendList: IUser[];
+  currentFriendList: IUser[];
   listFriendRequestSend: IUser[] = [];
 
   constructor(private authService: AuthService,
@@ -37,12 +38,17 @@ export class LayoutsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userLoggedIn = this.userService.getUserLoggedIn();
+    this.userRequested = this.userLoggedIn;
     this.friendService.getUserRequestTo().subscribe(next => {
       this.listFriendRequestSend = next;
     });
     this.friendService.getUserRequest().subscribe(next => {
       this.listFriendRequestReceive = next;
     });
+    this.friendService.getFriendList(this.userLoggedIn.id).subscribe(next => {
+      this.currentFriendList = next;
+    });
+
     this.activatedRoute.params.subscribe(params => {
       this.username = params.username;
       this.userService.getByUsername(this.username).subscribe(user => {
@@ -51,7 +57,7 @@ export class LayoutsComponent implements OnInit {
           this.posts = posts;
         });
         this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
-          this.friendList = friends;
+          this.otherFriendList = friends;
         });
       });
     });
@@ -69,7 +75,7 @@ export class LayoutsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(() => {
       this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
-        this.friendList = friends;
+        this.otherFriendList = friends;
       });
       this.friendService.getUserRequest().subscribe(next => {
         this.listFriendRequestReceive = next;
@@ -80,7 +86,7 @@ export class LayoutsComponent implements OnInit {
   handleFriendEvent(isFriend: boolean): void {
     if (isFriend) {
       this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
-        this.friendList = friends;
+        this.otherFriendList = friends;
       });
       this.friendService.getUserRequest().subscribe(next => {
         this.listFriendRequestReceive = next;
@@ -95,7 +101,7 @@ export class LayoutsComponent implements OnInit {
   }
 
   handleRemoveFriendEvent(): void {
-    this.friendList = this.friendList.filter(currentFriend => currentFriend.id !== this.userLoggedIn.id);
+    this.otherFriendList = this.otherFriendList.filter(currentFriend => currentFriend.id !== this.userLoggedIn.id);
   }
 
   updatePost(event): void {

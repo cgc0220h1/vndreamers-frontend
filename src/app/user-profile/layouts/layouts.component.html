@@ -14,8 +14,8 @@
                             (acceptFriendEvent)="handleFriendEvent($event)"
                             (denyFriendEvent)="handleDenyFriendEvent()"
                             (removeFriendEvent)="handleRemoveFriendEvent()"
-                            [friendList]="friendList"></app-show-profile>
-          <app-friend-list [friendList]="friendList"></app-friend-list>
+                            [friendList]="currentFriendList"></app-show-profile>
+          <app-friend-list [friendList]="otherFriendList"></app-friend-list>
         </div>
         <div class="col-md-8">
 

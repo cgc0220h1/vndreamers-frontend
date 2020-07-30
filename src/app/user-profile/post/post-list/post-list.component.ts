@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {IPost} from '../../../model/Post';
 import {IUser} from '../../../model/User';
 import {PostService} from '../../../service/post.service';
@@ -8,7 +8,7 @@ import {PostService} from '../../../service/post.service';
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.scss']
 })
-export class PostListComponent implements OnInit {
+export class PostListComponent implements OnInit, OnChanges {
 
   @Input() posts: IPost[];
   @Input() userRequest: IUser;
@@ -17,23 +17,18 @@ export class PostListComponent implements OnInit {
   constructor(private postService: PostService) {
   }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     this.postService.getPosts().subscribe(next => {
       console.log(next);
       this.posts = next;
-      // this.posts.reverse();
     }, error => {
       console.log(error);
     }, () => {
       console.log('complete');
     });
+  }
 
-    // this.postService.shouldRefresh.subscribe(result => {
-    //   if (result !== null) {
-    //     this.posts.unshift(result);
-    //   }
-    // });
-
+  ngOnInit(): void {
   }
 
   removePost(post: any): void {
