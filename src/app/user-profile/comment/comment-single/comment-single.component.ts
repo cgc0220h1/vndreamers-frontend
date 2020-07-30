@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IComment} from '../../../model/comment';
 import {DeleteDialogComponent} from '../../dialog/delete-dialog/delete-dialog.component';
 import {CommentService} from '../../../service/comment.service';
@@ -31,6 +31,9 @@ export class CommentSingleComponent implements OnInit {
     }
   }
 
+  @Output()
+  deleteCommentEvent = new EventEmitter();
+
   openDeletePrompt(): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       data: {
@@ -47,6 +50,7 @@ export class CommentSingleComponent implements OnInit {
             });
             console.log(comment);
             console.log('xoa binh luan thanh cong');
+            this.deleteCommentEvent.emit(comment);
           }, error => {
             console.log('delete comment error');
             console.log(error);
