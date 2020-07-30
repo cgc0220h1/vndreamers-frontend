@@ -4,6 +4,9 @@ import {DeleteDialogComponent} from '../../dialog/delete-dialog/delete-dialog.co
 import {CommentService} from '../../../service/user/comment.service';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {IPost} from '../../../model/Post';
+import {IUser} from '../../../model/User';
+import {UserService} from '../../../service/user.service';
 
 @Component({
   selector: 'app-comment-single',
@@ -13,21 +16,26 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class CommentSingleComponent implements OnInit {
   @Input()
   comment: IComment;
-  toggleEditForm = false;
+  @Input()
+  post: IPost;
+  toggleEditFormComment = false;
+  currentUser: IUser;
 
   constructor(private commentService: CommentService,
               private dialog: MatDialog,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private  userService: UserService) {
   }
 
   ngOnInit(): void {
+    this.currentUser = this.userService.getUserLoggedIn();
   }
 
   toggleForm(): void {
-    if (this.toggleEditForm) {
-      this.toggleEditForm = false;
+    if (this.toggleEditFormComment) {
+      this.toggleEditFormComment = false;
     } else {
-      this.toggleEditForm = true;
+      this.toggleEditFormComment = true;
     }
   }
 
@@ -61,6 +69,20 @@ export class CommentSingleComponent implements OnInit {
             duration: 2500
           });
       }
+    });
+  }
+
+  changeContent(): void {
+    this.comment.content = document.getElementById('content')['value'];
+    console.log(this.comment);
+    this.commentService.updateComment(this.post.id, this.comment).subscribe(result => {
+      this.toggleForm();
+      this.snackBar.open('Đổi nội dung thành công', '', {
+        duration: 2500
+      });
+      console.log('update comment ok');
+    }, error => {
+      console.log('update content error !');
     });
   }
 }

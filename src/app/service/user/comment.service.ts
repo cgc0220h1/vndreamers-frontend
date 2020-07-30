@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
@@ -11,13 +11,14 @@ const apiUrl = environment.apiSource;
 })
 export class CommentService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   deleteComment(id: number): Observable<IComment> {
     return this.http.delete<IComment>(`${apiUrl}/api/comments/${id}`);
   }
 
-  updateComment(comment: IComment): Observable<IComment> {
-    return this.http.put<IComment>(`${apiUrl}/api/comments/${comment.id}`, comment);
+  updateComment(postId: number, comment: IComment): Observable<IComment> {
+    return this.http.put<IComment>(`${apiUrl}/api/posts/${postId}/comments`, comment);
   }
 }
