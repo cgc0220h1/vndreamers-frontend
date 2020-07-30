@@ -94,7 +94,7 @@ export class LayoutsComponent implements OnInit {
     });
   }
 
-  getPost(event): void {
+  updatePost(event): void {
     this.posts.unshift(event);
   }
 }

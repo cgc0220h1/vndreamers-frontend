@@ -7,10 +7,7 @@ import {FileUpload} from '../../../model/upload-file';
 import {HttpClient} from '@angular/common/http';
 import {UploadFileService} from '../../../service/upload-file.service';
 import {IPost} from '../../../model/Post';
-import {Observable} from 'rxjs';
-
-const FRONT_LINK = 'https://firebasestorage.googleapis.com/v0/b/vndreamer-fontend.appspot.com/o/uploads%2F';
-const BACK_LINK = '?alt=media&token=00e955b1-7332-4c37-af5b-5aa8472ad1ca';
+import {Observable, Subject} from 'rxjs';
 
 @Component({
   selector: 'app-post-form',
@@ -20,12 +17,17 @@ const BACK_LINK = '?alt=media&token=00e955b1-7332-4c37-af5b-5aa8472ad1ca';
 
 
 export class PostFormComponent implements OnInit {
-  status = new FormControl();
-  postForm: FormGroup = new FormGroup({
-    status: this.status,
-    content: new FormControl('', Validators.required),
-    image: new FormControl('')
-  });
+
+  constructor(private postService: PostService,
+              private snackBar: MatSnackBar,
+              private fb: FormBuilder,
+              private http: HttpClient,
+              private uploadFileService: UploadFileService) {
+  }
+
+  postForm: FormGroup;
+  status: FormControl;
+  imageLink = new Subject();
 
   @Input() currentUser: IUser;
   @Input() userRequest: IUser;
@@ -39,42 +41,26 @@ export class PostFormComponent implements OnInit {
   percentage: number;
   url: string | ArrayBuffer = '';
 
-  constructor(private postService: PostService,
-              private snackBar: MatSnackBar,
-              private fb: FormBuilder,
-              private http: HttpClient,
-              private uploadFileService: UploadFileService) {
-  }
-
   ngOnInit(): void {
+    this.status = new FormControl();
+    this.postForm = new FormGroup({
+      status: this.status,
+      content: new FormControl('', Validators.required),
+      image: new FormControl('')
+    });
     this.postForm.get('status').setValue('1');
-    // this.postService.shouldRefresh.subscribe(result => {
-    //   this.postForm.reset();
-    // });
   }
-
-  // async asyncCall(): void {
-  //   async function asyncCall() {
-  //     console.log('calling');
-  //     const result = await resolveAfter2Seconds();
-  //     console.log(result);
-  //     // expected output: "resolved"
-  //   }
-  // }
 
   onSubmit(): void {
-
-    if (this.imageFile !== undefined) {
-      this.upload();
-      this.setImageLink();
-    }
     this.postForm.markAllAsTouched();
-    if (this.postForm.valid) {
+
+    this.uploadFileService.uploadSubject.subscribe(downloadUrl => {
+      this.postForm.value.image = downloadUrl;
       this.postService.createPost(this.postForm.value).subscribe(result => {
+        console.log(result);
         this.snackBar.open('Post bài thành công', '', {
           duration: 2500
         });
-        // this.postService.shouldRefresh.next(result);
         this.whenClickPostButton.emit(result);
         this.url = '';
         this.postForm.reset();
@@ -85,6 +71,24 @@ export class PostFormComponent implements OnInit {
         });
         console.log(error);
       });
+    }, error => {
+      console.log(error);
+    }, () => {
+      console.log(this.postForm.value.image);
+    });
+
+    if (this.postForm.valid) {
+      if (this.selectedImage === undefined) {
+        this.uploadFileService.uploadSubject.next('');
+        this.uploadFileService.uploadSubject = new Subject();
+      } else {
+        this.upload().subscribe(next => {
+          console.log(next);
+        }, error => {
+          console.log(error);
+        });
+      }
+
     } else {
       this.snackBar.open('Nội dung không được để trống!', '', {
         duration: 1000
@@ -103,28 +107,10 @@ export class PostFormComponent implements OnInit {
     this.selectedImage = event.target.files;
   }
 
-  setImageLink(): void {
-    this.postForm.value.image = FRONT_LINK + this.imageFile.name + BACK_LINK;
-  }
-
   upload(): Observable<any> {
     this.imageFile = this.selectedImage.item(0);
     this.selectedImage = undefined;
     this.currentImageUpload = new FileUpload(this.imageFile);
     return this.uploadFileService.pushFileToStorage(this.currentImageUpload);
   }
-
-  // upload(): void {
-  //   this.imageFile = this.selectedImage.item(0);
-  //   this.selectedImage = undefined;
-  //   this.currentImageUpload = new FileUpload(this.imageFile);
-  //   this.uploadFileService.pushFileToStorage(this.currentImageUpload).subscribe(
-  //     percentage => {
-  //       this.percentage = Math.round(percentage);
-  //     },
-  //     error => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
 }

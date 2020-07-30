@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-8">
           <app-post-form [currentUser]="userLoggedIn" [userRequest]="userRequested"
-                         (whenClickPostButton)="getPost($event)"></app-post-form>
+                         (whenClickPostButton)="updatePost($event)"></app-post-form>
           <app-post-list [posts]="posts" [userRequest]="userRequested" [currentUser]="userLoggedIn"></app-post-list>
         </div>
       </div>
