@@ -35,12 +35,12 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.listTitles = ROUTES.filter(listTitle => listTitle);
-    const navbar: HTMLElement = this.element.nativeElement;
-    this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
-    this.router.events.subscribe((event) => {
-      this.sidebarClose();
-    });
+    // this.listTitles = ROUTES.filter(listTitle => listTitle);
+    // const navbar: HTMLElement = this.element.nativeElement;
+    // this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+    // this.router.events.subscribe((event) => {
+    //   this.sidebarClose();
+    // });
   }
 
   getTitle(): string {
