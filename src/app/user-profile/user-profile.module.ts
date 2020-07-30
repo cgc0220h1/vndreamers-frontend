@@ -33,6 +33,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { FriendSingleComponent } from './friend/friend-single/friend-single.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
+import { EditStatusDialogComponent } from './dialog/edit-status-dialog/edit-status-dialog.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import {MatMenuModule} from '@angular/material/menu';
     FriendRequestDialogComponent,
     FriendRequestSingleComponent,
     FriendSingleComponent,
+    EditStatusDialogComponent,
   ],
     imports: [
         CommonModule,

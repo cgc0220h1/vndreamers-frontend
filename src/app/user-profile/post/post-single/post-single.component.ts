@@ -7,6 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {PostService} from '../../../service/post.service';
 import {IReaction} from '../../../model/reaction';
+import {EditStatusDialogComponent} from "../../dialog/edit-status-dialog/edit-status-dialog.component";
 
 @Component({
   selector: 'app-post-single',
@@ -35,12 +36,21 @@ export class PostSingleComponent implements OnInit {
   @Output()
   deletePostEvent = new EventEmitter();
 
+  status: string;
+
   constructor(private dialog: MatDialog,
               private snackBar: MatSnackBar,
               private postService: PostService) {
   }
 
   ngOnInit(): void {
+    if (this.postData.status === 1){
+      this.status = 'language';
+    }else if (this.postData.status === 2) {
+      this.status = 'people_alt';
+    }else {
+      this.status = 'lock';
+    }
     this.postService.getReaction(this.postData.id).subscribe(next => {
       this.reactionList = next.filter(currentReaction => currentReaction.status === 1);
       this.numberOfReaction = this.reactionList.length;
@@ -173,6 +183,33 @@ export class PostSingleComponent implements OnInit {
       this.toggleForm();
     }, error => {
       console.log('update content error !');
+    });
+  }
+
+  openEditStatusPrompt(status: number): void {
+    const dialogRef = this.dialog.open(EditStatusDialogComponent, {
+      data: {
+        title: 'Bạn có muốn đổi trạng thái ?',
+        label: 'Đổi trạng thái'
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      switch (result) {
+        case 'edit':
+          this.postData.status = status;
+          this.postService.updatePost(this.postData).subscribe(post => {
+            this.snackBar.open('Đổi trạng thái thành công', '', {
+              duration: 2500
+            });
+            console.log('Đổi trạng thái thành công');
+            console.log(this.postData);
+          });
+          break;
+        case 'cancel':
+          this.snackBar.open('Huỷ đổi trạng thái', '', {
+            duration: 2500
+          });
+      }
     });
   }
 }

@@ -7,7 +7,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-9 px-10">
+    <div class="col-md-8 px-10">
       <div class="form-group">
         <span style="font-weight: bold">{{ otherUser.first_name }}</span><span
         style="font-weight: bold"> {{ otherUser.last_name }}</span><br>
@@ -16,10 +16,29 @@
     </div>
     <ng-container *ngIf="userLogged.id === otherUser.id">
       <div class="col-md-1 px-10">
-        <button mat-mini-fab color="primary" [matMenuTriggerFor]="menu">
+        <button mat-mini-fab color="primary" [matMenuTriggerFor]="privacyMenu">
+          <mat-icon>{{status}}</mat-icon>
+        </button>
+        <mat-menu #privacyMenu="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item (click)="openEditStatusPrompt(1)">
+            <mat-icon>language</mat-icon>
+            <span>Công khai</span>
+          </button>
+          <button mat-menu-item (click)="openEditStatusPrompt(2)">
+            <mat-icon>people_alt</mat-icon>
+            <span>Với bạn bè</span>
+          </button>
+          <button mat-menu-item (click)="openEditStatusPrompt(3)">
+            <mat-icon>lock</mat-icon>
+            <span>Chỉ mình tôi</span>
+          </button>
+        </mat-menu>
+      </div>
+      <div class="col-md-1 px-10">
+        <button mat-mini-fab color="primary" [matMenuTriggerFor]="postMenu">
           <mat-icon>more_vert</mat-icon>
         </button>
-        <mat-menu #menu="matMenu" [overlapTrigger]="false">
+        <mat-menu #postMenu="matMenu" [overlapTrigger]="false">
           <button mat-menu-item (click)="toggleForm()">
             <mat-icon>edit</mat-icon>
             <span>Sửa nội dung</span>
