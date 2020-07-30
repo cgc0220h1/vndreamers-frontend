@@ -14,8 +14,8 @@ export class CommentService {
   constructor(private http: HttpClient) {
   }
 
-  deleteComment(id: number): Observable<IComment> {
-    return this.http.delete<IComment>(`${apiUrl}/api/comments/${id}`);
+  deleteComment(postId: number, commentId: number): Observable<IComment> {
+    return this.http.delete<IComment>(`${apiUrl}/api/posts/${postId}/comments/${commentId}`);
   }
 
   updateComment(postId: number, comment: IComment): Observable<IComment> {

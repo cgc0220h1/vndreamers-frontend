@@ -53,7 +53,7 @@ export class CommentSingleComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       switch (result) {
         case 'delete':
-          this.commentService.deleteComment(this.comment.id).subscribe(comment => {
+          this.commentService.deleteComment(this.post.id, this.comment.id).subscribe(comment => {
             this.snackBar.open('Xoá bình luận thành công', '', {
               duration: 2500
             });
