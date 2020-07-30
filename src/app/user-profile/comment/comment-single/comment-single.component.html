@@ -29,17 +29,29 @@
               </button>
             </mat-menu>
           </div>
-
-          <!--              <div class="col-md-2">-->
-          <!--                <button-->
-          <!--                  style="border: none;border-width: 0; border-radius: 40px;  box-shadow: none; outline: 0; background-color:#dee2e6;min-height: 40px; width: 40px;">-->
-          <!--                  <i class="fa fa-ellipsis-h"></i></button>-->
-          <!--              </div>-->
-          <!--              <span>-->
-          <!--                    <a href="">Thích</a>-->
-          <!--                    <a href="" style="margin-left: 10px">Trả lời</a>-->
-          <!--                    <span style="margin-left: 10px">1 phút</span>-->
-          <!--                    </span>-->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 pl-1">
+        <div class="form-group" style="margin-left: 10px">
+          <ng-container *ngIf="toggleEditFormComment">
+            <mat-form-field appearance="outline" fxFill>
+              <label for="post-content"></label>
+              <textarea id="post-content" matInput
+                        cdkTextareaAutosize
+                        cdkAutosizeMinRows="3"
+                        style="font-size: 18px"
+                        type="text" id="content" [value]="comment.content">
+            </textarea>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="primary" (click)="changeContent()">Cập nhật</button>
+            <button mat-raised-button color="warn" style="margin-left: 10px" (click)="toggleForm()">Quay lại</button>
+          </ng-container>
+          <ng-container *ngIf="!toggleEditFormComment">
+            <p style="margin-left: 10px; font-size: 20px; font-weight: bold">{{comment.content}}</p>
+          </ng-container>
         </div>
       </div>
     </div>
