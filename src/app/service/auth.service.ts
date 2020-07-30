@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {IUser} from '../model/User';
 import {map} from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ const apiUrl = environment.apiSource;
 })
 export class AuthService {
 
-  public currentUserSubject = new BehaviorSubject<IUser>(null);
+  public currentUserSubject = new Subject<IUser>();
   isAuthenticated = false;
   isAdminLoggedIn = false;
 
