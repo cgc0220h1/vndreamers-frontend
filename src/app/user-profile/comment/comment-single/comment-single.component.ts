@@ -6,7 +6,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {IPost} from '../../../model/Post';
 import {IUser} from '../../../model/User';
-import {UserService} from '../../../service/user.service';
+import {UserService} from '../../../service/user/user.service';
+
 
 @Component({
   selector: 'app-comment-single',
