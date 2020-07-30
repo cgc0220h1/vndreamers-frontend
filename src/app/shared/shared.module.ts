@@ -6,6 +6,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AuthModule} from '../auth/auth.module';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -18,6 +20,8 @@ import {MatIconModule} from '@angular/material/icon';
     AuthModule,
     MatButtonModule,
     MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [NavbarComponent]
 })
