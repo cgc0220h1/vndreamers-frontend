@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {IUser} from '../../../model/User';
 import {PostService} from '../../../service/post.service';
@@ -6,10 +6,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {FileUpload} from '../../../model/upload-file';
 import {HttpClient} from '@angular/common/http';
 import {UploadFileService} from '../../../service/upload-file.service';
-import {AngularFireStorage} from '@angular/fire/storage';
-
-const FRONT_LINK = 'https://firebasestorage.googleapis.com/v0/b/vndreamer-fontend.appspot.com/o/uploads%2F';
-const BACK_LINK = '?alt=media&token=1888bbc5-f913-4e94-90a5-b35aad7318c8';
+import {IPost} from '../../../model/Post';
+import {Observable, Subject} from 'rxjs';
 
 @Component({
   selector: 'app-post-form',
@@ -19,15 +17,22 @@ const BACK_LINK = '?alt=media&token=1888bbc5-f913-4e94-90a5-b35aad7318c8';
 
 
 export class PostFormComponent implements OnInit {
-  status = new FormControl('1');
-  postForm: FormGroup = new FormGroup({
-    status: this.status,
-    content: new FormControl('', Validators.required),
-    image: new FormControl('')
-  });
+
+  constructor(private postService: PostService,
+              private snackBar: MatSnackBar,
+              private fb: FormBuilder,
+              private http: HttpClient,
+              private uploadFileService: UploadFileService) {
+  }
+
+  postForm: FormGroup;
+  status: FormControl;
+  imageLink = new Subject();
 
   @Input() currentUser: IUser;
   @Input() userRequest: IUser;
+
+  @Output() whenClickPostButton = new EventEmitter<IPost>();
 
   file: any;
   imageFile: any;
@@ -36,34 +41,29 @@ export class PostFormComponent implements OnInit {
   percentage: number;
   url: string | ArrayBuffer = '';
 
-  constructor(private postService: PostService,
-              private snackBar: MatSnackBar,
-              private fb: FormBuilder,
-              private http: HttpClient,
-              private uploadFileService: UploadFileService,
-              private storage: AngularFireStorage) {
-  }
-
   ngOnInit(): void {
-    this.postForm.get('status').setValue('1');
-    this.postService.shouldRefresh.subscribe(result => {
-      this.postForm.reset();
+    this.status = new FormControl();
+    this.postForm = new FormGroup({
+      status: this.status,
+      content: new FormControl('', Validators.required),
+      image: new FormControl('')
     });
+    this.postForm.get('status').setValue('1');
   }
 
   onSubmit(): void {
-    if (this.imageFile !== undefined) {
-      this.upload();
-      this.setDefaultValue();
-    }
     this.postForm.markAllAsTouched();
-    if (this.postForm.valid) {
+
+    this.uploadFileService.uploadSubject.subscribe(downloadUrl => {
+      this.postForm.value.image = downloadUrl;
       this.postService.createPost(this.postForm.value).subscribe(result => {
+        console.log(result);
         this.snackBar.open('Post bài thành công', '', {
           duration: 2500
         });
-        this.postService.shouldRefresh.next(result);
+        this.whenClickPostButton.emit(result);
         this.url = '';
+        this.postForm.reset();
         this.postForm.get('status').setValue('1');
       }, error => {
         this.snackBar.open('Post bài không thành công', '', {
@@ -71,6 +71,24 @@ export class PostFormComponent implements OnInit {
         });
         console.log(error);
       });
+    }, error => {
+      console.log(error);
+    }, () => {
+      console.log(this.postForm.value.image);
+    });
+
+    if (this.postForm.valid) {
+      if (this.selectedImage === undefined) {
+        this.uploadFileService.uploadSubject.next('');
+        this.uploadFileService.uploadSubject = new Subject();
+      } else {
+        this.upload().subscribe(next => {
+          console.log(next);
+        }, error => {
+          console.log(error);
+        });
+      }
+
     } else {
       this.snackBar.open('Nội dung không được để trống!', '', {
         duration: 1000
@@ -82,30 +100,17 @@ export class PostFormComponent implements OnInit {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]); // read file as data url
-      // tslint:disable-next-line:no-shadowed-variable
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = event.target.result;
+      reader.onload = (fileEvent: ProgressEvent<FileReader>) => { // called once readAsDataURL is completed
+        this.url = fileEvent.target.result;
       };
     }
     this.selectedImage = event.target.files;
   }
 
-  setDefaultValue(): void {
-    this.postForm.value.image = FRONT_LINK + this.imageFile.name + BACK_LINK;
-  }
-
-  upload(): void {
+  upload(): Observable<any> {
     this.imageFile = this.selectedImage.item(0);
     this.selectedImage = undefined;
     this.currentImageUpload = new FileUpload(this.imageFile);
-    this.uploadFileService.pushFileToStorage(this.currentImageUpload).subscribe(
-      percentage => {
-        this.percentage = Math.round(percentage);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    return this.uploadFileService.pushFileToStorage(this.currentImageUpload);
   }
-
 }

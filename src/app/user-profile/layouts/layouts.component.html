@@ -18,7 +18,8 @@
           <app-friend-list [friendList]="friendList"></app-friend-list>
         </div>
         <div class="col-md-8">
-          <app-post-form [currentUser]="userLoggedIn" [userRequest]="userRequested"></app-post-form>
+          <app-post-form [currentUser]="userLoggedIn" [userRequest]="userRequested"
+                         (whenClickPostButton)="updatePost($event)"></app-post-form>
           <app-post-list [posts]="posts" [userRequest]="userRequested" [currentUser]="userLoggedIn"></app-post-list>
         </div>
       </div>

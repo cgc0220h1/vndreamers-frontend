@@ -97,4 +97,8 @@ export class LayoutsComponent implements OnInit {
   handleRemoveFriendEvent(): void {
     this.friendList = this.friendList.filter(currentFriend => currentFriend.id !== this.userLoggedIn.id);
   }
+
+  updatePost(event): void {
+    this.posts.unshift(event);
+  }
 }
