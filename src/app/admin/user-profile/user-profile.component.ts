@@ -20,6 +20,8 @@ export class UserProfileComponent implements OnInit {
   posts: IPost[];
   comments: IComment[];
   sub: Subscription;
+  records: number;
+  page = 1;
 
   gender1: string;
 
@@ -42,6 +44,7 @@ export class UserProfileComponent implements OnInit {
 
       this.postService.getPostsOtherUser(id).subscribe(next1 => {
         this.posts = next1;
+        this.records = next1.length;
       }, error => {console.log(error); });
 
       this.commentService.getCommentOtherUser(id).subscribe(next3 => {

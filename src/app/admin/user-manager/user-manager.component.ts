@@ -35,9 +35,9 @@ export class UserManagerComponent implements OnInit {
     if (confirm('Do you really want to block this user?')) {
       this.adminService.blockActiveUser(user).subscribe(result => {
         console.log('block ok');
-        this.adminService.getAllUser().subscribe(result2 => {
-          this.users = result2;
-        });
+        // this.adminService.getAllUser().subscribe(result2 => {
+        //   this.users = result2;
+        // });
       }, error => console.log(error));
     }
   }
@@ -47,9 +47,9 @@ export class UserManagerComponent implements OnInit {
     if (confirm('Do you really want to unblock this user?')) {
       this.adminService.blockActiveUser(user).subscribe(result => {
         console.log('active ok');
-        this.adminService.getAllUser().subscribe(result1 => {
-         this.users = result1;
-       });
+       //  this.adminService.getAllUser().subscribe(result1 => {
+       //   this.users = result1;
+       // });
       }, error => console.log(error));
     }
   }

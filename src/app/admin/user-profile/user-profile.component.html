@@ -82,7 +82,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let post of posts">
+    <tr *ngFor="let post of posts | paginate: { id: 'listing_pagination',
+                                                      itemsPerPage: 3,
+                                                      currentPage: page,
+                                                      totalItems: records }">
       <td>{{post.id}}</td>
       <td>{{post.status}}</td>
       <td>{{post.likeQuantity}}</td>
@@ -94,6 +97,7 @@
     </tr>
     </tbody>
   </table>
+  <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
 </div>
 
 
