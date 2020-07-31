@@ -11,7 +11,14 @@ import {IUser} from '../../../model/User';
 export class UserBarChartComponent implements OnInit {
   barChartOptions = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+        }
+      }]
+    }
   };
   range: any;
   userList: IUser[] = [];
@@ -23,9 +30,8 @@ export class UserBarChartComponent implements OnInit {
     {data: [], label: 'Danh sách người dùng'}
   ];
   barChartColor: any[] = [
-    {
-      backgroundColor: ['#FF7360', '#6FC8CE', '#FAFFF2', '#FFFCC4', '#B9E8E0']
-    }];
+    {backgroundColor: '#FF7360'}
+  ];
 
   constructor(private router: Router,
               private adminService: AdminService) {
@@ -55,5 +61,4 @@ export class UserBarChartComponent implements OnInit {
       }
     });
   }
-
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
 @Component({
@@ -9,9 +9,11 @@ import {Router} from '@angular/router';
 })
 export class SelectTypeComponent implements OnInit {
   isRangeInputOn = false;
+  startDate = new FormControl(Validators.required);
+  endDate = new FormControl(Validators.required);
   range = new FormGroup({
-    start_date: new FormControl(),
-    end_date: new FormControl()
+    start_date: this.startDate,
+    end_date: this.endDate
   });
 
   constructor(private router: Router) {
@@ -33,10 +35,13 @@ export class SelectTypeComponent implements OnInit {
   }
 
   showChartRange(): void {
-    this.router.navigate(['admin/chart/range'], {
-      state: {
-        range: this.range.value
-      }
-    }).then(r => console.log(r));
+    this.range.markAllAsTouched();
+    if (this.range.valid) {
+      this.router.navigate(['admin/chart/range'], {
+        state: {
+          range: this.range.value
+        }
+      }).then(r => console.log(r));
+    }
   }
 }
