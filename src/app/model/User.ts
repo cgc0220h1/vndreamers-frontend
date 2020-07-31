@@ -13,4 +13,5 @@ export interface IUser {
   about_me?: string;
   username?: string;
   status?: number;
+  createdDate?: string;
 }

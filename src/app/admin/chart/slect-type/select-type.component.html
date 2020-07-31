@@ -1,0 +1,25 @@
+<div style="text-align: center">
+  <button mat-raised-button color="primary" (click)="showChartToday()">Hôm nay</button>
+  <button mat-raised-button color="primary" (click)="toggleRangeInput()">Xem theo khoảng thời gian</button>
+  <br>
+  <br>
+  <ng-container *ngIf="isRangeInputOn">
+    <mat-form-field appearance="outline">
+      <mat-label>Nhập vào khoảng thời gian</mat-label>
+      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+        <input matStartDate [formControl]="startDate" placeholder="Ngày bắt đầu">
+        <input matEndDate [formControl]="endDate" placeholder="Ngày kết thúc">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <ng-container *ngIf="range.invalid && range.touched">
+      <mat-error *ngIf="startDate.hasError('required')">Ngày bắt đầu không được để trống</mat-error>
+      <mat-error *ngIf="endDate.hasError('required')">Ngày kết thúc không được để trống</mat-error>
+    </ng-container>
+
+    <button mat-raised-button color="accent" (click)="showChartRange()">Hiển thị</button>
+  </ng-container>
+</div>
+<br>
+<router-outlet></router-outlet>
