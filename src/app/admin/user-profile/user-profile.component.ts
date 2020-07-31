@@ -4,10 +4,10 @@ import {IUser} from '../../model/User';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {AdminService} from '../../service/admin/admin.service';
-import {IPost} from "../../model/Post";
-import {PostService} from "../../service/user/post.service";
-import {CommentService} from "../../service/user/comment.service";
-import {IComment} from "../../model/comment";
+import {IPost} from '../../model/Post';
+import {PostService} from '../../service/user/post.service';
+import {CommentService} from '../../service/user/comment.service';
+import {IComment} from '../../model/comment';
 
 @Component({
   selector: 'app-user-profile',
