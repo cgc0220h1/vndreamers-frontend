@@ -20,9 +20,12 @@ export class UserBarChartComponent implements OnInit {
   barChartType = 'bar';
   barChartLegend = true;
   barChartData = [
-    {data: [], label: 'Series B'}
+    {data: [], label: 'Danh sách người dùng'}
   ];
-  barChartColor = ['#6FC8CE', '#FAFFF2', '#FFFCC4', '#B9E8E0'];
+  barChartColor: any[] = [
+    {
+      backgroundColor: ['#FF7360', '#6FC8CE', '#FAFFF2', '#FFFCC4', '#B9E8E0']
+    }];
 
   constructor(private router: Router,
               private adminService: AdminService) {
