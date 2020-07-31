@@ -10,8 +10,8 @@ import {Router} from '@angular/router';
 export class SelectTypeComponent implements OnInit {
   isRangeInputOn = false;
   range = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl()
+    start_date: new FormControl(),
+    end_date: new FormControl()
   });
 
   constructor(private router: Router) {
@@ -33,6 +33,10 @@ export class SelectTypeComponent implements OnInit {
   }
 
   showChartRange(): void {
-    this.router.navigateByUrl('admin/chart/range').then(r => console.log(r));
+    this.router.navigate(['admin/chart/range'], {
+      state: {
+        range: this.range.value
+      }
+    }).then(r => console.log(r));
   }
 }

@@ -7,14 +7,14 @@
     <mat-form-field appearance="outline">
       <mat-label>Nhập vào khoảng thời gian</mat-label>
       <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-        <input matStartDate formControlName="start" placeholder="Ngày bắt đầu">
-        <input matEndDate formControlName="end" placeholder="Ngày kết thúc">
+        <input matStartDate formControlName="start_date" placeholder="Ngày bắt đầu">
+        <input matEndDate formControlName="end_date" placeholder="Ngày kết thúc">
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>
 
-      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Ngày bắt đầu không hợp lệ</mat-error>
-      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Ngày kết thúc không hợp lệ</mat-error>
+      <mat-error *ngIf="range.controls.start_date.hasError('matStartDateInvalid')">Ngày bắt đầu không hợp lệ</mat-error>
+      <mat-error *ngIf="range.controls.end_date.hasError('matEndDateInvalid')">Ngày kết thúc không hợp lệ</mat-error>
     </mat-form-field>
 
     <button mat-raised-button color="accent" (click)="showChartRange()">Hiển thị</button>

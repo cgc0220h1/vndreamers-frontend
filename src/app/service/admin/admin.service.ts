@@ -29,4 +29,8 @@ export class AdminService {
   getUsersRegisterToday(): Observable<IUser[]> {
     return this.httpClient.get<IUser[]>(`${apiUrl}/api/admin/users/statistics/today`);
   }
+
+  getUserRegisterByRange(range: any): Observable<IUser[]> {
+    return this.httpClient.post<IUser[]>(`${apiUrl}/api/admin/users/statistics/range`, range);
+  }
 }
