@@ -7,7 +7,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-10 px-10">
+    <div class="col-md-8 px-10">
       <div class="form-group">
         <span style="font-weight: bold">{{ otherUser.first_name }}</span><span
         style="font-weight: bold"> {{ otherUser.last_name }}</span><br>
@@ -15,6 +15,45 @@
       </div>
     </div>
     <ng-container *ngIf="userLogged.id === otherUser.id">
+      <div class="col-md-1 px-10">
+        <button mat-mini-fab color="primary" [matMenuTriggerFor]="privacyMenu">
+          <mat-icon>{{status}}</mat-icon>
+        </button>
+        <mat-menu #privacyMenu="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item (click)="openEditStatusPrompt(1)">
+            <mat-icon>language</mat-icon>
+            <span>Công khai</span>
+          </button>
+          <button mat-menu-item (click)="openEditStatusPrompt(2)">
+            <mat-icon>people_alt</mat-icon>
+            <span>Với bạn bè</span>
+          </button>
+          <button mat-menu-item (click)="openEditStatusPrompt(3)">
+            <mat-icon>lock</mat-icon>
+            <span>Chỉ mình tôi</span>
+          </button>
+        </mat-menu>
+      </div>
+      <div class="col-md-1 px-10">
+        <button mat-mini-fab color="primary" [matMenuTriggerFor]="postMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #postMenu="matMenu" [overlapTrigger]="false">
+          <button mat-menu-item (click)="toggleForm()">
+            <mat-icon>edit</mat-icon>
+            <span>Sửa nội dung</span>
+          </button>
+          <button mat-menu-item (click)="fileInput.click()">
+            <input type="file" hidden #fileInput (change)="uploadImage($event)">
+            <mat-icon>image</mat-icon>
+            <span>Thay ảnh</span>
+          </button>
+          <button mat-menu-item (click)="openDeletePrompt()">
+            <mat-icon>delete_sweep</mat-icon>
+            <span>Xoá ảnh</span>
+          </button>
+        </mat-menu>
+      </div>
       <div class="col-md-1 px-10">
         <button mat-mini-fab color="warn" (click)="deletePost(postData.id)">
           <mat-icon>delete_outline</mat-icon>
@@ -24,14 +63,58 @@
   </div>
   <div class="row">
     <div class="col-md-12 pl-1">
+      <div class="form-group" style="margin-left: 10px">
+        <ng-container *ngIf="toggleEditForm">
+          <mat-form-field appearance="outline" fxFill>
+            <label for="post-content"></label>
+            <textarea id="post-content" matInput
+                      cdkTextareaAutosize
+                      cdkAutosizeMinRows="3"
+                      style="font-size: 18px"
+                      type="text" id="content" [value]="postData.content">
+            </textarea>
+          </mat-form-field>
+          <br>
+          <button mat-raised-button color="primary" (click)="changeContent()">Cập nhật</button>
+          <button mat-raised-button color="warn" style="margin-left: 10px" (click)="toggleForm()">Quay lại</button>
+        </ng-container>
+        <ng-container *ngIf="!toggleEditForm">
+          <p style="margin-left: 10px; font-size: 20px; font-weight: bold">{{postData.content}}</p>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 pl-1">
       <div class="form-group">
-        <p style="margin-left: 10px; font-size: 20px; font-weight: bold">{{ postData.content }}</p>
+        <ng-container *ngIf="isShowProgressBar">
+          <div class="row">
+            <div class="col-md-12 pl-1">
+              <div class="form-group">
+                <section class="example-section">
+                  <mat-progress-bar
+                    class="example-margin"
+                    color="primary"
+                    mode="determinate"
+                    [value]="percentage">
+                  </mat-progress-bar>
+                  <hr>
+                  <span>{{percentage}}%</span>
+                </section>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="!isShowProgressBar">
+          <img src="{{ postData.image }}" alt="" style="margin-left: auto; margin-right: auto; display: block">
+        </ng-container>
       </div>
     </div>
   </div>
   <!--Hiển thị số lượng like-->
+  <br>
   <p>
-    <a href="#"><span style="color: #1b1e21; font-size: 15px">{{numberOfReaction}} người thích</span></a>
+    <a href="#"><span style="color: #1b1e21; font-size: 15px">{{postData.likeQuantity}} người thích</span></a>
   </p>
   <hr>
   <!--Nút like va comment-->
@@ -56,7 +139,7 @@
   <hr>
 </div>
 
-<app-comment-list [commentOfPost]="commentList"></app-comment-list>
+<app-comment-list [post]="postData" [commentOfPost]="commentList"></app-comment-list>
 
 <app-comment-form [postId]="postData.id" [userLoggedIn]="userLogged"
                   (commentSubmitted)="updateCommentList($event)"></app-comment-form>

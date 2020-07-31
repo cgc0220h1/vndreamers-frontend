@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, Subject} from 'rxjs';
-import {IPost} from '../model/Post';
-import {environment} from '../../environments/environment';
-import {IComment} from '../model/comment';
-import {IReaction} from '../model/reaction';
+import {Observable} from 'rxjs';
+import {IPost} from '../../model/Post';
+import {environment} from '../../../environments/environment';
+import {IComment} from '../../model/comment';
+import {IReaction} from '../../model/reaction';
 
 // const API_URL = 'http://localhost:8080/api/posts';
 
@@ -15,8 +15,6 @@ const apiUrl = environment.apiSource;
 })
 export class PostService {
 
-  shouldRefresh = new Subject<any>();
-
   constructor(private http: HttpClient) {
   }
 
@@ -25,10 +23,10 @@ export class PostService {
   }
 
   getPostsOtherUser(id: number): Observable<IPost[]> {
-    return this.http.get<IPost[]>(`${apiUrl}/api/posts/${id}`);
+    return this.http.get<IPost[]>(`${apiUrl}/api/users/${id}/posts`);
   }
 
-  getById(id: number): Observable<IPost> {
+  getPostById(id: number): Observable<IPost> {
     return this.http.get<IPost>(`${apiUrl}/api/posts/${id}`);
   }
 
@@ -41,7 +39,7 @@ export class PostService {
   }
 
   updatePost(post: IPost): Observable<IPost> {
-    return this.http.put<IPost>(`${apiUrl}/api/posts/${post.id}`, post);
+    return this.http.put<IPost>(`${apiUrl}/api/posts`, post);
   }
 
   submitComment(comment: IComment, postId: number): Observable<IComment> {

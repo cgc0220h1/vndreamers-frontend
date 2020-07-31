@@ -1,0 +1,103 @@
+<!--PROFILE-->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card card-user">
+      <div class="card-header">
+        <h5 style="text-align: center" class="card-title">User Profile</h5>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col-md-5 pr-1">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" placeholder="Company" value="{{user.first_name}}" disabled>
+              </div>
+            </div>
+            <div class="col-md-5 px-1">
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" placeholder="Last Name" value="{{user.last_name}}" disabled>
+              </div>
+            </div><div class="col-md-2 pl-1">
+              <div class="form-group">
+                <label>Gender</label>
+                <input type="text" class="form-control" placeholder="Gender" value="{{gender1}}" disabled>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8 pr-1">
+              <div class="form-group">
+                <label>Address</label>
+                <input type="text" class="form-control" placeholder="Home Address" value="{{user.address}}" disabled>
+              </div>
+            </div> <div class="col-md-4 pl-1">
+              <div class="form-group">
+                <label>User Name</label>
+                <input type="text" class="form-control" placeholder="UserName" value="{{user.username}}" disabled>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 pr-1">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" placeholder="Company" value="{{user.email}}" disabled>
+              </div>
+            </div>
+            <div class="col-md-6 pl-1">
+              <div class="form-group">
+                <label>Date Of Birth</label>
+                <input type="text" class="form-control" placeholder="DoB" value="{{user.birth_date}}" disabled>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>About Me</label>
+                <textarea class="form-control textarea" disabled>{{user.about_me}}</textarea>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div><br>
+
+<!--POST-->
+<h4 style="text-align: center">User Posts</h4>
+<div class="row">
+  <table class="table mt-4 table-striped" style="font-size: 12px; text-align: center">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Status</th>
+      <th>Like Quantity</th>
+      <th>Create Date</th>
+      <th>Image</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let post of posts | paginate: { id: 'listing_pagination',
+                                                      itemsPerPage: 3,
+                                                      currentPage: page,
+                                                      totalItems: records }">
+      <td>{{post.id}}</td>
+      <td>{{post.status}}</td>
+      <td>{{post.likeQuantity}}</td>
+      <td>{{post.createDate}}</td>
+      <td><img style="width: 40px; height: 40px" src="{{post.image}}" alt=""></td>
+      <td style="width: 20%">
+        <button class="btn btn-danger fa fa-trash mr-3" (click)="deletePost(post.id)" style="font-size: 20px; cursor: pointer"></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+</div>
+
+

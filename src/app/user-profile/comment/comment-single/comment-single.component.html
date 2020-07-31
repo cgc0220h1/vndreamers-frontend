@@ -12,20 +12,48 @@
         <div class="form-group row">
           <div class="col-md-11" style="outline: 0;background-color:#dee2e6;border-radius: 10px;">
             <p style="font-weight: bold; margin-top: 10px">{{comment.user.first_name}} {{comment.user.last_name}}</p>
-            <p>{{comment.content}}</p>
+            <ng-container *ngIf="!toggleEditFormComment">
+              <p>{{comment.content}}</p>
+            </ng-container>
+            <ng-container *ngIf="toggleEditFormComment">
+              <div>
+                <mat-form-field appearance="outline" fxFill>
+                  <label for="post-content"></label>
+                  <textarea id="post-content" matInput
+                            cdkTextareaAutosize
+                            cdkAutosizeMinRows="3"
+                            style="font-size: 18px"
+                            type="text" id="content" [value]="comment.content">
+              </textarea>
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="changeContent()">Cập nhật</button>
+                <button mat-raised-button color="warn" style="margin-left: 10px; margin-bottom: 10px"
+                        (click)="toggleForm()">Quay lại
+                </button>
+              </div>
+            </ng-container>
           </div>
-          <!--              <div class="col-md-2">-->
-          <!--                <button-->
-          <!--                  style="border: none;border-width: 0; border-radius: 40px;  box-shadow: none; outline: 0; background-color:#dee2e6;min-height: 40px; width: 40px;">-->
-          <!--                  <i class="fa fa-ellipsis-h"></i></button>-->
-          <!--              </div>-->
-          <!--              <span>-->
-          <!--                    <a href="">Thích</a>-->
-          <!--                    <a href="" style="margin-left: 10px">Trả lời</a>-->
-          <!--                    <span style="margin-left: 10px">1 phút</span>-->
-          <!--                    </span>-->
+          <ng-container
+            *ngIf="comment.user.username === currentUser.username || post.user.username === currentUser.username">
+            <div class="col-md-1">
+              <button mat-mini-fab color="primary" [matMenuTriggerFor]="commentMenu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #commentMenu="matMenu" [overlapTrigger]="false">
+                <button mat-menu-item (click)="toggleForm()">
+                  <mat-icon>edit</mat-icon>
+                  <span>Sửa nội dung</span>
+                </button>
+                <button mat-menu-item (click)="openDeletePrompt()">
+                  <mat-icon>delete_sweep</mat-icon>
+                  <span>Xoá comment</span>
+                </button>
+              </mat-menu>
+            </div>
+          </ng-container>
         </div>
       </div>
     </div>
   </div>
 </div>
+

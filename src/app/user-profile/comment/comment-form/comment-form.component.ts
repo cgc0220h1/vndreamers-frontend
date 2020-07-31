@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {IUser} from '../../../model/User';
-import {PostService} from '../../../service/post.service';
+import {PostService} from '../../../service/user/post.service';
 import {IComment} from '../../../model/comment';
 import {MatSnackBar} from '@angular/material/snack-bar';
 

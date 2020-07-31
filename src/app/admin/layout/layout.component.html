@@ -1,0 +1,44 @@
+<div class="container-fluid px-0" style="height: 100vh">
+  <nav class="navbar navbar-expand-sm navbar-dark rounded"
+       style="height: 10%; background-color: dodgerblue; margin-bottom: 0px !important;">
+    <!-- Brand -->
+    <h1 class="navbar-brand" style="margin-top: 2%">VNDREAMERS ADMIN</h1>
+    <!-- Links -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="https://www.facebook.com/leboong95/"><i class="fa fa-facebook"></i>Facebook</a>
+      </li>
+      <li class="nav-item">
+        <a style="margin-right: 15px" class="nav-link" href="https://www.instagram.com/lebong95/?hl=vi"> <i class="fa fa-instagram"></i>Instagram</a>
+      </li>
+      <li class="nav-item mr-sm-2">
+        <app-log-out-btn></app-log-out-btn>
+      </li>
+    </ul>
+  </nav>
+  <!--  Chia giao dien ra 2 cot sidebar vs hien thi noi dung.-->
+  <div class="row px-0 mx-0" style="height: 90%">
+    <div class="col-2 px-0">
+      <div class="list-group border border-primary rounded h-100">
+        <p class="list-group-item list-group-item-action active">Dasboard</p>
+        <div class="list-group-item list-group-item-action">
+          <img src="./assets/img/user.png" width="20px" alt="">
+          <a [routerLink]="['listUser']">
+            User Manager
+          </a>
+        </div>
+        <div class="list-group-item list-group-item-action">
+          <img src="./assets/img/bar-chart.png" width="20px" alt="">
+          <a [routerLink]="['chart']">
+            Chart Manager User
+          </a>
+        </div>
+
+
+      </div>
+    </div>
+    <div class="col-10 p-5">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

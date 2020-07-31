@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {IUser} from '../model/User';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {IUser} from '../../model/User';
 import {map} from 'rxjs/operators';
 
 const apiUrl = environment.apiSource;
@@ -12,8 +12,9 @@ const apiUrl = environment.apiSource;
 })
 export class AuthService {
 
-  public currentUserSubject = new BehaviorSubject<IUser>(null);
+  public currentUserSubject = new Subject<IUser>();
   isAuthenticated = false;
+  isAdminLoggedIn = false;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -27,6 +28,7 @@ export class AuthService {
       .pipe(map(iAccount => {
         localStorage.setItem('access_token', iAccount.access_token);
         localStorage.setItem('user', JSON.stringify(iAccount.user));
+        localStorage.setItem('role', iAccount.roles[0].role_name);
         return iAccount;
       }));
   }

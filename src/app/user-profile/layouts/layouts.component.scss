@@ -1,3 +1,13 @@
 //.center > .mat-simple-snackbar {
 //  justify-content: center;
 //}
+
+::ng-deep button:focus {
+  outline: none;
+  border: 0;
+}
+
+.no-post-container {
+  display: flex;
+  justify-content: center;
+}

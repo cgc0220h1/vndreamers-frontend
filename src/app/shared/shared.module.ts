@@ -4,6 +4,10 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {SharedRoutingModule} from './shared-routing.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AuthModule} from '../auth/auth.module';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -13,7 +17,11 @@ import {AuthModule} from '../auth/auth.module';
     CommonModule,
     SharedRoutingModule,
     NgbModule,
-    AuthModule
+    AuthModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [NavbarComponent]
 })

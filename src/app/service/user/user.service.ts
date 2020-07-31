@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
-import {IUser} from '../model/User';
+import {IUser} from '../../model/User';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
+import {environment} from '../../../environments/environment';
 
 const apiSource = environment.apiSource;
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,4 +31,18 @@ export class UserService {
   getByUsername(username: string): Observable<IUser> {
     return this.httpClient.get<IUser>(`${apiSource}/api/users/${username}`);
   }
+
+  getAllUser(): Observable<IUser[]> {
+    return this.httpClient.get<IUser[]>(`${apiSource}/api/admin/users`);
+  }
+
+  getUserById(id: number): Observable<IUser> {
+    return this.httpClient.get<IUser>(`${apiSource}/api/admin/users/${id}`);
+  }
+
+  blocActiveUser(user: IUser): Observable<IUser> {
+    return this.httpClient.put<IUser>(`${apiSource}/api/admin/users/status`, user);
+  }
+
+
 }

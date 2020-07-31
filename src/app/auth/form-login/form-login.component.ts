@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validat
 import {Router} from '@angular/router';
 import {ErrorStateMatcher} from '@angular/material/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {AuthService} from '../../service/auth.service';
+import {AuthService} from '../../service/public/auth.service';
 import {regex} from '../../../assets/regex';
 import {IUser} from '../../model/User';
 
@@ -24,10 +24,12 @@ export class FormLoginComponent implements OnInit {
   matcher: ErrorStateMatcher;
   response: {
     user: IUser,
-    access_token: string
+    access_token: string,
+    roles: [];
   };
 
   username: string;
+  name: string;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -54,11 +56,17 @@ export class FormLoginComponent implements OnInit {
       duration: 2500
     });
     this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(response => {
-      this.authService.currentUserSubject.next(response.user);
-      this.username = response.user.username;
-      this.authService.isAuthenticated = true;
-      // this.authService.shouldRefresh.next(response.user);
-      this.router.navigateByUrl(this.username).then(r => console.log(r));
+      if (response.roles[0].role_name === 'ROLE_ADMIN') {
+        this.authService.currentUserSubject.next(response.user);
+        this.authService.isAuthenticated = true;
+        this.authService.isAdminLoggedIn = true;
+        this.router.navigateByUrl('/admin').then(r => console.log(r));
+      } else {
+        this.authService.currentUserSubject.next(response.user);
+        this.username = response.user.username;
+        this.authService.isAuthenticated = true;
+        this.router.navigateByUrl(this.username).then(r => console.log(r));
+      }
     }, error => {
       this.matSnackBar.open(error.error.error, '', {
         duration: 2500

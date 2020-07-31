@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Danh sách bạn bè</h4>
+  </div>
+
+  <div class="card-body">
+    <ng-container *ngIf="friendList.length == 0">
+      <p style="font-style: italic">Có vẻ như bạn chưa kết bạn với ai. Hãy kết bạn đi nào</p>
+    </ng-container>
+    <ng-container *ngIf="friendList.length > 0">
+      <ng-container *ngFor="let friend of friendList">
+        <app-friend-single [friend]="friend"></app-friend-single>
+      </ng-container>
+    </ng-container>
+  </div>
+
+</div>

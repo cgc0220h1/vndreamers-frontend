@@ -1,16 +1,24 @@
-import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
 import {ROUTES} from '../shared-routing.module';
+import {IUser} from '../../model/User';
 
 @Component({
   // moduleId: module.id,
   // tslint:disable-next-line:component-selector
   selector: 'navbar-cmp',
-  templateUrl: 'navbar.component.html'
+  templateUrl: 'navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
 })
 
 export class NavbarComponent implements OnInit {
+  @Input()
+  currentUser: IUser;
+
+  @Input()
+  userRequest: IUser;
+
   private listTitles: any[];
   location: Location;
   private nativeElement: Node;
@@ -27,12 +35,12 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.listTitles = ROUTES.filter(listTitle => listTitle);
-    const navbar: HTMLElement = this.element.nativeElement;
-    this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
-    this.router.events.subscribe((event) => {
-      this.sidebarClose();
-    });
+    // this.listTitles = ROUTES.filter(listTitle => listTitle);
+    // const navbar: HTMLElement = this.element.nativeElement;
+    // this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+    // this.router.events.subscribe((event) => {
+    //   this.sidebarClose();
+    // });
   }
 
   getTitle(): string {

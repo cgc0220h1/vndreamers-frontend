@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <div class="author">
-      <a href="#">
+      <a [routerLink]="['',userRequest.username]">
         <img class="avatar border-gray" src="{{userRequest.avatar}}" alt="...">
         <h5 class="card-title">{{userRequest.first_name}} {{userRequest.last_name}}</h5>
       </a>
@@ -18,51 +18,32 @@
       <ng-container *ngIf="currentUser.id === userRequest.id">
         <button mat-raised-button color="primary" (click)="openEditProfileDialog()">Cập nhật thông tin</button>
       </ng-container>
-      <!--      <div class="card-footer">-->
-      <!--        &lt;!&ndash;    <hr>&ndash;&gt;-->
-      <!--        <div class="button-container">-->
-      <!--          <div class="row">-->
-      <!--            <mat-label>Email: {{user.email}}</mat-label>-->
-      <!--          </div>-->
-      <!--          <div class="row">-->
-      <!--            <mat-label>Gender: {{user.gender}}</mat-label>-->
-      <!--          </div>-->
-      <!--          <div class="row">-->
-      <!--            <mat-label>Phone: {{user.phone}}</mat-label>-->
-      <!--          </div>-->
-      <!--          <div class="row">-->
-      <!--            <mat-label>Birthday: {{user.birth_date}}</mat-label>-->
-      <!--          </div>-->
-      <!--          <div class="row">-->
-      <!--            <mat-label>Address: {{user.address}}</mat-label>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </div>-->
+      <ng-container *ngIf="currentUser.id !== userRequest.id">
+        <ng-container *ngIf="isFriend">
+          <button mat-raised-button color="primary" disabled>Bạn bè</button>
+          <button mat-raised-button color="warn" style="margin-left: 10px" (click)="removeFriend()">Xoá bạn bè</button>
+        </ng-container>
+        <ng-container *ngIf="!isFriend">
+          <ng-container *ngIf="!isUserReceivedRequest && !isUserSentRequest">
+            <button mat-raised-button color="primary" (click)="handleOutgoingRequest()">
+              Kết bạn
+            </button>
+          </ng-container>
+          <ng-container *ngIf="isUserReceivedRequest">
+            <button mat-raised-button color="warn" (click)="handleOutgoingRequest()">
+              Huỷ lời mời
+            </button>
+          </ng-container>
+          <ng-container *ngIf="isUserSentRequest">
+            <button mat-raised-button color="primary" (click)="handleIncomingRequest('accept')">
+              Đồng ý
+            </button>
+            <button mat-raised-button color="warn" (click)="handleIncomingRequest('deny')" style="margin-left: 10px">
+              Từ chối
+            </button>
+          </ng-container>
+        </ng-container>
+      </ng-container>
     </div>
   </div>
-  <!--  <div class="card-footer">-->
-  <!--&lt;!&ndash;    <hr>&ndash;&gt;-->
-  <!--    <div class="button-container">-->
-  <!--      <div class="row">-->
-  <!--        <mat-label>Email: {{user.email}}</mat-label>-->
-  <!--        <mat-icon matPrefix></mat-icon>-->
-  <!--      </div>-->
-  <!--      <div class="row">-->
-  <!--        <mat-label>Gender: {{user.gender}}</mat-label>-->
-  <!--        <mat-icon matPrefix></mat-icon>-->
-  <!--      </div>-->
-  <!--      <div class="row">-->
-  <!--        <mat-label>Phone: {{user.phone}}</mat-label>-->
-  <!--        <mat-icon matPrefix></mat-icon>-->
-  <!--      </div>-->
-  <!--      <div class="row">-->
-  <!--        <mat-label>Birthday: {{user.birth_date}}</mat-label>-->
-  <!--        <mat-icon matPrefix></mat-icon>-->
-  <!--      </div>-->
-  <!--      <div class="row">-->
-  <!--        <mat-label>Address: {{user.address}}</mat-label>-->
-  <!--        <mat-icon matPrefix></mat-icon>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </div>-->
 </div>

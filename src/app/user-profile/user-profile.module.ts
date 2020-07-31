@@ -13,7 +13,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {LayoutsComponent} from './layouts/layouts.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SharedModule} from '../shared/shared.module';
-import {FriendListComponent} from './friend-list/friend-list.component';
 import {ShowProfileComponent} from './show-profile/show-profile.component';
 import {FlexModule} from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
@@ -27,12 +26,20 @@ import {PostListComponent} from './post/post-list/post-list.component';
 import {EditProfileDialogComponent} from './dialog/edit-profile-dialog/edit-profile-dialog.component';
 import {PostFormComponent} from './post/post-form/post-form.component';
 import {CommentListComponent} from './comment/comment-list/comment-list.component';
+import {FriendListComponent} from './friend/friend-list/friend-list.component';
+import {FriendRequestDialogComponent} from './dialog/friend-request-dialog/friend-request-dialog.component';
+import {FriendRequestSingleComponent} from './friend/friend-request-single/friend-request-single.component';
+import {MatChipsModule} from '@angular/material/chips';
+import {FriendSingleComponent} from './friend/friend-single/friend-single.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {EditStatusDialogComponent} from './dialog/edit-status-dialog/edit-status-dialog.component';
 
 
 @NgModule({
   declarations: [
     LayoutsComponent,
-    FriendListComponent,
     ShowProfileComponent,
     DeleteDialogComponent,
     CommentSingleComponent,
@@ -41,7 +48,12 @@ import {CommentListComponent} from './comment/comment-list/comment-list.componen
     PostListComponent,
     EditProfileDialogComponent,
     PostFormComponent,
-    CommentListComponent
+    CommentListComponent,
+    FriendListComponent,
+    FriendRequestDialogComponent,
+    FriendRequestSingleComponent,
+    FriendSingleComponent,
+    EditStatusDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -60,7 +72,11 @@ import {CommentListComponent} from './comment/comment-list/comment-list.componen
     FlexModule,
     MatIconModule,
     MatSnackBarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatMenuModule,
+    MatProgressBarModule
   ]
 })
 export class UserProfileModule {
