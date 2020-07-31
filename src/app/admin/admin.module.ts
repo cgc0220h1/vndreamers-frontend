@@ -9,13 +9,12 @@ import {MatIconModule} from '@angular/material/icon';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import {FormsModule} from '@angular/forms';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
-import { PostManagerComponent } from './post-manager/post-manager.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
-  declarations: [LayoutComponent, UserManagerComponent, UserProfileComponent, PostManagerComponent, PostEditComponent],
+  declarations: [LayoutComponent, UserManagerComponent, UserProfileComponent, PostEditComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
