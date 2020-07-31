@@ -47,7 +47,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MatDatepickerModule,
     AuthRoutingModule,
     NgbModule,
-    AngularFireModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     Ng2SearchPipeModule,
