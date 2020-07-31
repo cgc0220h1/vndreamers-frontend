@@ -3,6 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {LayoutComponent} from './layout/layout.component';
 import {UserManagerComponent} from './user-manager/user-manager.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
+import {PostManagerComponent} from './post-manager/post-manager.component';
+import {PostEditComponent} from './post-edit/post-edit.component';
 
 const routes: Routes = [
   {
@@ -16,6 +18,14 @@ const routes: Routes = [
       {
         path: 'view/:id',
         component: UserProfileComponent
+      },
+      {
+        path: 'listPost',
+        component: PostManagerComponent
+      },
+      {
+        path: 'edit/:id',
+        component: PostEditComponent
       }
     ]
   }

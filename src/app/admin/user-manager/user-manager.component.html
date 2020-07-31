@@ -14,16 +14,24 @@
       <th>Last Name</th>
       <th>Email</th>
       <th>User Name</th>
+      <th>Status</th>
       <th>Action</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of users | filter:term">
+    <tr *ngFor="let user of users | filter:term | paginate: { id: 'listing_pagination',
+                                                      itemsPerPage: 5,
+                                                      currentPage: page,
+                                                      totalItems: records }">
       <td>{{user.id}}</td>
       <td>{{user.first_name}}</td>
       <td>{{user.last_name}}</td>
       <td>{{user.email}}</td>
       <td>{{user.username}}</td>
+      <td class="text-center">
+        <span style="font-size: 25px" *ngIf="user.status == 1" class="fa fa-check text-success"></span>
+        <span style="font-size: 25px" *ngIf="user.status == 0" class="fa fa-lock text-danger"></span>
+      </td>
       <td style="width: 20%">
         <button class="btn btn-success fa fa-eye mr-3" [routerLink]="['/admin/view', user.id]" style="font-size: 20px; cursor: pointer"></button>
         <button *ngIf="user.status == 1" class="btn btn-danger fa fa-lock text-black-50" (click)="blockUser(user)"
@@ -32,12 +40,7 @@
               style="font-size: 20px; cursor: pointer"></button>
       </td>
     </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
     </tbody>
   </table>
+  <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
 </div>

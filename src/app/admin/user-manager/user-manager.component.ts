@@ -10,10 +10,12 @@ import {AdminService} from '../../service/admin/admin.service';
   styleUrls: ['./user-manager.component.scss']
 })
 export class UserManagerComponent implements OnInit {
-  term: string;
 
+  term: string;
   users: IUser[];
-  admin: IUser;
+  records: number;
+  page = 1;
+
 
   constructor(private adminService: AdminService,
               private authService: AuthService) { }
@@ -22,6 +24,7 @@ export class UserManagerComponent implements OnInit {
 
     this.adminService.getAllUser().subscribe(users => {
       this.users = users;
+      this.records = users.length;
     }, error => {
       console.log(error);
     });

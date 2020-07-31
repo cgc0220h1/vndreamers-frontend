@@ -1,0 +1,37 @@
+<div class="row justify-content-between">
+  <label style="margin-left: 2px; margin-top: 0.5rem; font-size: 30px">List Post</label>
+  <div class="d-flex">
+    <input type="text" class="form-control mr-3" style="width: 400px; border-radius: 5px" placeholder="tim kiem theo ten"  [(ngModel)]="term">
+    <button class="btn btn-outline-success" style="border-radius: 10px">Search</button>
+  </div>
+</div>
+<div class="row">
+  <table class="table mt-4 table-striped" style="font-size: 12px; text-align: center">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Status</th>
+      <th>Create Date</th>
+      <th>User</th>
+      <th>Like Quantity</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let post of posts | filter:term">
+      <td>{{post.id}}</td>
+      <td>{{post.status}}</td>
+      <td>{{post.createDate}}</td>
+      <td>{{post.user.username}}</td>
+      <td>{{post.likeQuantity}}</td>
+<!--      <td style="width: 20%">-->
+<!--        <button class="btn btn-success fa fa-eye mr-3" [routerLink]="['/admin/view', user.id]" style="font-size: 20px; cursor: pointer"></button>-->
+<!--        <button *ngIf="user.status == 1" class="btn btn-danger fa fa-lock text-black-50" (click)="blockUser(user)"-->
+<!--                style="font-size: 20px; cursor: pointer"></button>-->
+<!--        <button *ngIf="user.status == 0" class="btn btn-warning fa fa-unlock text-black-50" (click)="activeUser(user)"-->
+<!--                style="font-size: 20px; cursor: pointer"></button>-->
+<!--      </td>-->
+    </tr>
+    </tbody>
+  </table>
+</div>
