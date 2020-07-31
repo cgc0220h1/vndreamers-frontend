@@ -68,21 +68,24 @@ export class LayoutsComponent implements OnInit {
   }
 
   showFriendRequest(): void {
-    if (this.listFriendRequestReceive.length === 0) {
-      this.snackBar.open('Bạn không có lời mời kết bạn nào', '', {
-        duration: 2500
+    this.friendService.getUserRequest().subscribe(next => {
+      this.listFriendRequestReceive = next;
+      if (this.listFriendRequestReceive.length === 0) {
+        this.snackBar.open('Bạn không có lời mời kết bạn nào', '', {
+          duration: 2500
+        });
+        return;
+      }
+      const dialogRef = this.matDialog.open(FriendRequestDialogComponent, {
+        data: this.listFriendRequestReceive
       });
-      return;
-    }
-    const dialogRef = this.matDialog.open(FriendRequestDialogComponent, {
-      data: this.listFriendRequestReceive
-    });
-    dialogRef.afterClosed().subscribe(() => {
-      this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
-        this.otherFriendList = friends;
-      });
-      this.friendService.getUserRequest().subscribe(next => {
-        this.listFriendRequestReceive = next;
+      dialogRef.afterClosed().subscribe(() => {
+        this.friendService.getFriendList(this.userRequested.id).subscribe(friends => {
+          this.otherFriendList = friends;
+        });
+        this.friendService.getUserRequest().subscribe(next => {
+          this.listFriendRequestReceive = next;
+        });
       });
     });
   }
