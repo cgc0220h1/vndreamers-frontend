@@ -21,4 +21,8 @@ export class CommentService {
   updateComment(postId: number, comment: IComment): Observable<IComment> {
     return this.http.put<IComment>(`${apiUrl}/api/posts/${postId}/comments`, comment);
   }
+
+  getCommentOtherUser(id: number): Observable<IComment[]> {
+    return this.http.get<IComment[]>(`${apiUrl}/api/users/${id}/comments`);
+  }
 }
